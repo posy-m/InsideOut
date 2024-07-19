@@ -35,13 +35,15 @@ jobs: # 작업의 단위
           npm install
 
       - name: build nestjs # 빌드
-        run: npm run build
+        run: |
+          cd backend
+          npm run build
 
       - name: build test # 빌드 파일 확인
         run: |
           ls
           pwd
-          cd dist
+          cd backend/dist
           ls
           pwd
 
