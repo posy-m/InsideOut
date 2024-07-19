@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            name: 'myapp', // pm2에서 관리하는 어플리케이션의 이름
+            name: 'InsideOut', // pm2에서 관리하는 어플리케이션의 이름
             script: 'dist/main.js', // pm2 start ./dist/main.js
             instances: 'max', // cpu를 사용해서 어플리케이션 인스턴스를 몇개까지 실행할거냐 ?                                                                                                                    
             exec_mode: 'cluster', // `클러스터` 모드 : 여러 인스턴스가 병렬로 실행될 수 있게한다.
