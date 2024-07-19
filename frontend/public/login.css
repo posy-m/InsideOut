@@ -1,0 +1,46 @@
+.login_form {
+    width: 500px;
+    height: 40vh;
+    /* border: 0px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.login_form > input {
+    width: 80%;
+    height: 50px;
+    margin: 10px 0px;
+}
+
+.login_form> input:nth-of-type(1):focus {
+    margin-bottom: 20px;
+}
+
+.login_form> input:nth-of-type(2):focus {
+    margin-top: 20px;
+}
+
+.login_form > input:not(:focus){
+    height: 3vh;
+}
+
+.login_form > label:nth-of-type(1) {
+    position: absolute;
+    top: 150px;
+}
+
+.login_form > label:nth-of-type(2) {
+    position: absolute;
+    top: 205px;
+}
+
+.login_form > input:focus+label{
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: translateY(-40px);
+}
+
+.login_form > input:not(:focus)+label {
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
