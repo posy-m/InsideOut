@@ -1,4 +1,4 @@
-name: Real Last Nest Build # 현재 제목
+name: Whisky-InsideOut # 현재 제목
 
 on: # 이벤트를 등록
   push: # 푸쉬 이벤트가 발생하면 (pull request, 등등 원하는 이벤트를 넣어줄 수 있음)
