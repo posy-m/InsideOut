@@ -1,0 +1,339 @@
+
+/* 전체틀 잡아주는 div창 */
+#entire {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+}
+
+/* 메인 상단 첫번째 배경넣어주는 div */
+#firstMainFrame {
+    width: 100%;
+    height: 100%;
+    background-color: #1A1413;
+    /* border: 1px solid; */
+}
+
+/* 햄버거버튼과 메뉴들이있는 div창 */
+.topMenu{
+    width: 100%;
+    height: 1000px;
+    font-size: 30px;
+    display: flex;
+}
+
+.slide{
+    height: 850px;
+    width: 220px;
+    position: absolute;
+    background-color: #130e0e;
+    transition: 0.5s ease;
+    transform: translate(-400px);
+}
+h1{
+    color: #7528c2;
+    font-weight: 800;
+    text-align: right;
+    pointer-events: none;
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+}
+ul li{
+    list-style: none;
+}
+ul li a{
+    color: #D7D4CE;
+    font-weight: 500;
+    padding: 5px 0;
+    display: block;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: 0.2s ease-out;
+}
+input{
+    display: none;
+    visibility: hidden;
+}
+.toggle{
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    top: 20px;
+    left: 15px;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 2px;
+    background-color:  #1A1413;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.3);
+}
+.toggle .common{
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    background-color: #8000ff;
+    border-radius: 30px;
+    transition: 0.3s ease;
+}
+.toggle .top_line{
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.toggle .middle_line{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.toggle .bottom_line{
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+input:checked ~ .toggle .top_line{
+    left: 2px;
+    top: 14px;
+    width: 40px;
+    transform: rotate(45deg);
+}
+input:checked ~ .toggle .middle_line{
+    opacity: 0;
+    transform: rotate(50px);
+    display: none;
+}
+input:checked ~ .toggle .bottom_line{
+    left: 2px;
+    top: 14px;
+    width: 40px;
+    transform: rotate(-45deg);
+}
+input:checked ~ .slide{
+    transform: translate(0);
+}
+
+
+
+/* wht so serious??글씨가있는 div창 */
+#mainPost{
+    font-size: 140px;
+    font-weight: 600;
+    color: #D7D4CE;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#mainPost>p{
+    margin: 0px;
+}
+span {
+	opacity: 0;
+}
+
+@keyframes fade {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* #mainJoker{
+    margin: 0px;
+    pointer-events: none;
+}
+.toggle:hover #mainJoker{
+    pointer-events: all;
+} */
+
+/*///////////////조커이미지커서 올리면 튀어나오는 느낌 시작///////////////*/
+:root {
+    --card-height: 300px;
+    --card-width: calc(var(--card-height) / 1.5);
+    }
+
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 36px;
+    perspective: 2500px;
+    margin: 0 50px;
+    width: 400px;
+    height: 500px;
+    margin-top: 150px;
+}
+
+.cover-image {
+    width: 500px;
+    height: 620px;
+    object-fit: cover;
+}
+.card:hover .cover-image {
+    display: none;
+}
+
+
+.wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.card:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper::before,
+.wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+}
+.wrapper::before {
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+    to top,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+    );
+}
+.wrapper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(
+    to bottom,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+    );
+}
+
+.card:hover .wrapper::before,
+.wrapper::after {
+    opacity: 1;
+}
+
+.card:hover .wrapper::after {
+    height: 120px;
+}
+.title {
+    width: 100%;
+    transition: transform 0.5s;
+}
+.card:hover .title {
+    transform: translate3d(0%, -50px, 100px);
+}
+
+.character {
+    width: 100%;
+    height: 600px;
+    opacity: 0;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: -1;
+}
+
+.card:hover .character {
+    opacity: 1;
+    transform: translate3d(0%, -30%, 100px);
+}
+
+/*/////////////////조커이미지 여기까지/////////////////////*/
+
+
+.a{
+    pointer-events: none;
+span {
+    pointer-events: all;
+
+}
+}
+
+
+/* 메인조커무지개색깔 이미지 div창 */
+#mainJoker{
+    display: flex;
+    margin-top: 200px;
+    margin-left: 40px;
+
+}
+#mainJoker > img{
+    width: 550px;
+    height: 700px;
+}
+
+/* 위스키들 이미지있는 div창 */
+#whiskeyCollection{
+    width: 100%;
+    height: 100%;
+    display: inline;
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+    margin-left: -120px;
+}
+#whiskeyCollection > span{
+    width: 450px;
+    height: 450px;
+    display: flex;
+}
+/* .wimg1{   
+    width: 500px;
+    display: flex;
+}
+.wimg2{   
+    width: 200px;
+    height: 200px;
+    display: flex;
+} */
+
+
+
+
+
+/*////////////////////////////////////////*/
+/* 두번째 메인창으로 있는 div창 2번째임 */
+#secondMain > img{
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 세번째 메인창 명언등을 적어놓은 div창 */
+#tata{
+    width: 100%;
+    height: 100%;
+    background-color: #1A1413;
+    color: #D7D4CE;
+    display: flex;
+    justify-content: center;
+}
+#tata > label{
+    display: flex;
+    font-size: 100px;
+    align-items: center;
+}
+
+#rast{
+    width: 100%;
+    height: 100px;
+    background-color: #1A1413;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D7D4CE;
+}
