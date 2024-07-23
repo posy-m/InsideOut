@@ -1,35 +1,38 @@
 
+
+
 /* 전체틀 잡아주는 div창 */
 #entire {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     box-sizing: border-box;
+    user-select: none;
+    background-color: #1A1413;
 
 }
 
 /* 메인 상단 첫번째 배경넣어주는 div */
 #firstMainFrame {
     width: 100%;
-    height: 100%;
-    background-color: #1A1413;
     /* border: 1px solid; */
 }
 
 /* 햄버거버튼과 메뉴들이있는 div창 */
 .topMenu{
     width: 100%;
-    height: 1000px;
     font-size: 30px;
     display: flex;
 }
 
 .slide{
-    height: 850px;
     width: 220px;
+    height: 100%;
     position: absolute;
     background-color: #130e0e;
     transition: 0.5s ease;
     transform: translate(-400px);
+    display: flex;
+    justify-content: center
 }
 h1{
     color: #7528c2;
@@ -112,6 +115,20 @@ input:checked ~ .slide{
     transform: translate(0);
 }
 
+/*메뉴창 언더바 만들기*/
+.nav_list{
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    position: absolute;
+    background-color: rgb(87, 5, 110);
+    top: 170px;
+    left: 10px;
+    height: 5px;
+    z-index: 0;
+}
+
+
 
 
 /* wht so serious??글씨가있는 div창 */
@@ -122,6 +139,7 @@ input:checked ~ .slide{
     display: flex;
     justify-content: center;
     flex-direction: column;
+    
 }
 
 #mainPost>p{
@@ -138,17 +156,10 @@ span {
 }
 
 
-/* #mainJoker{
-    margin: 0px;
-    pointer-events: none;
-}
-.toggle:hover #mainJoker{
-    pointer-events: all;
-} */
+
 
 /*///////////////조커이미지커서 올리면 튀어나오는 느낌 시작///////////////*/
 :root {
-    --card-height: 300px;
     --card-width: calc(var(--card-height) / 1.5);
     }
 
@@ -157,15 +168,16 @@ span {
     height: var(--card-height);
     position: relative;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: flex-end;
+    /* align-items: flex-end; */
     padding: 0 36px;
     perspective: 2500px;
     margin: 0 50px;
     width: 400px;
-    height: 500px;
     margin-top: 150px;
 }
+
 
 .cover-image {
     width: 500px;
@@ -196,14 +208,12 @@ span {
     content: "";
     opacity: 0;
     width: 100%;
-    height: 80px;
     transition: all 0.5s;
     position: absolute;
     left: 0;
 }
 .wrapper::before {
     top: 0;
-    height: 100%;
     background-image: linear-gradient(
     to top,
     transparent 46%,
@@ -227,9 +237,8 @@ span {
     opacity: 1;
 }
 
-.card:hover .wrapper::after {
-    height: 120px;
-}
+/* .card:hover .wrapper::after {
+} */
 .title {
     width: 100%;
     transition: transform 0.5s;
@@ -240,10 +249,11 @@ span {
 
 .character {
     width: 100%;
-    height: 600px;
     opacity: 0;
     transition: all 0.5s;
     position: absolute;
+    top: 1px;
+    
     z-index: -1;
 }
 
@@ -255,68 +265,134 @@ span {
 /*/////////////////조커이미지 여기까지/////////////////////*/
 
 
-.a{
-    pointer-events: none;
-span {
-    pointer-events: all;
-
-}
-}
-
 
 /* 메인조커무지개색깔 이미지 div창 */
 #mainJoker{
     display: flex;
-    margin-top: 200px;
+    margin-top: 150px;
     margin-left: 40px;
-
+    z-index: 2;
 }
 #mainJoker > img{
     width: 550px;
-    height: 700px;
 }
 
 /* 위스키들 이미지있는 div창 */
 #whiskeyCollection{
-    width: 100%;
-    height: 100%;
-    display: inline;
+    /* width: 100%; */
+    height: 500px;
+    margin-top: 30px;
     display: flex;
-    justify-content: center;
-    margin-top: 90px;
-    margin-left: -120px;
+    align-items: center;
 }
-#whiskeyCollection > span{
-    width: 450px;
-    height: 450px;
-    display: flex;
-}
-/* .wimg1{   
-    width: 500px;
-    display: flex;
-}
-.wimg2{   
+.wimg2{
     width: 200px;
-    height: 200px;
-    display: flex;
-} */
-
+}
+.wimg1{
+    margin-top: 10px;
+}
 
 
 
 
 /*////////////////////////////////////////*/
-/* 두번째 메인창으로 있는 div창 2번째임 */
-#secondMain > img{
+/* 두번째 메인창으로 슬라이드 모션있는 div창 2번째임 */
+
+
+.carousel {
+    --count: 6;
+    --index: 0;
+    --height: 60rem;
+
+    height: var(--height);
+    display: flex;
+    margin-top: 2.4rem;
+    max-width: 100%;
     width: 100%;
-    height: 100%;
+    background-color:#1A1413;
+
+&.single {
+    .gallery {
+        display: none;
+    }
+
+.jumbotron {
+        border-radius: 1rem;
+        
+    }
+    }
+
+figure {
+    position: relative;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0px;
+        width: 100%;
+        /* height: 700px; */
+        object-fit: cover;
+    }
+    }
+
+.jumbotron {
+    flex: 1;
+    position: relative;
+    margin-right: 0.5rem;
+    overflow: hidden;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+
+figure {
+        width: 100%;
+        height: 100%;
+
+        &:first-child {
+          margin-top: calc(var(--index) * var(--height) * -1);
+        transition: margin-top .5s;
+        }
+    }
+    }
+
+.gallery {
+    flex: 0 0 15rem ;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 3px;
+        height: calc((100% - 0.5rem * (var(--count) - 1)) / var(--count));
+        right: calc(-0.5rem - 3px);
+        background-color: #9B111E;
+        transform: translateY(calc((100% + 0.5rem) * var(--index)));
+        transition: transform .5s;
+    }
+
+figure {
+        flex: 1;
+        cursor: pointer;
+        transition: filter .2s;
+
+        &:hover {
+        filter: brightness(1.2);
+        }
+
+        &:not(:first-child) {
+        margin-top: 0.5rem;
+        }
+    }
+    }
 }
+
 
 
 /* 세번째 메인창 명언등을 적어놓은 div창 */
 #tata{
     width: 100%;
-    height: 100%;
     background-color: #1A1413;
     color: #D7D4CE;
     display: flex;
@@ -330,7 +406,6 @@ span {
 
 #rast{
     width: 100%;
-    height: 100px;
     background-color: #1A1413;
     display: flex;
     align-items: center;
