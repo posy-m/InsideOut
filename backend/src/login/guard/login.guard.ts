@@ -1,6 +1,6 @@
-import { BadRequestException, CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
-import { LoginService } from "../login.service";
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
+import { LoginService } from "../login.service";
 
 @Injectable()
 export class TokenGuard implements CanActivate {
@@ -42,18 +42,3 @@ export class TokenGuard implements CanActivate {
         return true;
     }
 }
-
-// @Injectable()
-// export class AuthGuard implements CanActivate {
-//   canActivate(context: ExecutionContext) {
-//     const request = context.switchToHttp().getRequest();
-//     const authorization = request.headers.authorization;
-//     console.log(authorization);
-//     if (authorization) {
-//       const [scheme, token] = authorization.split(" ");
-//       console.log([scheme, token]);
-//       return scheme.toLowerCase() === "bearer" && token === "1234";
-//     }
-//     throw new BadRequestException();
-//   }
-// }
