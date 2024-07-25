@@ -8,7 +8,7 @@ export class UserSignUpRepository {
   async createUser(uid: string, upw: string, nick_name: string, isAdmin: boolean): Promise<any> {
     // 유저를 생성하는 로직을 여기에 구현하세요
     // 데이터베이스 호출을 시뮬레이션합니다.
-    return { uid, upw, nick_name, isAdmin };
+    return { uid, upw, nick_name };
   }
 
   async findUserById(uid: string): Promise<any> {

@@ -1,8 +1,11 @@
 // b7108885361cba759fcbf247127c6576
-import { UnauthorizedException } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import axios from "axios";
 import { AuthStrategy } from "./auth.strategy";
 import { config } from "dotenv";
+import { PassportStrategy } from "@nestjs/passport";
+import { Strategy, Profile } from "passport-kakao"
+import { ConfigService } from "@nestjs/config";
 
 export class KakaoStrategy implements AuthStrategy {
     async validate(code: string): Promise<any> {

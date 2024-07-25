@@ -1,5 +1,5 @@
 
-import { Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
+import { Column, DataType, Default, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 
 @Table({
     tableName: "userDB",
@@ -33,6 +33,7 @@ export class UserSignUp extends Model {
     })
     nick_name:string
 
+    @Default(false)
     @Column({
         type: DataType.BOOLEAN,
         allowNull: false,

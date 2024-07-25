@@ -17,14 +17,14 @@ export class LoginService {
     ) {}
 
     async create(userLoginLogic : UserSignUpDto) : Promise<UserSignUp>{
-        let { uid, upw, nick_name, isAdmin } = userLoginLogic;
+        let { uid, upw, nick_name } = userLoginLogic;
         
         const salt = 10;
         const plainPassword = upw
         const hashedpassword = await bcrypt.hash(plainPassword, salt);
         console.log(hashedpassword)
         return this.userLoginLogic.create({
-            uid, upw:hashedpassword, nick_name, isAdmin
+            uid, upw:hashedpassword, nick_name
         })
     }
 
