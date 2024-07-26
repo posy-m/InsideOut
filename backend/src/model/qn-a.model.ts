@@ -1,47 +1,28 @@
-import { Model, Column, Table, DataType, ForeignKey, HasMany, BelongsTo, PrimaryKey, AutoIncrement } from "sequelize-typescript";
-import { Comment } from "./comment.model";
+import { Model, Column, Table, DataType } from "sequelize-typescript";
 
 
 @Table({
     timestamps: true,
     tableName: "QnAs",
-    modelName: "QnA",
     paranoid: true,
-    charset: "utf8mb4",
-    collate: "utf8mb4_general_ci"
 })
 
 export class QnA extends Model {
-    @PrimaryKey
-    @AutoIncrement
     @Column({
-        type: DataType.INTEGER,
-        allowNull: false
+        type: DataType.STRING,
+        allowNull: false,
     })
-    id: number;
-
-    // @ForeignKey(() => User)
-    @Column({
-        type: DataType.STRING(30),
-        allowNull: false
-    })
-    nickName!: string;
-
-    // @BelongsTo(() => User)
-    // user!: User;
+    nick_name: string;
 
     @Column({
-        type: DataType.STRING(50),
+        type: DataType.STRING,
         allowNull: false
     })
-    qnatitle!: string;
+    qna_title: string;
 
     @Column({
-        type: DataType.STRING(255),
+        type: DataType.TEXT,
         allowNull: false
     })
-    qnacontent!: string;
-
-    @HasMany(() => Comment)
-    comments!: Comment[];
+    qna_content: string;
 }

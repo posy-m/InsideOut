@@ -1,17 +1,17 @@
-export class CreateComment {
+export class CreateCommentDTO {
     id: number
     QnA_ID: number
     nick_name: string
     QnA_comment: string
 }
 
-export class UpdateComment {
+export class UpdateCommentDTO {
     id: number
     QnA_ID: number
     nick_name: string
     QnA_comment: string
 }
 
-export class DeleteComment {
+export class DeleteCommentDTO {
     id: number
 }

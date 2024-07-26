@@ -5,47 +5,36 @@ import { Ccomment } from "./ccomment.model";
 @Table({
     timestamps: true,
     tableName: "Comments",
-    modelName: "Comment",
     paranoid: true,
-    charset: "utf8mb4",
-    collate: "utf8mb4_general_ci"
 })
 
 export class Comment extends Model {
-    @PrimaryKey
-    @AutoIncrement
+    // @HasMany(() => Ccomment)
+    // ccomments?: Ccomment[];
+
+    // @ForeignKey(() => QnA)
     @Column({
         type: DataType.INTEGER,
         allowNull: false
     })
-    id: Number;
+    qna_id: number;
 
-    @HasMany(() => Ccomment)
-    ccomments!: Ccomment[];
-
-    @ForeignKey(() => QnA)
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false
-    })
-    qna_id!: number;
-
-    @BelongsTo(() => QnA)
-    qna!: QnA;
+    // @BelongsTo(() => QnA)
+    // qna: QnA;
 
     // @ForeignKey(() => User)
     @Column({
-        type: DataType.STRING(30),
+        type: DataType.STRING,
         allowNull: false
     })
     nick_name: string;
 
     // @BelongsTo(() => User)
-    // user!: User;
+    // user?: User;
 
     @Column({
-        type: DataType.STRING(255),
+        type: DataType.STRING,
         allowNull: false
     })
-    qna_content!: string;
+    qna_content?: string;
 }

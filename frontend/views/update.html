@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의 글 수정</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"> </script>
+</head>
+
+<body>
+    <div class="updateContainer">
+        <div class="updateContent">
+            <h1 class="updateTitle">문의 글 수정</h1>
+            <div class="updateWrap">
+                <form id="updateForm" action="http://127.0.0.1:3000/qn-a/update">
+                    <input type="text" name="nick_name" value="god_kkh" hidden>
+                    <label for="">제목 수정</label>
+                    <textarea name="qna_title" id="titleInput" placeholder="수정할 제목을 입력해주세요" cols="50"
+                        rows="1"></textarea>
+                    <label for="">내용 수정</label>
+                    <textarea name="qna_content" id="contentInput" placeholder="수정할 내용을 입력해주세요" cols="130"
+                        rows="50"></textarea>
+                    <button id="updateBtn">문의 글 수정</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // async function put() {
+    //     const data = await axios.get('http://127.0.0.1:3000/qn-a');
+    //     console.log(data.data[1].id);
+    // }
+    // put();
+    const data = "?id=1&name=123"
+    const _data = data.replace('?', '')
+    console.log(_data);
+    const sliceData = _data.split('&');
+    // const sliceData2 = sliceData2.split(',');
+    sliceData.forEach((number) => {
+        console.log(number);
+    });
+
+    // = 잘라서 id, 1, name, hyeok 만들어보기
+
+    // const url = new URL(`http://127.0.0.1:3000/qn-a?id=`)
+    // const params = data.data.id
+
+    // axios.put(`http://127.0.0.1:3000/qn-a/${id}`, {
+    //     title: qna_title.value,
+    //     content: qna_title.value
+    // })
+    //     .then(function (response) {
+    //         console.log(response);
+    //         return response;
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     })
+
+    // const data = axios.put(`http://127.0.0.1/qn-a/${}`)
+
+    // function getQueryParamsAsArray() {
+    //     const params = new URLSearchParams(window.location.search);
+    //     const queryParamsArray = [];
+    //     for (const [key, value] of params.entries()) {
+    //         queryParamsArray.push([key, value]);
+    //     }
+    //     return queryParamsArray;
+    // }
+
+    // axios.get('http://127.0.0.1:3000/qn-a', {
+    //     params: {
+    //         id: 1,
+    //         name: 123
+    //     }
+    // })
+    // let arr = [];
+    // arr[0].push = "id", "1"
+    // arr[1].push = "name", "123"
+    // location.search = `${arr[0][1]}`// ?id=1&name=123 ==> [["id", "1"],["name", "123"]]
+    // // arr[0][1]
+    // console.log(arr);
+    // console.log(location.search);
+    // // const { data } = axios.get(`http://127.0.0.1:3000/qn-a/?${location.search}`)
+
+    // document.getElementById('update').addEventListener('click', async event => {
+    //     const nick_name = "god_kkh"
+    //     const qna_title = document.getElementById('titleInput').value;
+    //     const qna_content = document.getElementById('contentInput').value;
+
+    //     const data = await axios.put(`http://127.0.0.1:3000/qn-a/update/${id}`, { nick_name, qna_title, qna_content })
+    //     location.href = "QnA.html"
+    // })
+</script>
+
+</html>

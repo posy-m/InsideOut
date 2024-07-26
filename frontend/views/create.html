@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QnA 작성</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"> </script>
+</head>
+
+<body>
+    <div class="writeContainer">
+        <div class="writeContent">
+            <h1 class="writeTitle">문의 글 작성</h1>
+            <div class="writeWrap">
+                <form id="createForm" action="http://127.0.0.1:3000/qn-a/create" method="post">
+                    <input type="text" name="nick_name" value="god_kkh" hidden>
+                    <label for="">문의 제목</label>
+                    <textarea name="qna_title" id="titleInput" placeholder="문의 제목을 입력해주세요" cols="50"
+                        rows="1"></textarea>
+                    <label for="">문의 내용</label>
+                    <textarea name="qna_content" id="contentInput" placeholder="문의 내용을 입력해주세요" cols="130"
+                        rows="50"></textarea>
+                    <button id="createBtn">문의 글 작성</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

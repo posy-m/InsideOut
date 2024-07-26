@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QnA 메인</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <h1 class="QnA_title">QnA</h1>
+    <div class="btnWrap">
+        <button id="createBtn">문의 글 작성</button>
+    </div>
+    <div id="guide">
+        <span class="guideNumber">번호</span>
+        <span class="guideName">작성자</span>
+        <span class="guideTitle">제목</span>
+        <span class="guideContent">내용</span>
+    </div>
+    <div id="list"></div>
+    <div class="searchWrap">
+        <input type="search" name="" id="searchInput" placeholder="찾고 싶은 문의 글의 제목을 검색해주세요">
+    </div>
+    <div class="paginationWrap">
+        <div id="pagination"></div>
+    </div>
+</body>
+<script>
+    async function get() {
+        try {
+            const data = await axios.get("http://127.0.0.1:3000/qn-a");
+            console.log(data.data);
+
+            const dataContainer = document.getElementById('list');
+            data.data.forEach(item => {
+                const div = document.createElement('div');
+                div.textContent = `ID : ${item.id}, Name : ${item.nick_name}, Title : ${item.qna_title}, Content : ${item.qna_content}`;
+                dataContainer.appendChild(div);
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    get();
+
+    const createBtn = document.getElementById('createBtn');
+    createBtn.addEventListener('click', () => {
+        location.href = './create.html'
+    })
+
+</script>
+
+
+</html>
