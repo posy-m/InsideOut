@@ -1,4 +1,5 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { User } from "./user.model";
 import { Comment } from "./comment.model";
 
 @Table({
@@ -8,23 +9,30 @@ import { Comment } from "./comment.model";
 })
 
 export class Ccomment extends Model {
+    @ForeignKey(() => Comment)
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false
+    })
+    QnA_comment_ID: number
 
-    // @BelongsTo(() => Comment)
-    // comment!: Comment;
-
-    // @ForeignKey(() => User)
+    @ForeignKey(() => User)
     @Column({
         type: DataType.STRING,
         allowNull: false
     })
     nick_name: string;
 
-    // @BelongsTo(() => User)
-    // user!: User;
-
     @Column({
         type: DataType.STRING,
         allowNull: false
     })
-    QnA_com_comment: string;
+    qna_com_comment: string;
+
+    @BelongsTo(() => User)
+    Users: User;
+
+    // @BelongsTo(() => Comment)
+    // Comments: Comment;
+
 }

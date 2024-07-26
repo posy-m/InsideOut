@@ -1,4 +1,5 @@
-import { AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
+import { User } from "./user.model";
 import { QnA } from "./qn-a.model";
 import { Ccomment } from "./ccomment.model";
 
@@ -9,32 +10,33 @@ import { Ccomment } from "./ccomment.model";
 })
 
 export class Comment extends Model {
-    // @HasMany(() => Ccomment)
-    // ccomments?: Ccomment[];
-
-    // @ForeignKey(() => QnA)
+    @ForeignKey(() => QnA)
     @Column({
         type: DataType.INTEGER,
         allowNull: false
     })
-    qna_id: number;
+    qna_id: number
 
-    // @BelongsTo(() => QnA)
-    // qna: QnA;
-
-    // @ForeignKey(() => User)
+    @ForeignKey(() => User)
     @Column({
         type: DataType.STRING,
         allowNull: false
     })
     nick_name: string;
 
-    // @BelongsTo(() => User)
-    // user?: User;
-
     @Column({
         type: DataType.STRING,
         allowNull: false
     })
-    qna_content?: string;
+    qna_comment: string;
+
+    @HasMany(() => Ccomment)
+    Ccomments: Ccomment[];
+
+    @BelongsTo(() => User)
+    Users: User;
+
+    @BelongsTo(() => QnA)
+    QnAs: QnA
+
 }

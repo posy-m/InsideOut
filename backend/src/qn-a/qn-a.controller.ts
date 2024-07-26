@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Render, Req, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Res } from '@nestjs/common';
 import { QnAService } from './qn-a.service';
 import { CreateQnADTO, DeleteQnADTO, UpdateQnADTO } from 'src/dto/qn-a.dto';
 import { Response } from 'express';
@@ -16,7 +16,7 @@ export class QnAController {
   @Get()
   async qnaPage(@Res() res: Response) {
     const data = await this.qnaService.findAll();
-    console.log(data);
+    // console.log(data);
     res.send(data);
   }
 
@@ -26,7 +26,7 @@ export class QnAController {
   @ApiBody({
     schema: {
       type: "object",
-      properties: { id: { type: "string" }, nick_name: { type: "string" }, qnatitle: { type: "string" }, qnacontent: { type: "string" } }
+      properties: { id: { type: "number" }, nick_name: { type: "string" }, qnatitle: { type: "string" }, qnacontent: { type: "string" } }
     }
   })
   @HttpCode(201)
@@ -37,24 +37,33 @@ export class QnAController {
   }
 
   @ApiOperation({ summary: 'Get a specific QnA by ID' })
-  @ApiParam({ name: 'id', type: String, description: 'QnA ID' })
+  @ApiParam({ name: 'id', type: Number, description: 'QnA ID' })
   @ApiResponse({ status: 200, description: 'QnA found' })
   @ApiResponse({ status: 404, description: 'QnA not found' })
-  @Get(":id")
-  async detail(@Param("id") id: string) {
+  @Get("detail/:id")
+  async detail(@Param("id") id: number) {
     const data = await this.qnaService.findOne(id);
-    return { data }
+    return data;
   }
 
+  @ApiOperation({ summary: 'Update a spectific QnA by ID' })
+  @ApiParam({ name: 'id', required: true, description: 'ID of the QnA', type: String })
+  @ApiResponse({ status: 200, description: 'QnA updated.' })
+  @ApiResponse({ status: 404, description: 'QnA not found.' })
   @Put(":id")
-  async update(@Body() updateQnA: UpdateQnADTO, @Param("id") id: string, @Res() res: Response) {
-    const data = await this.qnaService.update(updateQnA);
-    res.redirect(`/qn-a/${id}`)
-    return { data }
+  async update(@Body() updateQnA: UpdateQnADTO, @Param("id") id: number, @Res() res: Response) {
+    console.log(updateQnA);
+    const data = await this.qnaService.update(updateQnA, id);
+    res.send(data);
   }
 
+  @ApiOperation({ summary: 'Delete a specific QnA by ID' })
+  @ApiParam({ name: 'id', required: true, description: 'ID of the QnA', type: String })
+  @ApiResponse({ status: 200, description: 'QnA deleted.' })
+  @ApiResponse({ status: 404, description: 'QnA not found.' })
   @Delete(":id")
   async destory(@Param("id") deleteQnA: DeleteQnADTO) {
+    console.log(deleteQnA);
     return await this.qnaService.destory(deleteQnA);
   }
 }

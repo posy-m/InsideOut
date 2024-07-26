@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { QnAService } from './qn-a.service';
-import { QnAController } from './qn-a.controller';
+import { UserService } from './user.service';
+import { UserController } from './user.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from 'src/model/user.model';
 import { QnA } from 'src/model/qn-a.model';
@@ -9,7 +9,7 @@ import { Ccomment } from 'src/model/ccomment.model';
 
 @Module({
   imports: [SequelizeModule.forFeature([User, QnA, Comment, Ccomment])],
-  controllers: [QnAController],
-  providers: [QnAService],
+  controllers: [UserController],
+  providers: [UserService],
 })
-export class QnAModule { }
+export class UserModule { }

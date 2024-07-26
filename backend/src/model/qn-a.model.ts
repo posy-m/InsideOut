@@ -1,13 +1,15 @@
-import { Model, Column, Table, DataType } from "sequelize-typescript";
+import { Model, Column, Table, DataType, HasMany, ForeignKey, BelongsTo } from "sequelize-typescript";
+import { Comment } from "./comment.model";
+import { User } from "./user.model";
 
 
 @Table({
     timestamps: true,
-    tableName: "QnAs",
-    paranoid: true,
+    tableName: "QnAs"
 })
 
 export class QnA extends Model {
+    @ForeignKey(() => User)
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -25,4 +27,10 @@ export class QnA extends Model {
         allowNull: false
     })
     qna_content: string;
+
+    @HasMany(() => Comment)
+    Comments: Comment[];
+
+    @BelongsTo(() => User)
+    Users: User;
 }

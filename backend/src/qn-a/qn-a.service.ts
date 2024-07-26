@@ -6,13 +6,12 @@ import { QnA } from 'src/model/qn-a.model';
 @Injectable()
 export class QnAService {
     constructor(
-        // private readonly httpService: HttpService,
         @InjectModel(QnA) private readonly QnAModel: typeof QnA) { }
 
     async create(createQnA: CreateQnADTO) {
-        const { id, nick_name, qna_title, qna_content } = createQnA
+        const { nick_name, qna_title, qna_content } = createQnA
         return await this.QnAModel.create({
-            id, nick_name, qna_title, qna_content
+            nick_name, qna_title, qna_content
         })
     }
 
@@ -20,19 +19,20 @@ export class QnAService {
         return await this.QnAModel.findAll();
     }
 
-    async findOne(id: string) {
+    async findOne(id: number) {
         return await this.QnAModel.findOne({ where: { id } })
     }
 
-    async update(updateQnA: UpdateQnADTO) {
-        const { id, nick_name, qna_title, qna_content } = updateQnA
+    async update(updateQnA: UpdateQnADTO, id: number) {
+        const { qna_title, qna_content } = updateQnA
         return this.QnAModel.update({
-            id, nick_name, qna_title, qna_content
+            qna_title, qna_content
         }, { where: { id } })
     }
 
     async destory(deleteQnA: DeleteQnADTO) {
-        const { id } = deleteQnA
+        const id = deleteQnA
+        console.log(deleteQnA) // 궁금 (객체인지, 숫자값인지)
         return this.QnAModel.destroy({ where: { id } })
     }
 }

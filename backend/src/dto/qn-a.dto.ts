@@ -2,12 +2,6 @@ import { ApiProperty } from "@nestjs/swagger"
 
 export class CreateQnADTO {
     @ApiProperty({
-        description: 'QnA 글번호',
-        type: Number
-    })
-    id: number
-
-    @ApiProperty({
         description: 'QnA 작성자',
         type: String
     })

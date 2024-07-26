@@ -36,8 +36,15 @@
             const dataContainer = document.getElementById('list');
             data.data.forEach(item => {
                 const div = document.createElement('div');
-                div.textContent = `ID : ${item.id}, Name : ${item.nick_name}, Title : ${item.qna_title}, Content : ${item.qna_content}`;
+                const detailBtn = document.createElement('button');
+                detailBtn.innerHTML = "상세 보기";
+                detailBtn.addEventListener('click', (e) => {
+                    console.log(item.id);
+                    location.href = `detail.html?id=${item.id}`;
+                })
+                div.textContent = `ID : ${item.id}, Name : ${item.nick_name}, Title : ${item.qna_title}, Content : ${item.qna_content}`
                 dataContainer.appendChild(div);
+                dataContainer.appendChild(detailBtn);
             });
         } catch (error) {
             console.log(error)
