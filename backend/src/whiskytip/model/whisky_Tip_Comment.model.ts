@@ -12,6 +12,10 @@ import { whiskyTipCcomment } from './whisky_Tip_Ccomment.model';
 })
 
 export class whiskyTipComment extends Model {
+
+  @Column
+  category: number;
+
   @ForeignKey(() => whiskyTip)
   @Column
   tip_ID: number;
@@ -23,7 +27,7 @@ export class whiskyTipComment extends Model {
   nick_name: string;
 
   @Column({
-    type: DataType.STRING(255),
+    type: DataType.TEXT,
     allowNull: false
   })
   tip_comment: string;
