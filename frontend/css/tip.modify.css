@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#uploadBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+#modifyBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid; */
+  width: 730px;
+
+}
+
+#tipModifyTitle {
+  width: 730px;
+  height: 30px;
+  margin: 50px 0px 30px;
+  padding: 5px;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+
+#tipCorrecionContent {
+  padding: 20px;
+  width: 700px;
+  height: 400px;
+  resize: none;
+
+
+}
+
+#checkImg {
+  width: 300px;
+  height: 300px;
+  display: block;
+  margin: 0 auto 20px;
+
+}
+
+
+#uploadBoxBtn {
+  width: 735px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#cancellationBtn {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}
+
+#tipModifyBtn {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}

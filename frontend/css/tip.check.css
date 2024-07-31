@@ -1,0 +1,224 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+
+#uploadBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#checkDataWrap {
+  /* width: 100px; */
+}
+
+#tipCorrecionTitle {
+  width: 730px;
+  height: 30px;
+  margin: 50px 0px 30px;
+  padding: 5px;
+  font-weight: 600;
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: gray;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+}
+
+#tipCorrecionContent {
+  padding: 20px;
+  width: 700px;
+  height: 500px;
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* overflow: hidden; */
+}
+
+
+
+#checkContent {
+
+  height: 150px;
+  padding: 10px;
+}
+
+#tipContent {
+  padding: 20px;
+  width: 700px;
+  word-break: break-all;
+  overflow: scroll;
+}
+
+
+
+
+#checkImg {
+  width: 300px;
+  height: 300px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+
+#uploadBoxBtn {
+  width: 735px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#cancellationBtn {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}
+
+#tipCorrecionBtn {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}
+
+#tipCheckBox {
+  display: flex;
+  justify-content: space-between;
+  width: 735px;
+
+}
+
+.tip_check_modify {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}
+
+.tip_check_delete {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}
+
+
+/* 댓글 첫번째 방법 */
+/* #commentBtnWrap>input:nth-child(1) {
+  padding: 10px;
+  width: 250px;
+  outline: none;
+  border: 1px solid gray;
+}
+
+#commentBtnWrap>input:nth-child(1):focus {
+  animation: round 1s forwards;
+}
+
+@keyframes round {
+  from {
+    border-radius: 0;
+  }
+
+  to {
+    border-radius: 30px;
+  }
+}
+
+#commentBtnWrap>button {
+  padding: 10px;
+  width: 50px;
+  outline: none;
+  border: 1px solid gray;
+}
+
+#commentBtnWrap>button:focus {
+  animation: round 1s forwards;
+} */
+
+
+/* input */
+
+#commentBtnWrap {
+  margin-top: 15px;
+  margin-left: 130px;
+}
+
+#commentBtnWrap>input:nth-child(1) {
+  width: 643px;
+  height: 25px;
+  /* background-color: #ebdddd; */
+  border-width: 0 0 1px;
+  padding: 5px;
+}
+
+#commentBtn {
+  margin-left: 10px;
+  width: 65px;
+  height: 35px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+
+/* 댓글 글 나오는거  */
+#comment {
+  margin: 10px 0 10px;
+  width: 720px;
+  height: 50px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid; */
+}
+
+#commentSmallText {
+  display: flex;
+  flex-direction: column;
+  /* gap: 1px; */
+  /* border: 1px solid; */
+}
+
+#commentSmallText>div:nth-child(2) {
+  color: rgb(53, 53, 53);
+
+}
+
+#commentSmallText>div:nth-child(3) {
+  font-size: 10px;
+  color: gray;
+}
+
+.writer {
+  font-weight: 700;
+}
+
+#icon {
+  display: flex;
+  /* justify-content: end; */
+  /* align-items: flex-end; */
+}
+
+.check_btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.checkicon {
+  width: 30px;
+  height: 30px;
+  /* z-index: -9999; */
+  cursor: pointer;
+}

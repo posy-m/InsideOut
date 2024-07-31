@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tip_수정하기</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/tip.modify.css">
+</head>
+
+<!-- 이미지 업로드 하는거 nodejs -> 20240619 -->
+
+<body>
+  <!-- <form id="uploadBox" enctype="multipart/form-data"> -->
+  <!-- enctype="multipart/form-data" 없어도 된다. -->
+  <!-- 왜나면 동기적이기 때문에 자바스크립트에서 비동기적으로 ㅁ써줘야한다. -->
+  <form id="uploadBox" name="1" action="http://127.0.0.1:3000/whisky/upload" method="post"
+    enctype="multipart/form-data">
+
+    <!-- <input type="text" name="category" value="1" hidden>
+    <input type="text" placeholder="제목을 입력해주세요" id="tipCorrecionTitle" name="title">
+    <textarea name="content" id="tipCorrecionContent"></textarea>
+
+
+    <div id="uploadBoxBtn">
+      <input type="file" id="tipFile" name="file">
+      <div>
+        <button id="cancellationBtn" type="button">취소</button>
+        <button id="tipCorrecionBtn">확인</button>
+      </div>
+    </div> -->
+  </form>
+</body>
+<script src="../js/tip.modify.js"></script>
+
+</html>
