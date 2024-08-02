@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/infoRead.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="top">
+        <h2>위스키소개 페이지, 메인페이지</h2>
+        <div>
+            <div>
+                <button>글 작성</button>
+            </div>
+            <div>
+                <img src="" alt="">
+                <div>
+                    <span class="text">위스키에대한 소개글들을 작성하는 곳</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    async function get() {
+        try {
+            const response = await axios.get("http://localhost:3000/information");
+            console.log(response.data);  // 서버에서 반환된 데이터를 로그로 출력
+        } catch (error) {
+            console.error("무슨 에러났어:", error);  // 에러 메시지를 로그로 출력
+        }
+    }
+    get();
+    </script>
+
+</html>

@@ -1,0 +1,399 @@
+/* 전체틀 잡아주는 div창 */
+
+
+ul li {
+    list-style: none;
+}
+
+#entire {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: rgb(244, 244, 244);
+}
+
+
+
+.entireTow{
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    /*배경사진 넣을 곳 고화질사진을찾아서 넣기*/
+    background-image: url(
+        ../HTML/2enProject_Main_imges/모자있는\ 위스키들.jpg
+    );
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.topbar{
+    width: 100%;
+    border: 1px aliceblue;
+    background-color:  #fff1cb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
+
+/*상단 메뉴창*/
+
+nav a {
+    text-decoration: none;
+    color:black;
+    margin: 1em;
+    font-size: 2em;
+}
+
+nav:first-child {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0 2em 0 0;
+    align-items: center
+}
+
+#horizontal-underline>a>span{
+width: 100%;;
+height: 200px;
+}
+
+#horizontal-underline{
+    position: absolute;
+    left: 0;;
+    height: 4px;
+    width: 0;
+    border-radius: 3px;
+    transition: 0.5s;
+    background-color: rgb(248, 181, 11);
+    top:0;
+}
+
+
+
+
+
+
+/*///////////////조커이미지커서 올리면 튀어나오는 느낌 시작///////////////*/
+.mainJokerFrame{
+    width: 30%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#mainJoker > img{
+    width: 10px;
+}
+:root {
+    --card-width: calc(var(--card-height) / 1.5);
+}
+
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* align-items: flex-end; */
+    padding: 0 36px;
+    perspective: 2500px;
+    margin: 0 50px;
+}
+
+
+.cover-image {
+    width: 50px;
+    height: 80px;
+    object-fit: cover;
+}
+
+
+.wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    color: #000000;
+    /* font-style: normal; */
+}
+
+
+
+
+
+
+
+
+
+/*////////////////////////////////////////*/
+/* 두번째 메인창으로 슬라이드 모션있는 div창 2번째임 */
+
+#firstMainFrame{
+    width: 100%;
+    display: contents;
+}
+
+#carousel_box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.carousel_input_img_box ul li img {
+    width: 100%;
+    height: 55vh;
+    border: 1px solid#352200;
+    border-radius: 2px;
+}
+
+
+.carousel_image_box_btn ul li img {
+    width: 100%;
+    height: 13vh;
+    border-radius: 10px;
+    border: 1px solid #0f3306;
+    display: none;
+}
+
+.font{
+    display: flex;
+    font-size: 50px;
+    font-weight: 200;
+    height: 400px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+}
+
+
+
+
+/* 위스키들 이미지있는 div창 */
+.whiskeyCollection{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    background: rgb(255, 255, 255);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.whiskeyCollection_frame{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.whiskeyCollection_div{
+    width: 25%;
+    display: flex;
+    margin-top: 70px;
+    justify-content: center;
+}
+
+#whiskeyCollection_div> img {
+    width: 10%;
+    border-radius: 8px;
+}
+
+
+/*맛팁구경 버튼*/
+.Tastetip{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.Tastetip>a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.Tastetip>a >button {
+    width: 21%;
+    height: 35%;
+    background-color: #f8a623;
+    border: none;
+    color: #fff7f7e4;
+    font-size: 25px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    
+}
+
+.gobak{
+    width: 100%;
+    height: 300px;
+}
+
+
+
+
+/* 세번째 메인창 명언등을 적어놓은 div창 */
+#tata{
+    width: 100%;
+    /* height: 500px; */
+    background-color: #fff1cb;
+    color: #D7D4CE;
+    display: flex;
+    justify-content: center;
+}
+
+
+#rast{
+    width: 100%;
+    height: 300px;
+    font-size: 20px;
+    background-color: #ff9d00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-direction: column;
+}
+
+
+/*하단 명언글 틀잡고있는 div*/
+.bigQuote{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #000000;
+    /* border: 1px solid crimson; */
+}
+
+/* 명언 글 네모만들div*/
+.quoteBoxFrame{
+    /* background-color:#1A1413; */
+    width: 100%;
+    height: 220px;
+    border-radius: 5px;
+    /* border: 1px solid darkorchid;/ */
+    align-content: space-evenly;
+    text-align: center;
+}
+.quoteBoxFrame>span:nth-child(1){
+    font-size: 30px;
+    font-weight: 600;
+}
+.quoteBoxFrame2>span:nth-child(1){
+    font-size: 30px;
+    font-weight: 600;
+}
+.quoteBoxFrame3>span:nth-child(1){
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+.quoteBoxFrame2{
+    /* background-color:#1A1413; */
+    width: 100%;
+    height: 220px;
+    border-radius: 5px;
+    /* border: 1px solid darkorchid; */
+    align-content: space-evenly;
+    text-align: center;
+    display: none;
+}
+.quoteBoxFrame3{
+    /* background-color:#1A1413; */
+    width: 100%;
+    height: 220px;
+    border-radius: 5px;
+    /* border: 1px solid darkorchid; */
+    align-content: space-evenly;
+    text-align: center;
+    display: none;
+}
+.postApost{
+    margin: 20px;
+}
+
+
+/*명언 글씨들어가는곳 span*/
+.famousQuote{
+    margin-top: 100px;
+    margin: 20px;
+}
+.famoustext{
+    margin-top: 100px;
+    margin: 20px;
+}
+
+.but{
+    display: flex;
+    width: 25%;
+    height: auto;
+    justify-content: center;
+    justify-content: space-around;
+}
+
+.prev{
+    height: 65px;
+    width: 50%;
+    font-size: 50px;
+    background:  #fff1cb;
+    border-style: none;
+}
+.next{
+    height: 65px;
+    width: 50%;
+    font-size: 50px;
+    background:  #fff1cb;
+    border-style: none;
+}
+.next>img{
+    color: #000000;
+}
+
+
+.bottomImage{
+    width: 100%;
+    height: 450px;
+    background-color: #fffefc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.bottomImage>img{
+    width: 10%;
+    height: 60%;
+
+}
+
+.in{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 600;
+}
