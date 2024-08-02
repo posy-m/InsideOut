@@ -7,26 +7,39 @@
     <link rel="stylesheet" href="../CSS/infoCreate.css">
 </head>
 <body>
-    <form action="http://localhost:3000/information/write" method="post" enctype="multipart/form-data">
-        <div id="top">
-            <input type="text" id="imgs">
-        <input type="file" id="file">
+    <div id="top">
+        <input type="text" id="whiskey_name" name="update_whiskey_name">
+        <input type="text" id="whiskey_text" name="update_whiskey_text">
+        <input type="file" id="file" name="update_whiskey_image">
         <button id="uploadBtn">전송</button>
-        </div>
-    </form>
+    </div>
 </body>
 <script>
-    async function updateRecord(id, updatedData) {
-    try {
-        const response = await axios.put(`http://localhost:3000/information/${id}`, updatedData);
-        console.log(response.data); // 업데이트된 데이터를 로그로 출력
-    } catch (error) {
-        console.error("업데이트 중 에러 발생:", error); // 에러 메시지를 로그로 출력
-    }
-}
+    const param = new URLSearchParams(location.search).get('id');
 
-// 사용 예시
-updateRecord(1, { whiskey_text: "Updated text", whiskey_image: "updated_image.png" });
+    const data = await axios.get(`http://localhost:3000/information/update/${param}`);
+
+    console.log(data);
+
+    const uploadBtn = document.querySelector('#uploadBtn');
+    const whiskey_name = document.querySelector('#whiskey_name').value;
+    const whiskey_text = document.querySelector('#whiskey_text').value;
+
+    
+    uploadBtn.addEventListener('click', () => {
+        async function updateRecord() {
+            try {
+                const json = {
+                    whiskey_name,
+                    whiskey_text
+                }
+                const response = await axios.put(`http://localhost:3000/information/update/${param}`, json);
+                console.log(response.data); // 업데이트된 데이터를 로그로 출력
+            } catch (error) {
+                console.error("업데이트 중 에러 발생:", error); // 에러 메시지를 로그로 출력
+            }
+        }
+    })
 
 </script>
 </html>
