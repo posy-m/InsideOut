@@ -11,26 +11,6 @@
 
 
 
-/////////////////// 메뉴창과 조커카드나오는거 눌리는거 제어하기 //////////////
-
-// menuBox.onchange = (e) => {
-//   if (e.target.checked) {
-//     mainJoker.style.pointerEvents = "none";
-//   }
-//   else {
-//     mainJoker.style.pointerEvents = "all";
-//   }
-  /////////////////// 메뉴창과 조커카드나오는거 여기까지 //////////////
-
-// }
-
-
-
-
-
-
-
-
 
 
 
@@ -51,15 +31,7 @@ smollimg.forEach(smollimg=>{
 
 console.log(smollimg);
 
-  // for (let i = 0; i < smollimg.length; i++) {
-  //   if(i === smollimg[i].childElementCount){
-  //     setInterval(()=> {
-        
-  //     })
-  //   }
-      
-  //     return mainimg.src = smollimg[i]
-  // }
+
 
   let i = 0; // i 변수를 함수 외부에서 선언
 
@@ -100,10 +72,6 @@ next.addEventListener("click",()=>{
     quoteFrames[count].style.display = "block";
 })
 console.log(quoteFrames);
-
-
-
-
 
 
 

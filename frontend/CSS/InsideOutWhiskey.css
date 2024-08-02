@@ -355,9 +355,7 @@ height: 200px;
     justify-content: center;
     justify-content: space-around;
 }
-.but>button{
-    /* width: 40%; */
-}
+
 .prev{
     height: 65px;
     width: 50%;

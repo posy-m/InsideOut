@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/infoCreate.css">
+</head>
+<body>
+    <form action="http://localhost:3000/information/write" method="post" enctype="multipart/form-data">
+        <div id="top">
+            <input type="text" id="imgs">
+        <input type="file" id="file">
+        <button id="uploadBtn">전송</button>
+        </div>
+    </form>
+</body>
+<script>
+    async function updateRecord(id, updatedData) {
+    try {
+        const response = await axios.put(`http://localhost:3000/information/${id}`, updatedData);
+        console.log(response.data); // 업데이트된 데이터를 로그로 출력
+    } catch (error) {
+        console.error("업데이트 중 에러 발생:", error); // 에러 메시지를 로그로 출력
+    }
+}
+
+// 사용 예시
+updateRecord(1, { whiskey_text: "Updated text", whiskey_image: "updated_image.png" });
+
+</script>
+</html>
