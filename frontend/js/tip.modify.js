@@ -12,9 +12,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   const uploadBox = document.querySelector("#uploadBox")
   const modifyCheck = document.createElement("div")
   modifyCheck.className = 'modifyUpWrap'
-
+  // debugger;
   modifyCheck.innerHTML = `
-  <input type="text" name="category" value="1" hidden>
+  <select name="category" id="category">
+  <option value="1" ${tips.category === 1 && 'selected'}>snack</option>
+  <option value="2" ${tips.category === 2 && 'selected'}>recipe</option>
+  <option value="3" ${tips.category === 3 && 'selected'}>Information</option>
+</select>
   <input type="text" value="${tips.tip_title}" id="tipModifyTitle" name="title">
   <div id ="modifyBox">
   <img id="checkImg" src='http://localhost:3000/${tips.img}'>
@@ -41,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // console.log(document.querySelector("#checkImg"));
     const _checkImg = document.querySelector("#tipFile").files[0]
     const tipCorrecionContent = document.querySelector("#tipCorrecionContent").value
-    const category = uploadBox.getAttribute('name');
+    const category = document.querySelector("#category").value
 
 
 
@@ -52,13 +56,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       formData.append("content", tipCorrecionContent);
       formData.append("file", _checkImg);
       formData.append("category", category);
-
       const data = await axios.put(`http://localhost:3000/whisky/modify/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       })
     } else {
+      // debugger;
       const data = {
         title: tipModifyTitle,
         content: tipCorrecionContent,

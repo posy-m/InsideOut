@@ -22,6 +22,11 @@ a {
   margin-top: 40px;
 }
 
+#tipAllWrap>#tipCategoryWrap>a {
+  font-weight: 600;
+}
+
+
 .tip_category {
   font-size: 20px;
   margin-right: 20px;
@@ -31,6 +36,8 @@ a {
 .tip_category:hover {
   color: brown;
 }
+
+
 
 #tipBtn {
   width: 80px;
@@ -75,7 +82,7 @@ a {
   margin: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 50px;
+  gap: 30px;
 }
 
 
@@ -85,33 +92,64 @@ a {
   height: 250px;
   border-radius: 15px;
   cursor: pointer;
+  position: absolute;
 }
+
+/* .tipImg:hover #titleWD {
+  visibility: visible;
+
+} */
 
 
 #titleWD {
+  width: 250px;
+  height: 250px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.769);
+  position: relative;
+  /* 요소 숨기기 */
+  visibility: hidden;
 }
 
-.tip_content_title {
-  font-size: 23px;
+.tip:hover>#titleWD {
+  visibility: visible;
 }
 
-.tip_wd {
-  color: rgb(62, 62, 62);
+
+/* 
+#titleWD>span {
+  text-align: center;
+} */
+
+#titleWD>span:nth-child(1) {
+  font-size: 30px;
+  color: rgb(235, 242, 249);
+
 }
+
+#titleWD>span:nth-child(2) {
+  font-size: 15px;
+  color: rgb(235, 242, 249);
+}
+
+#titleWD>span:nth-child(3) {
+  color: rgb(235, 242, 249);
+  font-size: 13px;
+}
+
 
 /* 페이지 네이션 */
 #pageNation {
+  margin: 50px 0 0 500px;
   display: flex;
   gap: 30px;
-  margin-left: 500px;
+
 }
 
-#pageNation>span:nth-child(1) {
-  cursor: pointer;
-}
-
-#pageNation>span:nth-child(3) {
+#pageNation>span {
   cursor: pointer;
 }

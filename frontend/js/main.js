@@ -1,8 +1,8 @@
 
 
 const snack = document.querySelector("#snack")
-const recipe = document.querySelector("recipe")
-const info = document.querySelector("info")
+const recipe = document.querySelector("#recipe")
+const info = document.querySelector("#info")
 
 
 snack.addEventListener("click", () => {

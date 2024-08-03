@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
 }
 
 #uploadBox {
@@ -16,12 +16,12 @@
 
 #tipCorrecionTitle {
   width: 730px;
-  height: 30px;
+  height: 42px;
   margin: 50px 0px 30px;
   padding: 5px;
   font-weight: 600;
   border: 1px solid;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   border-color: gray;
   font-weight: 800;
   display: flex;
@@ -30,10 +30,10 @@
 
 #tipCorrecionContent {
   padding: 20px;
-  width: 700px;
+  width: 730px;
   height: 500px;
   border: 1px solid;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   border-color: gray;
   display: flex;
   flex-direction: column;
@@ -145,15 +145,13 @@
 } */
 
 
-/* input */
-
+/*  댓글 관련 input, button */
 #commentBtnWrap {
   margin-top: 15px;
-  margin-left: 130px;
 }
 
 #commentBtnWrap>input:nth-child(1) {
-  width: 643px;
+  width: 645px;
   height: 25px;
   /* background-color: #ebdddd; */
   border-width: 0 0 1px;
@@ -170,24 +168,50 @@
 }
 
 
-/* 댓글 글 나오는거  */
+/* 댓글 부분  */
+
+#commentWrap {
+  /* width: 730px; */
+}
+
+.comment-text-icon {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.comment_list {
+  width: 730px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* border: 3px solid red; */
+  flex-direction: column;
+  margin-top: 20px;
+}
+
 #comment {
   margin: 10px 0 10px;
   width: 720px;
   height: 50px;
   padding: 5px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   /* border: 1px solid; */
 }
 
-#commentSmallText {
-  display: flex;
-  flex-direction: column;
-  /* gap: 1px; */
-  /* border: 1px solid; */
+.writer {
+  font-weight: 700;
 }
+
+/* .commentBox {
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+  background-color: red;
+} */
 
 #commentSmallText>div:nth-child(2) {
   color: rgb(53, 53, 53);
@@ -199,14 +223,16 @@
   color: gray;
 }
 
-.writer {
-  font-weight: 700;
-}
+
+/* 댓글 이미지 있는 버튼 */
 
 #icon {
-  display: flex;
+  /* display: flex; */
   /* justify-content: end; */
   /* align-items: flex-end; */
+  /* border: 1px solid; */
+  display: flex;
+  align-items: center;
 }
 
 .check_btn {
@@ -221,4 +247,113 @@
   height: 30px;
   /* z-index: -9999; */
   cursor: pointer;
+}
+
+/* outside */
+.outside {
+  margin: 10px 0 10px;
+}
+
+.updateInput {
+  width: 620px;
+  height: 30px;
+  margin-right: 10px;
+  border-width: 0 0 1px;
+}
+
+.updateBtn {
+  width: 40px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.cancelBtn {
+  width: 40px;
+  height: 30px;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+}
+
+/* 대댓글 input 창 */
+.Box {
+  margin-bottom: 3px;
+}
+
+.write_input {
+  width: 626px;
+  height: 30px;
+  border-width: 0 0 1px;
+}
+
+.write_btn {
+  width: 40px;
+  height: 30px;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+}
+
+/* 대댓글 */
+.reply {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#lineImg {
+  width: 10px;
+  height: 10px;
+}
+
+#replyBBox {
+  display: flex;
+  width: 700px;
+  justify-content: space-between;
+  /* align-items: center; */
+  margin: 5px 0 5px 20px;
+  /* background-color: rgba(99, 112, 125, 0.942); */
+  border-radius: 3px;
+  gap: 2px;
+}
+
+.reply-btn {
+  width: 40px;
+  height: 30px;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+}
+
+.replyWCM>div:nth-child(1) {
+  font-weight: 700;
+}
+
+.replyWCM>div:nth-child(3) {
+  font-size: 10px;
+  color: gray;
+}
+
+#replyBBox {
+  display: flex;
+  flex-direction: column;
+}
+
+/*  */
+.last_check_input {
+  width: 610px;
+  height: 30px;
+  border-width: 0 0 1px;
+}
+
+.lastCheck {
+  width: 40px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 5px;
 }
