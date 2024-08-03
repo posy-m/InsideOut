@@ -12,6 +12,7 @@ import { whiskyTipComment } from './whisky_Tip_Comment.model';
 
 // 중현이거 들고오면 belongs to 하기
 export class whiskyTip extends Model {
+
   @Column({
     type: DataType.STRING(30),
     allowNull: false
@@ -30,7 +31,7 @@ export class whiskyTip extends Model {
   })
   tip_title: string;
 
-  tip_ID: string
+  // tip_ID: string 
 
   @Column({
     type: DataType.TEXT,

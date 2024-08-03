@@ -27,14 +27,19 @@ export class WhiskytipService {
 
   //CRUD 중에 C
   async creatTip(whiskyTip: whiskyTipDTO): Promise<whiskyTip> {
-    const { nick_name, category, tip_title, tip_content, img } = whiskyTip;
-    return this.whiskyTipModel.create({
-      nick_name,
-      category,
-      tip_title,
-      tip_content,
-      img,
-    });
+    try {
+
+      const { nick_name, category, tip_title, tip_content, img } = whiskyTip;
+      return this.whiskyTipModel.create({
+        nick_name,
+        category,
+        tip_title,
+        tip_content,
+        img,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 
@@ -44,10 +49,10 @@ export class WhiskytipService {
   async findId(id: number): Promise<whiskyTip> {
     return await this.whiskyTipModel.findOne({
       where: { id },
-      include: {
-        model: whiskyTipComment,
-        attributes: ['id'],
-      },
+      // include: {
+      //   model: whiskyTipComment,
+      //   // attributes: ['id'],
+      // },
     });
   }
 
@@ -56,12 +61,56 @@ export class WhiskytipService {
   }
 
   //Promise<whiskyTip[]>  : 몯든 whiskyTip  레코드의 배열을 비동기적으로 반환
-  async findAllTips(): Promise<whiskyTip[]> {
-    //this.whiskyTipModel.findAll() : 데이터 베이스에서 모든 whiskytip 레코드를 찾는 쿼리 수행
-    return await this.whiskyTipModel.findAll({
-      order: [['createdAt', 'DESC']], // 생성일시기준으로 내림차순정렬
+  // async findAllTips(): Promise<whiskyTip[]> {
+  //   //this.whiskyTipModel.findAll() : 데이터 베이스에서 모든 whiskytip 레코드를 찾는 쿼리 수행
+  //   return await this.whiskyTipModel.findAll({
+  //     order: [['createdAt', 'DESC']], // 생성일시기준으로 내림차순정렬
+  //   });
+  // }
+  // 페이지 네이션 추가
+  // async findAllTips(page: number, limit: number): Promise<{ tips: whiskyTip[], totalItems: number, totalPages: number }> {
+  //   const offset = (page - 1) * limit;
+  //   const { count, rows } = await this.whiskyTipModel.findAndCountAll({
+  //     order: [['createdAt', 'DESC']],
+  //     offset,
+  //     limit,
+  //   });
+
+  //   const totalPages = Math.ceil(count / limit);
+
+  //   return {
+  //     tips: rows,
+  //     totalItems: count,
+  //     totalPages,
+  //   };
+  // }
+
+  //페이지 네이션 + 검색기능
+  async findAllTips(query: string, page: number, limit: number, category: number): Promise<{ tips: whiskyTip[], totalItems: number, totalPages: number }> {
+    const offset = (page - 1) * limit;
+    const { count, rows } = await this.whiskyTipModel.findAndCountAll({
+      where: {
+        [Op.or]: [
+          { tip_title: { [Op.like]: `%${query}%` } },
+          { nick_name: { [Op.like]: `%${query}%` } }
+        ], [Op.and]: [{ category: { [Op.eq]: category } }]
+      },
+      order: [['createdAt', 'DESC']],
+      offset,
+      limit,
     });
+
+    const totalPages = Math.ceil(count / limit);
+
+    return {
+      tips: rows,
+      totalItems: count,
+      totalPages,
+    };
   }
+
+
+
 
   async findAll(): Promise<whiskyTip[]> {
     return await this.whiskyTipModel.findAll();
@@ -73,12 +122,14 @@ export class WhiskytipService {
     tip_title: string,
     tip_content: string,
     img: string,
+    category: number
   ): Promise<string> {
     await this.whiskyTipModel.update(
       {
         tip_title,
         tip_content,
         img,
+        category
       },
       { where: { id } },
     );
@@ -95,6 +146,9 @@ export class WhiskytipService {
     return this.whiskyTipCommentModel.findAll({
       where: { tip_ID },
       order: [['createdAt', 'ASC']],
+      include: {
+        model: whiskyTipCcomment,
+      }
     });
   }
 
@@ -148,34 +202,37 @@ export class WhiskytipService {
   async createCcomment(
     whiskyCcomment: whiskyTipCcommentDTO,
   ): Promise<whiskyTipCcomment> {
-    const { nick_name, tip_com_comment, } = whiskyCcomment;
+    const { nick_name, tip_com_comment, tip_comment_ID, category } = whiskyCcomment;
     return this.whiskyTipCcommmentModel.create({
       nick_name,
       tip_com_comment,
+      tip_comment_ID,
+      category
+
     });
   }
 
   // 대댓글 조회
-  async checkCcomment(tip_comment_ID: number): Promise<whiskyTipCcomment[]> {
+  async checkCcomment(category: number): Promise<whiskyTipCcomment[]> {
     return this.whiskyTipCcommmentModel.findAll({
-      where: { tip_comment_ID },
-      order: [['createAt', 'ASC']]
+      where: { category },
+      order: [['id', 'ASC']]
     })
   }
 
   // 대댓글 수정
-  async updatdCcomment(id: number, tip_comment_ID: number, nick_name: string, tip_com_comment: string): Promise<whiskyTipCcomment> {
+  async updatdCcomment(id: number, tip_com_comment: string): Promise<whiskyTipCcomment> {
     await this.whiskyTipCcommmentModel.update(
       { tip_com_comment },
-      { where: { id, tip_comment_ID, nick_name } }
+      { where: { id } }
     );
     return
   }
 
   // 대댓글 삭제
-  async deleteCcomment(id: number, nick_name: string, tip_comment_ID: number) {
+  async deleteCcomment(id: number) {
     await this.whiskyTipCcommmentModel.destroy({
-      where: { id, nick_name, tip_comment_ID }
+      where: { id }
     })
   }
 
