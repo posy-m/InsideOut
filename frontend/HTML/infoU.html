@@ -4,16 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../CSS/infoCreate.css">
+    <link rel="stylesheet" href="../CSS/infoU.css">
 </head>
 <body>
-    <form action="http://localhost:3000/information/write" method="post" enctype="multipart/form-data">
-        <div id="top">
-            <input type="text" id="imgs">
-        <input type="file" id="file">
-        <button id="uploadBtn">전송</button>
+    <div class="top">
+        <div class="head">
+            <h1>위스키정보 수정</h1>
         </div>
-    </form>
+        <div class="titleTop">
+
+            <div class="towTop">
+                <textarea name="" id="writing-frame" class="writingFrame" placeholder="입력하세요"></textarea>
+            </div>
+            <div class="fileText">
+                
+                <div class="file-upload preview-image">
+                    <input type="text" class="upload-name" value="파일선택" disabled="disabled">
+                    <label for="input-file">업로드</label> 
+                    <input type="file" id="input-file" class="upload-hidden"> 
+                </div>
+                <div class="textUpload">
+                    <a href="./infoDetail.html"><input type="button" class="upload-text" value="수정완료"></a>
+                </div>
+                
+            </div>
+        </div>
+            
+    </div>
 </body>
 <script>
     async function updateRecord(id, updatedData) {
