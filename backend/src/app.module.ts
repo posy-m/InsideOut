@@ -14,7 +14,7 @@ import * as cookie from 'cookie-parser';
     host : "localhost",
     port : 3306,
     username : "root",
-    password : "kjkj28892889",
+    password : "",
     database : "insideoutinfo",
     autoLoadModels : true, // 시퀄라이즈 모델 파일을 자동으로 로드
     synchronize : true, //  실행할때 데이터베이스 스키마를 동기화 
