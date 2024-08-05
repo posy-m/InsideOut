@@ -111,7 +111,7 @@ function createPagination(totalPages) {
 }
 
 // 초기 로드 시 데이터 가져오기
-// document.addEventListener('DOMContentLoaded', () => get(currentPage, ''));
+document.addEventListener('DOMContentLoaded', () => get(currentPage, ''));
 
 // 검색 버튼 클릭 시 검색어에 따라 데이터 가져오기
 document.getElementById('searchBtn').addEventListener('click', () => { // 검색 버튼을 클릭 했을 때 이벤트 리스너 추가
