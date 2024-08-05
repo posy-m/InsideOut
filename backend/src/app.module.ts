@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -7,10 +8,21 @@ import { QnAModule } from './qn-a/qn-a.module';
 import { CommentModule } from './comment/comment.module';
 import { CcommentModule } from './ccomment/ccomment.module';
 import { UserModule } from './user/user.module';
+=======
+import { Module } from '@nestjs/common';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { WhiskytipModule } from './whiskytip/whiskytip.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
+>>>>>>> love
 
 @Module({
   imports: [
     SequelizeModule.forRoot({
+<<<<<<< HEAD
       dialect: "mysql",
       username: "root",
       password: "dlalsgur12",
@@ -21,10 +33,35 @@ import { UserModule } from './user/user.module';
       sync: { force: false } // true 시 초기화
     }),
     QnAModule, CommentModule, CcommentModule, UserModule],
+=======
+      dialect: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'alswl;0113#',
+      database: 'insideout',
+      autoLoadModels: true,
+      sync: { force: false },
+    }),
+    WhiskytipModule,
+    MulterModule.register({
+      dest: './uploads',
+    }),
+    ServeStaticModule.forRoot({
+      //rootPath: '/Users/mac/Desktop/uploadFolder',
+      rootPath: path.join(__dirname, "uploads"),
+      // serveRoot: '/img',
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: path.join(__dirname, '..', '..', 'frontend', 'html')
+    })
+  ],
+>>>>>>> love
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule { }
+<<<<<<< HEAD
 =======
 import { InsideOutInfoModule } from 'src/inside-out-info/inside-out-info.module';
 import { Insideoutinfo } from 'src/information/models/inside-out-info.model';
@@ -63,3 +100,5 @@ export class AppModule implements NestModule{
 
 
 >>>>>>> respect
+=======
+>>>>>>> love
