@@ -9,14 +9,20 @@ export class CcommentService {
         @InjectModel(Ccomment) private readonly CcmtModel: typeof Ccomment) { }
 
     async create(createCcmt: CreateCcommentDTO) {
-        const { QnA_comment_ID, nick_name, QnA_com_comment } = createCcmt
+        const { qna_com_comment, nick_name, qna_comment_id } = createCcmt
         return await this.CcmtModel.create({
-            QnA_comment_ID, nick_name, QnA_com_comment
+            qna_com_comment, nick_name, qna_comment_id
         })
     }
 
     async findAll(): Promise<Ccomment[]> {
+        console.log(typeof Ccomment);
         return await this.CcmtModel.findAll();
+    }
+
+    async findIndexAll(index: number): Promise<Ccomment[]> {
+        const data = await this.CcmtModel.findAll({ where: { qna_comment_id: index } });
+        return data;
     }
 
     async findOne(id: number) {
@@ -24,14 +30,14 @@ export class CcommentService {
     }
 
     async update(updateCcmt: UpdateCcommentDTO, id: number) {
-        const { QnA_com_comment } = updateCcmt;
+        const { qna_com_comment } = updateCcmt;
         return this.CcmtModel.update({
-            QnA_com_comment
+            qna_com_comment
         }, { where: { id } })
     }
 
     async destroy(deleteCcmt: DeleteCcommentDTO) {
-        const { id } = deleteCcmt;
+        const id = deleteCcmt;
         return this.CcmtModel.destroy({ where: { id } })
     }
 }

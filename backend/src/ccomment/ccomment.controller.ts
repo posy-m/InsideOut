@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Post, Put, Query, Res } from '@nestjs/common';
 import { CcommentService } from './ccomment.service';
-import { ApiBody, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { CreateCcommentDTO, DeleteCcommentDTO, UpdateCcommentDTO } from 'src/dto/ccomment.dto';
 
+@ApiTags('Ccomments')
 @Controller('ccomment')
 export class CcommentController {
   constructor(private readonly ccmtService: CcommentService) { }
@@ -18,6 +19,17 @@ export class CcommentController {
     res.send(data);
   }
 
+  @ApiOperation({ summary: 'Get all Ccomments of qna_comment_id' })
+  @ApiResponse({ status: 200, description: "List of Ccomments" })
+  @ApiResponse({ status: 404, description: "Fail" })
+  @HttpCode(200)
+  @Get("ccomments")
+  async getComments(@Query("index", ParseIntPipe) index: number) {
+    const data = await this.ccmtService.findIndexAll(index);
+    console.log(data);
+    return data;
+  }
+
   @ApiOperation({ summary: 'Create a Ccomment' })
   @ApiResponse({ status: 201, description: "Ccomment Created" })
   @ApiResponse({ status: 400, description: "Invalid Input" })
@@ -29,10 +41,11 @@ export class CcommentController {
   })
   @HttpCode(201)
   @Post("/create")
-  async create(@Body() CreateCcmt: CreateCcommentDTO) {
+  async create(@Body() CreateCcmt: CreateCcommentDTO, @Res() res: Response, @Query("id") index: number) {
+    console.log(CreateCcmt);
     const data = await this.ccmtService.create(CreateCcmt);
     console.log(data);
-    return data;
+    return res.redirect(`http://127.0.0.1:5501/frontend/views/detail.html?id=${index}`);
   }
 
   @ApiOperation({ summary: 'Get a specific Ccomment by ID' })

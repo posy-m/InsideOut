@@ -1,15 +1,15 @@
 export class CreateCommentDTO {
     id: number
-    QnA_ID: number
+    qna_comment: string
     nick_name: string
-    QnA_comment: string
+    qna_id: number
 }
 
 export class UpdateCommentDTO {
     id: number
-    QnA_ID: number
+    qna_comment: string
     nick_name: string
-    QnA_comment: string
+    qna_id: number
 }
 
 export class DeleteCommentDTO {

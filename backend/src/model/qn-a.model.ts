@@ -9,13 +9,6 @@ import { User } from "./user.model";
 })
 
 export class QnA extends Model {
-    @ForeignKey(() => User)
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    nick_name: string;
-
     @Column({
         type: DataType.STRING,
         allowNull: false
@@ -28,8 +21,15 @@ export class QnA extends Model {
     })
     qna_content: string;
 
-    @HasMany(() => Comment)
+    @HasMany(() => Comment, {
+        sourceKey: "id",
+        foreignKey: "qna_id"
+    })
     Comments: Comment[];
+
+    @ForeignKey(() => User)
+    @Column
+    nick_name: string;
 
     @BelongsTo(() => User)
     Users: User;

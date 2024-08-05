@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Post, Put, Query, Res } from '@nestjs/common';
 import { CommentService } from './comment.service';
 import { CreateCommentDTO, DeleteCommentDTO, UpdateCommentDTO } from 'src/dto/comment.dto';
 import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -19,30 +19,32 @@ export class CommentController {
     res.send(data);
   }
 
+  @ApiOperation({ summary: 'Get all Comments of qna_id' })
+  @ApiResponse({ status: 200, description: "List of Comments" })
+  @ApiResponse({ status: 404, description: "Fail" })
+  @HttpCode(200)
+  @Get("comments")
+  async getComments(@Query("index", ParseIntPipe) index: number) {
+    const data = await this.cmtService.findIndexAll(index);
+    // console.log(data);
+    return data;
+  }
+
   @ApiOperation({ summary: 'Create a Comment' })
   @ApiResponse({ status: 201, description: "Comment Created" })
   @ApiResponse({ status: 400, description: "Invalid Input" })
   @ApiBody({
     schema: {
       type: "object",
-      properties: { id: { type: "number" }, QnA_ID: { type: "number" }, nick_name: { type: "string" }, QnA_comment: { type: "string" } }
+      properties: { id: { type: "number" }, qna_comment: { type: "string" }, nick_name: { type: "string" }, qna_id: { type: "number" } }
     }
   })
   @HttpCode(201)
   @Post("/create")
-  async create(@Body() CreateCmt: CreateCommentDTO) {
+  async create(@Body() CreateCmt: CreateCommentDTO, @Res() res: Response) {
+    // console.log(CreateCmt.qna_id)
     const data = await this.cmtService.create(CreateCmt);
-    console.log(data);
-    return data;
-  }
-
-  @ApiOperation({ summary: 'Get a specific Comment by ID' })
-  @ApiParam({ name: 'id', type: Number, description: 'Comment ID' })
-  @ApiResponse({ status: 200, description: 'Comment found' })
-  @ApiResponse({ status: 404, description: 'Comment not found' })
-  @Get("detail/:id")
-  async detail(@Param("id") id: number) {
-    return await this.cmtService.findOne(id);
+    res.redirect(`http://127.0.0.1:5501/frontend/views/detail.html?id=${CreateCmt.qna_id}`);
   }
 
   @ApiOperation({ summary: 'Update a spectific Comment by ID' })
@@ -51,9 +53,9 @@ export class CommentController {
   @ApiResponse({ status: 404, description: 'Comment not found.' })
   @Put(":id")
   async update(@Body() updateCmt: UpdateCommentDTO, @Param("id") id: number) {
-    console.log(updateCmt);
+    // console.log(updateCmt);
     const data = await this.cmtService.update(updateCmt, id);
-    console.log(data);
+    // console.log(data);
     return data;
   }
 
@@ -63,7 +65,7 @@ export class CommentController {
   @ApiResponse({ status: 404, description: 'Comment not found.' })
   @Delete(":id")
   async destory(@Param("id") deleteCmt: DeleteCommentDTO) {
-    console.log(deleteCmt);
+    // console.log(deleteCmt);
     return await this.cmtService.destroy(deleteCmt);
   }
 

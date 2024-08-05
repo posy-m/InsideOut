@@ -4,35 +4,28 @@ import { Comment } from "./comment.model";
 
 @Table({
     timestamps: true,
-    tableName: "CComments",
-    paranoid: true,
+    tableName: "Ccomments"
 })
 
 export class Ccomment extends Model {
-    @ForeignKey(() => Comment)
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false
-    })
-    QnA_comment_ID: number
-
-    @ForeignKey(() => User)
-    @Column({
-        type: DataType.STRING,
-        allowNull: false
-    })
-    nick_name: string;
-
     @Column({
         type: DataType.STRING,
         allowNull: false
     })
     qna_com_comment: string;
 
+    @ForeignKey(() => User)
+    @Column
+    nick_name: string;
+
     @BelongsTo(() => User)
     Users: User;
 
-    // @BelongsTo(() => Comment)
-    // Comments: Comment;
+    @ForeignKey(() => Comment)
+    @Column
+    qna_comment_id: number
+
+    @BelongsTo(() => Comment)
+    Comments: Comment;
 
 }

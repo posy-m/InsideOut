@@ -5,36 +5,32 @@ import { Ccomment } from "./ccomment.model";
 
 @Table({
     timestamps: true,
-    tableName: "Comments",
-    paranoid: true,
+    tableName: "Comments"
 })
 
 export class Comment extends Model {
-    @ForeignKey(() => QnA)
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false
-    })
-    qna_id: number
-
-    @ForeignKey(() => User)
-    @Column({
-        type: DataType.STRING,
-        allowNull: false
-    })
-    nick_name: string;
-
     @Column({
         type: DataType.STRING,
         allowNull: false
     })
     qna_comment: string;
 
-    @HasMany(() => Ccomment)
+    @HasMany(() => Ccomment, {
+        sourceKey: "id",
+        foreignKey: "qna_comment_id"
+    })
     Ccomments: Ccomment[];
+
+    @ForeignKey(() => User)
+    @Column
+    nick_name: string;
 
     @BelongsTo(() => User)
     Users: User;
+
+    @ForeignKey(() => QnA)
+    @Column
+    qna_id: number
 
     @BelongsTo(() => QnA)
     QnAs: QnA
