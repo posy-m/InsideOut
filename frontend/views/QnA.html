@@ -22,42 +22,12 @@
     <div id="list"></div>
     <div class="searchWrap">
         <input type="search" name="" id="searchInput" placeholder="찾고 싶은 문의 글의 제목을 검색해주세요">
+        <button id="searchBtn">검색</button>
     </div>
     <div class="paginationWrap">
         <div id="pagination"></div>
     </div>
 </body>
-<script>
-    async function get() {
-        try {
-            const data = await axios.get("http://127.0.0.1:3000/qn-a");
-            console.log(data.data);
-
-            const dataContainer = document.getElementById('list');
-            data.data.forEach(item => {
-                const div = document.createElement('div');
-                const detailBtn = document.createElement('button');
-                detailBtn.innerHTML = "상세 보기";
-                detailBtn.addEventListener('click', (e) => {
-                    console.log(item.id);
-                    location.href = `detail.html?id=${item.id}`;
-                })
-                div.textContent = `ID : ${item.id}, Name : ${item.nick_name}, Title : ${item.qna_title}, Content : ${item.qna_content}`
-                dataContainer.appendChild(div);
-                dataContainer.appendChild(detailBtn);
-            });
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    get();
-
-    const createBtn = document.getElementById('createBtn');
-    createBtn.addEventListener('click', () => {
-        location.href = './create.html'
-    })
-
-</script>
-
+<script src="../js/QnA.js"></script>
 
 </html>

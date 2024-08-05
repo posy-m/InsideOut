@@ -27,60 +27,21 @@
             <button id="delete">삭제</button>
         </div>
     </div>
-    <div id="commentContent">
+    <div id="commentContainer">
         <div class="commentWrap">
-            <div id="InputWrap">
-                <textarea name="comment_content" id="commentContent" placeholder="댓글을 입력해주세요." cols="50"
+            <form id="commentForm" action="http://127.0.0.1:3000/comment/create" method="post">
+                <input type="text" name="nick_name" value="god_kkh" hidden>
+                <label for="">댓글 내용</label>
+                <textarea name="qna_comment" id="comment_Content" placeholder="댓글을 입력해주세요." cols="50"
                     rows="5"></textarea>
+                <input type="text" name="qna_id" id="QnA_ID" hidden>
                 <button id="commentAddBtn">댓글 작성</button>
-                <div id="commentView"></div>
-            </div>
+            </form>
+            <div id="commentView"></div>
         </div>
     </div>
 </body>
-<script>
-    const listIndex = new URLSearchParams(location.search).get("id");
-    console.log(listIndex);
-    const dataNumber = document.getElementById('detailNumber');
-    const dataName = document.getElementById('detailName');
-    const dataDate = document.getElementById('detailDate');
-    const dataTitle = document.getElementById('detailTitle');
-    const dataContent = document.getElementById('detailContent');
-
-    const detailData = async function detail() {
-        const data = await axios.get(`http://127.0.0.1:3000/qn-a/detail/${listIndex}`);
-        console.log(data.data);
-        if (data !== null) {
-            dataNumber.innerHTML = `글번호 : ${data.data.id}`;
-            dataName.innerHTML = `작성자 : ${data.data.nick_name}`;
-            dataDate.innerHTML = `작성일 : ${data.data.createdAt}`;
-            dataTitle.innerHTML = `${data.data.qna_title}`;
-            dataContent.innerHTML = `${data.data.qna_content}`;
-        }
-    }
-    detailData();
-
-    const modifyBtn = document.getElementById('modify');
-
-    modifyBtn.addEventListener('click', () => {
-        location.href = `update.html?id=${listIndex}`;
-    })
-
-    const backBtn = document.getElementById('back');
-
-    backBtn.addEventListener('click', () => {
-        location.href = `QnA.html`;
-    })
-
-    const deleteBtn = document.getElementById('delete');
-
-    deleteBtn.addEventListener('click', async () => {
-        console.log(listIndex)
-        const data = await axios.delete(`http://127.0.0.1:3000/qn-a/${listIndex}`);
-        console.log(data);
-        location.href = 'QnA.html'
-
-    })
-</script>
+<script src="../js/detail.js"></script>
+<script src="../js/comment.js"></script>
 
 </html>
