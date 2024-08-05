@@ -28,7 +28,7 @@
                     <input type="file" id="input-file" class="upload-hidden"> 
                 </div>
                 <div class="textUpload">
-                    <a href="./infoDetail.html"><input type="button" class="custom-bin btn-1" value="수정완료" onclick="updateRecord(`1, { whiskey_text: 'Updated text', whiskey_image: 'updated_image.png' }`)"></a>
+                    <a href="./infoDetail.html"><input type="button" class="custom-bin btn-1" value="수정완료" onclick="updateRecord()"></a>
                 </div>
                 
             </div>
@@ -46,16 +46,23 @@
         
         textArea.value = result.data.w_info
         const test = document.getElementById('img_test');
-        test.src = "http://localhost:3000/"+result.data.img
+        test.src = "http://localhost:3000/"+ result.data.img
 
     }
 
     getUpdateData();
 
 
-    async function updateRecord(id, updatedData) {
+    async function updateRecord() {
     try {
-        const response = await axios.put(`http://localhost:3000/information/update/${id}`, updatedData);
+        const urlParams = new URL(location.href).searchParams.get('id');
+
+        const formData = new FormData();
+            
+        formData.append("file",inputFile.files[0]);
+        formData.append("whiskey_text",uploadName.value);
+
+        const response = await axios.put(`http://localhost:3000/information/update/${urlParams}`, formData);
 
         console.log(response); // 업데이트된 데이터를 로그로 출력
         // if(response.status===200){
