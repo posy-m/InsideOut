@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tip_확인</title>
+  <link rel="stylesheet" href="../css/tip.check.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<!-- 이미지 업로드 하는거 nodejs -> 20240619 -->
+
+<body>
+  <!-- <form id="uploadBox" enctype="multipart/form-data"> -->
+  <!-- enctype="multipart/form-data" 없어도 된다. -->
+  <!-- 왜나면 동기적이기 때문에 자바스크립트에서 비동기적으로 ㅁ써줘야한다. -->
+  <div id="uploadBox" name=1>
+    <div id="checkDataWrap">
+      <!-- <div id="tipCorrecionTitle"></div>
+      <div id="tipCorrecionContent"></div>
+      <div id="tipFile"></div> -->
+    </div>
+    <div id="uploadBoxBtn">
+      <div id="tipCheckBox">
+        <div id="tipDeleteModifyBox">
+          <button class="tip_check_modify">수정</button>
+          <button class="tip_check_delete">삭제</button>
+        </div>
+        <button id="tipCorrecionBtn">목록</button>
+      </div>
+    </div>
+
+
+    <!-- 댓글 창 -->
+    <div id="commentBtnWrap">
+      <input id="commenText" type="text" placeholder="여러분의 생각을 공유해주세요">
+      <button id="commentBtn">등록</button>
+      <!-- <div id="comment">
+        <div id="commentSmallText">
+          
+        </div>
+        <button id="cehckDot1" class="check_btn"><img class="checkicon" src="../img/comment.png" alt=""></button>
+        <button id="cehckDot2" class="check_btn"><img class="checkicon" src="../img/pen.png" alt=""></button>
+        <button id="cehckDot3" class="check_btn"><img class="checkicon" src="../img/trashcan.jpeg" alt=""></button>
+      </div> -->
+    </div>
+    <div></div>
+
+  </div>
+
+  </div>
+
+
+
+
+
+
+
+</body>
+<script src="../js/tip.check.js"></script>
+
+
+</html>
