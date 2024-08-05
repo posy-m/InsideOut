@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li{
+    list-style: none;
+}
+
+#input_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1{
+    font-weight: 100;
+    margin-bottom: 30px;
+}
+
+.input_line{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.entryarea {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 5px;
+}
+
+input {
+    position: absolute;
+    width: 80%;
+    outline: none;
+    font-size: 18px;
+    padding: 0 15px;
+    line-height: 40px;
+    border-bottom: 2px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
+    transition: 0.1s ease;
+    z-index: 1111;
+}
+.baseline {
+    position: absolute;
+    font-size: 1em;
+    color: black;
+    margin: -5px 20px;
+    transition: 0.2s ease;
+}
+
+input:focus,
+input:valid{
+    color: black;
+    /* border: 4px solid #66ff00; */
+}
+
+input:focus + .baseline,
+input:valid + .baseline {
+    color: blacK;
+    height: 30px;
+    line-height: 10px;
+    padding: 0 12px;
+    transform: translate(-15px 0px) scale(0.88);
+    z-index: 1111;
+}
+.tag_list {
+    width: 50vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.login_title {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.login_btn {
+    width: 40vw;
+    height: 8vw;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.social_login {
+    display: flex;
+    width: 80vw;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.social_login li {
+    align-items: center;
+    border: 1px solid #DDDDDD;
+    width: 80%;
+    background: #FFFFFF;
+}
+
+.social_login li a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0px 0px 0px 20px;
+}
+
+.social_login li a img:nth-of-type(1) {
+    width: 40px;
+    height: 40px;
+}
+
+.social_login li a span {
+    height: 40px;
+    margin-left: 16px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    line-height: 60px;
+    font-size: 13px;
+    color: #000000;
+}
+
+.s_text {
+    display: block;
+    color: #ccc;
+    text-align: center;
+    position: relative;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.s_text::before {
+    position: absolute;
+    content: "";
+    display: inline-block;
+    width: 27vw;
+    height: 1px;
+    background-color: #ccc;
+    top: 50%;
+    left: -29vw;
+}
+
+.s_text::after {
+    position: absolute;
+    content: "";
+    display: inline-block;
+    width: 27vw;
+    height: 1px;
+    background-color: #ccc;
+    top: 50%;
+    right: -29vw;
+}
+
+.s_text_second {
+    display: block;
+    color: #ccc;
+    text-align: center;
+    position: relative;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.s_text_second::before {
+    position: absolute;
+    content: "";
+    display: inline-block;
+    width: 29vw;
+    height: 1px;
+    background-color: #ccc;
+    top: 50%;
+    left: -30vw;
+}
+
+.s_text_second::after {
+    position: absolute;
+    content: "";
+    display: inline-block;
+    width: 29vw;
+    height: 1px;
+    background-color: #ccc;
+    top: 50%;
+    right: -30vw;
+}
+
+.already_client {
+    width: 100%;
+    font-weight: 100;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.already_client a {
+    color: #0A3CD2;
+    border-bottom: 0.5px solid #0A3CD2;
+}

@@ -1,10 +1,15 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Controller, Get, Res } from '@nestjs/common';
 =======
 import { Controller, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 >>>>>>> love
+=======
+import { Controller, Get, UseGuards } from '@nestjs/common';
+>>>>>>> hope
 import { AppService } from './app.service';
+import { TokenGuard } from './login/guard/login.guard';
 
 @Controller()
 export class AppController {
@@ -12,7 +17,11 @@ export class AppController {
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 >>>>>>> love
+=======
+  @UseGuards(TokenGuard)
+>>>>>>> hope
   @Get()
   getHello() {
     return "hello"

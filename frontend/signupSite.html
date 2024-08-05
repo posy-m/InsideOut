@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/frontend/public/signupSite.css">
+    <link rel="stylesheet" href="/frontend/public/main.css">
+</head>
+<body>
+    <nav class="nav_bar">
+        <div class="inner_bar">
+            <a href="http://127.0.0.1:5500/frontend/signupMain.html">
+                <i>뒤로가기</i>
+            </a>
+            <span>서비스 이용 동의 및 확인</span>
+        </div>
+    </nav>
+    <form action="http://localhost:3000/login/signup" method="post">
+        <div id="input_box">
+            <div class="input_line">
+                <div class="entryarea">
+                    <input type="text" name="uid" class="uid" required>
+                    <div class="baseline">이용하실 아이디를 입력해주세요.</div>
+                </div>
+                <div class="entryarea">
+                    <input type="text" name="upw" class="upw" required>
+                    <div class="baseline">이용하실 비밀번호를 입력해주세요.</div>
+                </div>
+                <div class="entryarea">
+                    <input type="text" name="nick_name" class="nick_name" required>
+                    <div class="baseline">이용하실 닉네임을 입력해주세요.</div>
+                </div>
+            </div>
+            <button class="login_btn">회원가입</button>
+        </div>
+    </form>
+</body>
+</html>

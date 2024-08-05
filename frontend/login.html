@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./public/main.css">
+    <link rel="stylesheet" href="./public/login.css">
+</head>
+<body>
+    <div class="list">
+        <form action="http://localhost:3000/login" method="post">
+            <fieldset class="login_form">
+                <h2 class="login_title">Inside Out</h2>
+                <legend>로그인 폼</legend>
+                <div class="input_line">
+                    <div class="entryarea">
+                        <input type="text" name="uid" class="uid" required>
+                        <div class="baseline">아이디를 입력하세요.</div>
+                    </div>
+                    <div class="entryarea">
+                        <input type="text" name="upw" class="uid" required>
+                        <div class="baseline">비밀번호를 입력하세요.</div>
+                    </div>
+                    <button class="login_btn">로그인</button>
+                    <div class="tag_list">
+                        <a href="/frontend/signupMain.html">회원가입</a><a href="">ID 찾기</a><a href="">비밀번호 찾기</a>
+                    </div>
+                </div>
+                <div class="social_login">
+                    <a href="http://localhost:3000/login/kakao">카카</a>
+                    <a href="http://localhost:3000/login/google">구글</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+<script>
+    // function popup(){
+    //     var popupX = (document.body.offsetWidth / 2) - (700 / 2);
+    //     // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+        
+    //     var popupY= (window.screen.height / 2) - (500 / 2);
+    //     // 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+        
+    //     window.open('http://127.0.0.1:5500/frontend/login.html', '', 'status=no, height=500, width=700, left='+ popupX + ', top='+ popupY);
+    // }
+</script>
+</html>
