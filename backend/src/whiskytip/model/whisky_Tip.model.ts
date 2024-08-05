@@ -46,6 +46,7 @@ export class whiskyTip extends Model {
 
   @HasMany(() => whiskyTipComment, {
     sourceKey: 'id',
+    foreignKey: 'tip_ID',  // whiskyTipComment 모델에서 참조하는 외래 키
   })
   whisky: whiskyTipComment[];
 
