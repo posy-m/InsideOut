@@ -1,0 +1,727 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-size: contain;
+    background-repeat: repeat;
+
+}
+
+/* 전체틀 잡아주는 div창 */
+#entire {
+    min-width: 100vw;
+    min-height: 100vh;
+    box-sizing: border-box;
+    user-select: none;
+    background-color: #1A1413;
+    
+}
+
+.topbar{
+    width: 100%;
+    height: 200px;
+    border: 1px aqua;
+}
+
+/* 메인 상단 첫번째 배경넣어주는 div */
+
+
+/* 햄버거버튼과 메뉴들이있는 div창 */
+.topMenu{
+    width: 100%;
+    height: 1080px;
+    font-size: 30px;
+    display: flex;
+}
+
+.slide{
+    width: 220px;
+    height: 100%;
+    position: absolute;
+    background-color: #130e0e;
+    transition: 0.5s ease;
+    transform: translate(-400px);
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+h1{
+    color: #7528c2;
+    font-weight: 800;
+    text-align: right;
+    pointer-events: none;
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+}
+ul li{
+    list-style: none;
+}
+ul li a{
+    color: #D7D4CE;
+    font-weight: 500;
+    padding: 5px 0;
+    display: block;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: 0.2s ease-out;
+}
+input{
+    display: none;
+    visibility: hidden;
+}
+.toggle{
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    top: 20px;
+    left: 15px;
+    z-index: 2;
+    cursor: pointer;
+    border-radius: 2px;
+    background-color:  #1A1413;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.3);
+}
+.toggle .common{
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    background-color: #8000ff;
+    border-radius: 30px;
+    transition: 0.3s ease;
+}
+.toggle .top_line{
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.toggle .middle_line{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.toggle .bottom_line{
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+input:checked ~ .toggle .top_line{
+    left: 2px;
+    top: 14px;
+    width: 40px;
+    transform: rotate(45deg);
+}
+input:checked ~ .toggle .middle_line{
+    opacity: 0;
+    transform: rotate(50px);
+    display: none;
+}
+input:checked ~ .toggle .bottom_line{
+    left: 2px;
+    top: 14px;
+    width: 40px;
+    transform: rotate(-45deg);
+}
+input:checked ~ .slide{
+    transform: translate(0);
+}
+
+/*메뉴창 언더바 만들기*/
+.nav_list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+    position: absolute;
+    background-color: rgb(87, 5, 110);
+    top: 175px;
+    left: 30px;
+    height: 5px;
+    z-index: 0;
+}
+
+
+
+
+/* wht so serious??글씨가있는 div창 */
+#mainPost{
+    width: 100%;
+    font-size: 130px;
+    font-weight: 600;
+    color: #D7D4CE;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: rgb(0, 86, 162); */
+}
+.mainPostFrame{
+    width: 95%;
+}
+
+#mainPost>p{
+    width: 100%;
+    margin: 0px;
+}
+span {
+    opacity: 0;
+}
+
+@keyframes fade {
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+
+/*///////////////조커이미지커서 올리면 튀어나오는 느낌 시작///////////////*/
+:root {
+    --card-width: calc(var(--card-height) / 1.5);
+}
+
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* align-items: flex-end; */
+    padding: 0 36px;
+    perspective: 2500px;
+    margin: 0 50px;
+    width: 100%;
+    margin-top: 150px;
+}
+
+
+.cover-image {
+    width: 500px;
+    height: 620px;
+    object-fit: cover;
+}
+.card:hover .cover-image {
+    display: none;
+}
+
+
+.wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+}
+
+.card:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper::before,
+.wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+}
+.wrapper::before {
+    top: 0;
+    background-image: linear-gradient(
+        to top,
+        transparent 46%,
+        rgba(12, 13, 19, 0.5) 68%,
+        rgba(12, 13, 19) 97%
+        );
+    }
+    .wrapper::after {
+        bottom: 0;
+        opacity: 1;
+        background-image: linear-gradient(
+            to bottom,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%
+            );
+        }
+        
+        .card:hover .wrapper::before,
+        .wrapper::after {
+            opacity: 1;
+        }
+        
+        /* .card:hover .wrapper::after {
+} */
+.title {
+    width: 80%;
+    transition: transform 0.5s;
+}
+.card:hover .title {
+    transform: translate3d(0%, -50px, 100px);
+}
+
+.character {
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    position: absolute;
+    top: 0.8px;
+    
+    z-index: -1;
+}
+
+.card:hover .character {
+    opacity: 1;
+    transform: translate3d(0%, -30%, 100px);
+}
+
+/*/////////////////조커이미지 여기까지/////////////////////*/
+
+
+
+/* 메인조커무지개색깔 이미지 div창 */
+#mainJoker{
+    width: 100%;
+    display: flex;
+    margin-top: 150px;
+    z-index: 2;
+}
+
+.mainJokerFrame{
+    width:30%;
+}
+#mainJoker > img{
+    width: 550px;
+}
+
+/* 위스키들 이미지있는 div창 */
+#whiskeyCollection{
+    width:100%;
+    height: 350px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    margin-right: 70px;
+}
+.whiskeyCollection_div{
+    width: 100%;
+    height: 100%;
+}
+
+#whiskeyCollection img {
+    width: 80%;
+    height: 400px;
+}
+
+
+
+
+/*////////////////////////////////////////*/
+/* 두번째 메인창으로 슬라이드 모션있는 div창 2번째임 */
+
+
+#carousel_box {
+    width: 85%;
+    /* height: 1080px; */
+    height: 100%;
+    margin-left: 80px;
+    /* border: 1px solid #63007b; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    padding: 15px;
+    /* background-color: #D7D4CE; */
+}
+
+.carousel_input_img_box ul li img {
+    /* width: 75vw; */
+    width: 95%;
+    height: 67vh;
+    border-radius: 10px;
+    border: 2px solid#36110f
+}
+
+
+.carousel_image_box_btn ul li img {
+    width: 100%;
+    height: 13vh;
+    border-radius: 10px;
+    border: 1px solid #0f3306;
+}
+
+
+/* 세번째 메인창 명언등을 적어놓은 div창 */
+#tata{
+    width: 100%;
+    /* height: 500px; */
+    background-color: #1A1413;
+    color: #D7D4CE;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+#tata>img{
+    width: 50%;
+}
+
+#rast{
+    width: 100%;
+    height: 200px;
+    font-size: 20px;
+    background-color: #1A1413;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D7D4CE;
+}
+
+
+/*하단 명언글 틀잡고있는 div*/
+.bigQuote{
+    width: 400px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* border: 1px solid crimson; */
+}
+
+/* 명언 글 네모만들div*/
+.quoteBoxFrame{
+    /* background-color:#1A1413; */
+    width: 370px;
+    height: 220px;
+    border-radius: 5px;
+    border: 1px solid darkorchid;
+    align-content: space-evenly;
+    text-align: center;
+}
+.quoteBoxFrame>span:nth-child(1){
+    font-size: 20px;
+    font-weight: 600;
+}
+.quoteBoxFrame2>span:nth-child(1){
+    font-size: 20px;
+    font-weight: 600;
+}
+.quoteBoxFrame3>span:nth-child(1){
+    font-size: 20px;
+    font-weight: 600;
+}
+.quoteBoxFrame2{
+    /* background-color:#1A1413; */
+    width: 370px;
+    height: 220px;
+    border-radius: 5px;
+    border: 1px solid darkorchid;
+    align-content: space-evenly;
+    text-align: center;
+    display: none;
+}
+.quoteBoxFrame3{
+    /* background-color:#1A1413; */
+    width: 370px;
+    height: 220px;
+    border-radius: 5px;
+    border: 1px solid darkorchid;
+    align-content: space-evenly;
+    text-align: center;
+    display: none;
+}
+.postApost{
+    margin: 20px;
+}
+
+
+/*명언 글씨들어가는곳 span*/
+.famousQuote{
+    margin-top: 100px;
+    margin: 20px;
+}
+.famoustext{
+    margin-top: 100px;
+    margin: 20px;
+}
+
+.but{
+    display: flex;
+    margin-top: 50px;
+    width: 200px;
+    height: 40px;
+    justify-content: center;
+    justify-content: space-around;
+}
+.but>button{
+    width: 40%;
+}
+.prev{
+    color: #D7D4CE;
+    background-color: #6f0086;
+}
+.next{
+    color: #D7D4CE;
+    background-color: #6f0086;
+}
+
+
+
+
+/* @media screen and (min-width: 1024px) and (max-width:1920px) {} */
+
+
+
+/*반응형 테블릿 크기*/
+@media screen and (min-width: 768px) and (max-width:1024px) {
+    .quoteBoxFrame{
+        /* background-color:#1A1413; */
+        width: 90%;
+        height: 220px;
+        border-radius: 5px;
+        border: 1px solid red;
+        align-content: space-evenly;
+        text-align: center;
+        display: none;
+    }
+    .quoteBoxFrame2{
+        /* background-color:#1A1413; */
+        width: 90%;
+        height: 220px;
+        border-radius: 5px;
+        border: 1px solid rgb(204, 50, 50);
+        align-content: space-evenly;
+        text-align: center;
+        display: none;
+    }
+    .quoteBoxFrame3{
+        /* background-color:#1A1413; */
+        width: 90%;
+        height: 220px;
+        border-radius: 5px;
+        border: 1px solid rgb(204, 50, 50);
+        align-content: space-evenly;
+        text-align: center;
+        display: none;
+    }
+
+
+    #carousel_box {
+        width: 90%;
+        /* height: 1080px; */
+        /* height: 100%; */
+        /* border: 1px solid #63007b; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        margin: 50px;
+        /* background-color: aqua; */
+    }
+    
+    .carousel_input_img_box ul li img {
+        /* width: 75vw; */
+        width: 95%;
+        /* height: 67vh;/ */
+        border-radius: 10px;
+        border: 2px solid#36110f
+    }
+    
+    
+    .carousel_image_box_btn ul li img {
+        /* width: 30vh; */
+        width: 100%;
+        /* height: 13vh; */
+        border-radius: 10px;
+        border: 1px solid #0f3306;
+    }
+    
+    /* 테블릿 사이즈 위스키들 이미지있는 div창 */
+#whiskeyCollection{
+    width:100%;
+    /* height: 450px; */
+    /* margin-top: 30px; */
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    margin-right: 70px;
+    /* background-color: #00d5ff; */
+}
+.whiskeyCollection_div{
+    width: 100%;
+    height: 100%;
+}
+
+#whiskeyCollection img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*태블릿 사이즈 wht so serious??글씨가있는 div창 */
+#mainPost{
+    width: 100%;
+    font-size: 110px;
+    font-weight: 600;
+    color: #D7D4CE;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: rgb(255, 0, 149); */
+}
+.mainPostFrame{
+    width: 80%;
+    
+}
+
+#mainPost>p{
+    width: 90%;
+    margin: 0px;
+}
+
+.cover-image {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+}
+.card:hover .cover-image {
+    display: none;
+}
+
+
+}
+
+
+
+/*반응형 모바일 크기*/
+@media screen and (min-width: 200px) and (max-width:768px) {
+    .quoteBoxFrame{
+        /* background-color:#1A1413; */
+        width: 80%;
+        height: 220px;
+        border-radius: 5px;
+        border: 1px solid rgb(17, 255, 0);
+        align-content: space-evenly;
+        text-align: center;
+        display: none;
+    }
+    .quoteBoxFrame2{
+        /* background-color:#1A1413; */
+        width: 80%;
+        height: 220px;
+        border-radius: 5px;
+        border: 1px solid rgb(63, 204, 50);
+        align-content: space-evenly;
+        text-align: center;
+        display: none;
+    }
+    .quoteBoxFrame3{
+        /* background-color:#1A1413; */
+        width: 80%;
+        height: 220px;
+        border-radius: 5px;
+        border: 1px solid rgb(63, 204, 50);
+        align-content: space-evenly;
+        text-align: center;
+        display: none;
+    }
+
+    
+    #carousel_box {
+        width: 85%;
+        /* height: 1080px; */
+        /* height: 100%; */
+        /* border: 1px solid #63007b; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        margin: 30px;
+        /* background-color: rgb(238, 246, 18); */
+    }
+    
+    .carousel_input_img_box ul li img {
+        /* width: 75vw; */
+        width: 95%;
+        /* height: 67vh;/ */
+        border-radius: 10px;
+        border: 2px solid#36110f
+    }
+    
+    
+    .carousel_image_box_btn ul li img {
+        /* width: 30vh; */
+        width: 100%;
+        /* height: 13vh; */
+        border-radius: 10px;
+        border: 1px solid #0f3306;
+    }
+
+    /* 태블릿 반응형 사이즈 위스키들 이미지있는 div창 */
+#whiskeyCollection{
+    width:95%;
+    /* height: 300px; */
+    /* margin-top: 30px; */
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    margin-right: 70px;
+    /* background-color: #00ff84; */
+}
+.whiskeyCollection_div{
+    width: 90%;
+    height: 100%;
+}
+
+#whiskeyCollection img {
+    width: 90%;
+    height: 100%;
+}
+
+
+/*모바일 사이즈 wht so serious??글씨가있는 div창 */
+#mainPost{
+    width: 100%;
+    height: 750px;
+    font-size: 90px;
+    font-weight: 600;
+    color: #D7D4CE;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: rgb(255, 238, 0); */
+}
+.mainPostFrame{
+    width: 70%;
+    
+}
+
+#mainPost>p{
+    width: 90%;
+    margin: 0px;
+}
+
+
+.cover-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+.card:hover .cover-image {
+    display: none;
+}
+
+
+}

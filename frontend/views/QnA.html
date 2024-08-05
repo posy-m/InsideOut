@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QnA 메인</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <h1 class="QnA_title">QnA</h1>
+    <div class="btnWrap">
+        <button id="createBtn">문의 글 작성</button>
+    </div>
+    <div id="guide">
+        <span class="guideNumber">번호</span>
+        <span class="guideName">작성자</span>
+        <span class="guideTitle">제목</span>
+        <span class="guideContent">내용</span>
+    </div>
+    <div id="list"></div>
+    <div class="searchWrap">
+        <input type="search" name="" id="searchInput" placeholder="찾고 싶은 문의 글의 제목을 검색해주세요">
+        <button id="searchBtn">검색</button>
+    </div>
+    <div class="paginationWrap">
+        <div id="pagination"></div>
+    </div>
+</body>
+<script src="../js/QnA.js"></script>
+
+</html>

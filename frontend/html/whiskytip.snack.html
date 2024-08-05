@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/whiskysnak.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>snack</title>
+</head>
+
+<body>
+  <!-- 카테고리 -->
+  <div id="tipAllWrap">
+    <div id="tipCategoryWrap">
+      <a href="./whiskytip.snack.html" class="tip_category snackTitle">Snack</a>
+      <a href="./whiskytip.recipe.html" class="tip_category recipeTitle">Recipe</a>
+      <a href="./whiskytip.info.html" class="tip_category informationTitle">Information</a>
+    </div>
+
+    <!-- 업로드 글 및 버튼 -->
+    <div id="itpLine">
+      <div id="tipUploadWrap">
+        <h2 class="tip_text neon"> <span>[Please upload various Snacks]</span>
+        </h2>
+        <button id="tipBtn">글 작성</button>
+      </div>
+      <div id="buttonBox">
+        <div id="overlay"></div>
+        <div id="searchWordBox">
+          <input id="searchInput" type="text" placeholder="검색어를 입력하세요">
+          <button id="searchButton"> <img src="../img/search1.png" alt=""></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 본문 -->
+    <section id="tipcotentBox">
+      <div id="tipContentWrap">
+        <!-- <img src="/backend/uploads/다운로드 (4).jpeg" alt="" id="itpImg">
+        <div id="titleWD">
+          <span class="tip_content_title">제목</span>
+          <span class="tip_content_writer tip_wd">작성자</span>
+          <span class="tip_content_date tip_wd">날짜</span>
+      </div> -->
+      </div>
+    </section>
+
+    <!-- 페이지네이션 -->
+    <div id="pageNation">
+      <button id="prevPage"></button>
+      <span id="pageNumbers"></span>
+      <button id="nextPage"></button>
+    </div>
+
+
+
+</body>
+<script src="../js/whiskySnack.js"></script>
+
+
+</html>

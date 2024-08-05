@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* background-color: #1A1413; */
+}
+
+a {
+  text-decoration: none;
+}
+
+#tipAllWrap {
+  margin: 100px 80px;
+}
+
+#tipUpload {
+  width: 100px;
+  height: 30px;
+  margin-bottom: 10px;
+
+}
+
+#tipCategoryWrap {
+  margin-bottom: 25px;
+}
+
+.tip_category {
+  color: #D7D4CE;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.tip_category:hover {
+  color: #417b38;
+}
+
+#tipTable {
+  display: flex;
+}
+
+.tip_top_table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  height: 30px;
+}
+
+.tip_top_table:nth-child(1) {
+  width: 5%;
+}
+
+.tip_top_table:nth-child(2) {
+  width: 50%;
+}
+
+.tip_top_table:nth-child(3) {
+  width: 10%;
+}
+
+.tip_top_table:nth-child(4) {
+  width: 10%;
+}
+
+.tip_top_table:nth-child(5) {
+  width: 5%;
+}

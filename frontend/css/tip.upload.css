@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#uploadBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+/* 상단 카테고리 */
+#category {
+  margin-right: 545px;
+
+  width: 200px;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 12px 13px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+#category:focus {
+  border: 1px solid #4772e0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  outline: 3px solid #e5edff;
+  border-radius: 10px;
+}
+
+#tipCorrecionTitle {
+  width: 730px;
+  height: 42px;
+  margin: 10px 0px 10px;
+  padding: 5px;
+  font-weight: 600;
+  /* border: 1px solid; */
+  ;
+}
+
+#tipCorrecionContent {
+  padding: 20px;
+  width: 730px;
+  height: 400px;
+  /* border: 1px solid; */
+  resize: none;
+}
+
+
+#uploadBoxBtn {
+  width: 735px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#cancellationBtn {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}
+
+#tipCorrecionBtn {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* whiskytip.check.html */
+#tipCheckBox {
+  display: flex;
+  justify-content: space-between;
+  width: 735px;
+  ;
+}
+
+.tip_check_modify {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}
+
+.tip_check_delete {
+  width: 65px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+}

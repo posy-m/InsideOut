@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.list {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login_form {
+    width: 50vh;
+    height: 90vh;
+    /* border: 0px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.input_line{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.entryarea {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 15px;
+}
+
+input {
+    position: absolute;
+    width: 80%;
+    outline: none;
+    font-size: 18px;
+    padding: 0 15px;
+    line-height: 40px;
+    border-bottom: 2px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
+    transition: 0.1s ease;
+    z-index: 1111;
+}
+.baseline {
+    position: absolute;
+    font-size: 1em;
+    color: black;
+    margin: -5px 20px;
+    transition: 0.2s ease;
+}
+
+input:focus,
+input:valid{
+    color: black;
+    /* border: 4px solid #66ff00; */
+}
+
+input:focus + .baseline,
+input:valid + .baseline {
+    color: blacK;
+    height: 30px;
+    line-height: 10px;
+    padding: 0 12px;
+    transform: translate(-15px 0px) scale(0.88);
+    z-index: 1111;
+}
+.tag_list {
+    width: 50vw;
+    font-weight: 100;
+    display: flex;
+    justify-content: space-around;
+}
+
+.login_title {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+a{
+    margin-top: 20px;
+    text-decoration: none;
+    color: #0A3CD2;
+}
+
+.login_btn {
+    width: 40vw;
+    height: 8vw;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.social_login {
+    display: flex;
+    width: 80vw;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social_login a:nth-of-type(1) {
+    background-image: url(/frontend/uploads/kakao.svg);
+    background-repeat: no-repeat;
+    color: transparent;
+    display: block;
+    width: 32px;
+    height: 32px;
+}
+
+.social_login a:nth-of-type(2) {
+    background-image: url(/frontend/uploads/google.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: transparent;
+    display: block;
+    width: 32px;
+    height: 32px;
+}
