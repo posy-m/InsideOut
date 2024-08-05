@@ -10,7 +10,6 @@ const uploadBox = document.querySelector("#uploadBox");
 
 uploadBox.addEventListener("submit", async (e) => {
   // e.preventDefault();
-
   const tipCorrecionTitle = document.querySelector("#tipCorrecionTitle").value;
   const tipCorrecionContent = document.querySelector("#tipCorrecionContent").value;
   const tipFile = document.querySelector("#tipFile").files[0];

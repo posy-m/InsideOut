@@ -27,6 +27,9 @@ export class whiskyTipCcomment extends Model {
   })
   tip_com_comment: string;
 
-  @BelongsTo(() => whiskyTipComment)
+  @BelongsTo(() => whiskyTipComment, {
+    targetKey: 'id',  // whiskyTipComment 모델의 기본 키를 참조
+    foreignKey: 'tip_comment_ID',  // 외래 키
+  })
   whiskyTipComment: whiskyTipComment;
 }

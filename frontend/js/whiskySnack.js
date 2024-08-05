@@ -32,8 +32,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const tipElement = document.createElement("div");
         tipElement.dataset.set = tip.id;
         tipElement.className = "tip";
+        // <img src="/backend/uploads/${tip.img}" alt="" class="tipImg" data-set="${tip.id}">
         tipElement.innerHTML = `
-          <img src="/backend/uploads/${tip.img}" alt="" class="tipImg" data-set="${tip.id}">
+        <img src="http://localhost:3000/${tip.img}" alt="" class="tipImg" data-set="${tip.id}">
           <div id="titleWD">
             <span class="tip_content_title">${tip.tip_title}</span>
             <span class="tip_content_writer tip_wd">${tip.nick_name}</span>
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // tipElement.addEventListener("click", () => {
         //   window.location.href = `/tipDetail/${tip.id}`;
         // });
+        console.log(`Image Path: http://localhost:3000/uploads/${tip.img}`);
         tipContentWrap.appendChild(tipElement);
 
         const tipList = document.querySelectorAll(".tip");
@@ -55,6 +57,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           };
         })
       });
+
+
 
 
       // const param = tips;
@@ -116,6 +120,35 @@ tipBtn.addEventListener("click", () => {
 //   })
 
 // })
+
+// 검색창
+document.getElementById('searchButton').addEventListener('click', function () {
+  const searchInput = document.getElementById('searchInput');
+  const overlay = document.getElementById('overlay');
+
+  if (searchInput.classList.contains('open')) {
+    searchInput.classList.remove('open');
+    overlay.style.opacity = '0';
+    overlay.style.visibility = 'hidden';
+  } else {
+    searchInput.classList.add('open');
+    searchInput.focus();
+    overlay.style.opacity = '1';
+    overlay.style.visibility = 'visible';
+  }
+});
+
+document.getElementById('overlay').addEventListener('click', function () {
+  const searchInput = document.getElementById('searchInput');
+  const overlay = document.getElementById('overlay');
+
+  searchInput.classList.remove('open');
+  overlay.style.opacity = '0';
+  overlay.style.visibility = 'hidden';
+});
+
+
+
 
 
 

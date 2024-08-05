@@ -32,10 +32,16 @@ export class whiskyTipComment extends Model {
   })
   tip_comment: string;
 
-  @BelongsTo(() => whiskyTip)
+  @BelongsTo(() => whiskyTip, {
+    targetKey: 'id',
+    foreignKey: 'tip_ID'
+  })
   whiskyTip: whiskyTip
 
-  @HasMany(() => whiskyTipCcomment)
+  @HasMany(() => whiskyTipCcomment, {
+    sourceKey: 'id',
+    foreignKey: 'tip_comment_ID',
+  })
   whiskyTipCcomment: whiskyTipCcomment[];
 
 }

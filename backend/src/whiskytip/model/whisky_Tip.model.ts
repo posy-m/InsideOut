@@ -44,7 +44,9 @@ export class whiskyTip extends Model {
   })
   img: string;
 
-  @HasMany(() => whiskyTipComment)
+  @HasMany(() => whiskyTipComment, {
+    sourceKey: 'id',
+  })
   whisky: whiskyTipComment[];
 
 }

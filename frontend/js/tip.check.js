@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
           // 수정 입력 필드가 없는 경우, 추가
           const commentupload = document.createElement("input");
           commentupload.classList.add("updateInput");
-          commentupload.placeholder = "게시글에 대한 댓글을 적어주세요"
+          commentupload.placeholder = "댓글을 수정해주세요"
           const commentUpBtn = document.createElement("button");
           commentUpBtn.classList.add("updateBtn");
           commentUpBtn.dataset.id = commentContainer.dataset.id;
@@ -312,8 +312,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         const replyId = commentContainer.dataset.id;
         console.log(replyId);
 
-        const response = await axios.delete(`http://127.0.0.1:3000/whisky/Ccommentupdate/${replyId}`)
-
+        if (!confirm("삭제하시겠습니까?")) { return }
+        const response = await axios.delete(`http://127.0.0.1:3000/whisky/CcommentDelete/${replyId}`)
+        if (response.status === 200) {
+          location.reload()
+        }
       }
     })
   })

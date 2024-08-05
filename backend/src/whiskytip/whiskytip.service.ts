@@ -109,9 +109,6 @@ export class WhiskytipService {
     };
   }
 
-
-
-
   async findAll(): Promise<whiskyTip[]> {
     return await this.whiskyTipModel.findAll();
   }

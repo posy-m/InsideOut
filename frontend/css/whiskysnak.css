@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  background-color: #202020;
 }
 
 a {
@@ -17,7 +18,7 @@ a {
 
 #tipUploadWrap {
   display: flex;
-  /* justify-content: space-between; */
+  align-items: center;
   margin-bottom: 60px;
   margin-top: 40px;
 }
@@ -26,30 +27,32 @@ a {
   font-weight: 600;
 }
 
-
 .tip_category {
   font-size: 20px;
   margin-right: 20px;
-  color: black;
+  color: rgb(219, 219, 219);
 }
 
-.tip_category:hover {
-  color: brown;
+.tip_category:hover,
+.tip_category:active {
+  text-shadow: 0 0 20px #ff005b;
+  color: #fff;
 }
-
-
 
 #tipBtn {
   width: 80px;
   height: 35px;
   border: none;
   border-radius: 5px;
+  margin-left: 20px;
+  background-color: white;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.tip_text {
-  font-size: 25px;
-  border-bottom: 1px solid;
-  gap: 10px;
+.neon {
+  color: #fff;
+  text-shadow: 0 0 20px #ff005b;
 }
 
 #itpLine {
@@ -58,20 +61,9 @@ a {
   align-items: center;
 }
 
-#searchWordBox>input {
-  width: 220px;
-  height: 25px;
-  padding: 3px;
+#buttonBox {
+  display: flex;
 }
-
-#searchWordBox>button {
-  width: 65px;
-  height: 35px;
-  border-radius: 5px;
-  border: none;
-}
-
-/* 본문 */
 
 /* #tipcotentBox {
   display: grid;
@@ -85,8 +77,6 @@ a {
   gap: 30px;
 }
 
-
-
 .tipImg {
   width: 250px;
   height: 250px;
@@ -94,12 +84,6 @@ a {
   cursor: pointer;
   position: absolute;
 }
-
-/* .tipImg:hover #titleWD {
-  visibility: visible;
-
-} */
-
 
 #titleWD {
   width: 250px;
@@ -111,7 +95,6 @@ a {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.769);
   position: relative;
-  /* 요소 숨기기 */
   visibility: hidden;
 }
 
@@ -119,20 +102,13 @@ a {
   visibility: visible;
 }
 
-
-/* 
-#titleWD>span {
-  text-align: center;
-} */
-
 #titleWD>span:nth-child(1) {
   font-size: 30px;
   color: rgb(235, 242, 249);
-
 }
 
 #titleWD>span:nth-child(2) {
-  font-size: 15px;
+  font-size: 20px;
   color: rgb(235, 242, 249);
 }
 
@@ -141,15 +117,66 @@ a {
   font-size: 13px;
 }
 
-
-/* 페이지 네이션 */
 #pageNation {
-  margin: 50px 0 0 500px;
+  margin: 50px 0 0 560px;
   display: flex;
   gap: 30px;
-
+  color: #fff;
+  font-size: 20px;
 }
 
 #pageNation>span {
   cursor: pointer;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#searchWordBox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 20px;
+  /* 버튼과 간격을 두기 위해 추가 */
+}
+
+
+
+#searchInput {
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  transition: width 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
+  box-sizing: border-box;
+  color: floralwhite;
+}
+
+
+#searchInput.open {
+  width: 200px;
+  padding: 5px 10px;
+  opacity: 1;
+  margin-right: 10px;
+}
+
+#searchButton {
+  /* height: 35px; */
+  padding: 0 10px;
+  cursor: pointer;
+  /* border-radius: 5px; */
+  border: none;
+}
+
+#searchButton>img {
+  width: 30px;
+  height: 30px;
 }
