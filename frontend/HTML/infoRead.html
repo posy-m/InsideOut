@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../CSS/infoRead.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="top">
@@ -19,12 +20,14 @@
             <div class="fileText">
                 
                 <div class="file-upload preview-image">
-                    <input type="text" class="upload-name" value="파일선택" disabled="disabled">
+                    <input type="text" class="upload-name"disabled="disabled">
                     <label for="input-file">업로드</label> 
-                    <input type="file" id="input-file" class="upload-hidden"> 
+                    <input type="file" id="input-file" class="upload-hidden" accept="*.jpg,*.png"> 
                 </div>
                 <div class="textUpload">
-                    <a href="./infoDetail.html"><input type="button" class="upload-text" value="작성완료"></a>
+                    <!-- <a href="./infoDetail.html"> -->
+                        <input id="submitBtn" type="button" class="upload-text" value="작성완료">
+                    <!-- </a> -->
                 </div>
                 
             </div>
@@ -33,15 +36,41 @@
     </div>
 </body>
 <script>
-    async function get() {
+    const _input = document.querySelector("#submitBtn");
+    _input.addEventListener("click",()=>{
+
+        post()
+    })
+    async function post() {
+
         try {
-            const response = await axios.get("http://localhost:3000/information");
-            console.log(response.data);  // 서버에서 반환된 데이터를 로그로 출력
+            const inputFile = document.querySelector("#input-file");
+            const uploadName = document.querySelector("#writing-frame");
+            const formData = new FormData();
+
+            console.log(1);
+            
+            formData.append("file",inputFile.files[0]);
+            console.log(2);
+            formData.append("whiskey_text",uploadName.value);
+            console.log(3);
+            // console.log(uploadName);
+            
+            const postex = await axios.post("http://127.0.0.1:3000/information/write", formData);
+            // console.log(postex);
+            
+            // console.log(postex.data);
         } catch (error) {
-            console.error("무슨 에러났어:", error);  // 에러 메시지를 로그로 출력
+            console.error("post 에러났어",error);
         }
     }
-    get();
-</script>
+const file = document.querySelector("#input-file");
+file.onchange=(el)=>{
+    // console.log(el.target.files)
+}
 
+
+
+    
+</script>
 </html>

@@ -38,7 +38,8 @@ font-size: 50px;
 
 .writingFrame{
     width: 100%;
-    height: 100%!important;
+    height: 100% !important;
+    resize: none;
 }
 
 
@@ -93,6 +94,61 @@ font-size: 50px;
     justify-content: center;
     align-items: center;
 }
+
+.textImgUpload{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.textImgUpload button{
+    margin-left: 5px;
+    display: inline-block;
+    padding: .5em 1.5em;
+    color: #000000;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #616161;
+    /* border-bottom-color: #e2e2e2; */
+    border-radius: .25em;
+}
+
+/*업로드 버튼 효과*/
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255,255,255,.5),
+      7px 7px 20px 0px rgba(0,0,0,.1),
+      4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+   }
+   
+   .btn-1 {
+    background: rgb(138, 128, 37);
+    background: linear-gradient(0deg, rgb(243, 243, 243) 0%, rgb(255, 213, 0) 100%);
+    border: none;
+   }
+   
+   .btn-1:hover {
+    background: rgb(138, 128, 37);
+    background: linear-gradient(0deg, rgb(255, 213, 0) 0%, rgb(255, 255, 255) 100%);
+   }
+/*업로드 버튼효과 여기까지*/
+
+
 
 .textUpload input{
     width: 100%;
@@ -167,4 +223,10 @@ font-size: 50px;
     max-width: 100%;
     width: 100% \9;
     height: auto;
+}
+
+#img_test{
+    margin-top: 40px;
+    width:500px;
+    height:500px;
 }
