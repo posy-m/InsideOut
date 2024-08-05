@@ -47,13 +47,9 @@
             const inputFile = document.querySelector("#input-file");
             const uploadName = document.querySelector("#writing-frame");
             const formData = new FormData();
-
-            console.log(1);
             
             formData.append("file",inputFile.files[0]);
-            console.log(2);
             formData.append("whiskey_text",uploadName.value);
-            console.log(3);
             // console.log(uploadName);
             
             const postex = await axios.post("http://127.0.0.1:3000/information/write", formData);

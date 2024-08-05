@@ -8,17 +8,6 @@ window.onload=()=>{
   get();
 }
 
-const updateBtn = document.getElementById('ubutton');
-
-updateBtn.onclick = (e) => {
-  let id = 1;
-  location.href = `./infoU.html?id=${id}`
-  console.log(e.target)
-}
-
-
-
-
 async function get() {
   try {
     const frameWriting = document.querySelector(".frameWriting");
@@ -41,8 +30,8 @@ async function get() {
         </figcaption>
         </figure> 
         <div class="buttons">
-          <button id="ubutton" data-set="1">수정버튼</button>
-          <button class="dibuttn">삭제버튼</button>
+          <button id="ubutton" data-set="${e.id}">수정버튼</button>
+          <button class="dibuttn" data-set="${e.id}">삭제버튼</button>
         </div>`
 
 
@@ -50,18 +39,22 @@ async function get() {
     //     <button id="ubutton" data-set="1">수정버튼</button>
     //     <button class="dibuttn">삭제버튼</button>
     // </div>
-
-        inn.append(divv);
-
-        console.log(e.img);
-        
-        // <h3>싱글몰트 위스키 마니아들을 위한-위스키 용어편</h3>
-        // <p>지난해 맥캘란 페이스북을 통해 많은 팬들에게 위스키 용어 및 위스키 상식들을 소개한 바 있다. </p>
+    inn.append(divv);
+    
+    // <h3>싱글몰트 위스키 마니아들을 위한-위스키 용어편</h3>
+    // <p>지난해 맥캘란 페이스북을 통해 많은 팬들에게 위스키 용어 및 위스키 상식들을 소개한 바 있다. </p>
         // <img src="./2enProject_Main_imges/토치로불하는_위스키.webp" alt="sample70"/>
-        
       });
       console.log(resp);  // 서버에서 반환된 데이터를 로그로 출력
-  } catch (error) {
+      
+    } catch (error) {
       console.error("get 에러났어:", error);  // 에러 메시지를 로그로 출력
+    }
+    const test = document.querySelectorAll('#ubutton')
+    
+    for (let i = 0; i < test.length; i++) {
+      test[i].addEventListener('click', (e) => {
+        location.href = `./infoU.html?id=${e.target.dataset.set}`
+      })
+    }
   }
-}

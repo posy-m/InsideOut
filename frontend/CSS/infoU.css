@@ -109,9 +109,9 @@ font-size: 50px;
     font-size: inherit;
     line-height: normal;
     vertical-align: middle;
-    background-color: #fdfdfd;
+    background-color: #e5e4e4;
     cursor: pointer;
-    border: 1px solid #616161;
+    /* border: 1px solid #616161; */
     /* border-bottom-color: #e2e2e2; */
     border-radius: .25em;
 }
@@ -137,15 +137,18 @@ font-size: 50px;
    }
    
    .btn-1 {
-    background: rgb(138, 128, 37);
-    background: linear-gradient(0deg, rgb(243, 243, 243) 0%, rgb(255, 213, 0) 100%);
+    background: rgb(255, 255, 255);
     border: none;
    }
    
    .btn-1:hover {
-    background: rgb(138, 128, 37);
-    background: linear-gradient(0deg, rgb(255, 213, 0) 0%, rgb(255, 255, 255) 100%);
+    background: rgb(202, 202, 202);
+    }
+
+   .btn-1:focus {
+    background: rgb(168, 168, 168);
    }
+
 /*업로드 버튼효과 여기까지*/
 
 
