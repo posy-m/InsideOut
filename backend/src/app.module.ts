@@ -14,12 +14,13 @@ import * as cookie from 'cookie-parser';
     host : "localhost",
     port : 3306,
     username : "root",
-    password : "",
+    password : "kjkj28892889",
     database : "insideoutinfo",
     autoLoadModels : true, // 시퀄라이즈 모델 파일을 자동으로 로드
     synchronize : true, //  실행할때 데이터베이스 스키마를 동기화 
     sync : {force : false} // 테이블을 초기화 할지 말지
-  }),SequelizeModule.forFeature([Insideoutinfo]),
+  }),
+  SequelizeModule.forFeature([Insideoutinfo]),
   ConfigModule.forRoot({ isGlobal: true }),
   InsideOutInfoModule,
   InformationModule], // 외부 모듈 주입

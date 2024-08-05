@@ -5,34 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../CSS/infoRead.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="top">
-        <h2>위스키소개 페이지, 메인페이지</h2>
-        <div>
-            <div>
-                <button>글 작성</button>
+        <div class="head">
+            <h1>위스키정보 작성</h1>
+        </div>
+        <div class="titleTop">
+
+            <div class="towTop">
+                <textarea name="" id="writing-frame" class="writingFrame" placeholder="입력하세요"></textarea>
             </div>
-            <div>
-                <img src="" alt="">
-                <div>
-                    <span class="text">위스키에대한 소개글들을 작성하는 곳</span>
+            <div class="fileText">
+                
+                <div class="file-upload preview-image">
+                    <input type="text" class="upload-name"disabled="disabled">
+                    <label for="input-file">업로드</label> 
+                    <input type="file" id="input-file" class="upload-hidden" accept="*.jpg,*.png"> 
                 </div>
+                <div class="textUpload">
+                    <!-- <a href="./infoDetail.html"> -->
+                        <input id="submitBtn" type="button" class="upload-text" value="작성완료">
+                    <!-- </a> -->
+                </div>
+                
             </div>
         </div>
+            
     </div>
 </body>
 <script>
-    async function get() {
+    const _input = document.querySelector("#submitBtn");
+    _input.addEventListener("click",()=>{
+
+        post()
+    })
+    async function post() {
+
         try {
-            const response = await axios.get("http://localhost:3000/information");
-            console.log(response.data);  // 서버에서 반환된 데이터를 로그로 출력
+            const inputFile = document.querySelector("#input-file");
+            const uploadName = document.querySelector("#writing-frame");
+            const formData = new FormData();
+
+            console.log(1);
+            
+            formData.append("file",inputFile.files[0]);
+            console.log(2);
+            formData.append("whiskey_text",uploadName.value);
+            console.log(3);
+            // console.log(uploadName);
+            
+            const postex = await axios.post("http://127.0.0.1:3000/information/write", formData);
+            // console.log(postex);
+            
+            // console.log(postex.data);
         } catch (error) {
-            console.error("무슨 에러났어:", error);  // 에러 메시지를 로그로 출력
+            console.error("post 에러났어",error);
         }
     }
-    get();
-    </script>
+const file = document.querySelector("#input-file");
+file.onchange=(el)=>{
+    // console.log(el.target.files)
+}
 
+
+
+    
+</script>
 </html>

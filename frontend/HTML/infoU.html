@@ -4,42 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../CSS/infoCreate.css">
+    <link rel="stylesheet" href="../CSS/infoU.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <div id="top">
-        <input type="text" id="whiskey_name" name="update_whiskey_name">
-        <input type="text" id="whiskey_text" name="update_whiskey_text">
-        <input type="file" id="file" name="update_whiskey_image">
-        <button id="uploadBtn">전송</button>
+    <div class="top">
+        <div class="head">
+            <h1>위스키정보 수정</h1>
+        </div>
+        <div class="titleTop">
+            <div>
+                <img src="" alt="" id="img_test">
+                <div class="textImgUpload" >
+                    <button class="custom-bin btn-1" for="input-file">업로드</button> 
+                </div>
+            </div>
+            <div class="towTop">
+                <textarea name="" id="writing-frame" class="writingFrame" placeholder="입력하세요"></textarea>
+            </div>
+            <div class="fileText">
+                
+                <div class="file-upload preview-image">
+                    <input type="file" id="input-file" class="upload-hidden"> 
+                </div>
+                <div class="textUpload">
+                    <a href="./infoDetail.html"><input type="button" class="custom-bin btn-1" value="수정완료" onclick="updateRecord(`1, { whiskey_text: 'Updated text', whiskey_image: 'updated_image.png' }`)"></a>
+                </div>
+                
+            </div>
+        </div>
+            
     </div>
 </body>
 <script>
-    const param = new URLSearchParams(location.search).get('id');
-
-    const data = await axios.get(`http://localhost:3000/information/update/${param}`);
-
-    console.log(data);
-
-    const uploadBtn = document.querySelector('#uploadBtn');
-    const whiskey_name = document.querySelector('#whiskey_name').value;
-    const whiskey_text = document.querySelector('#whiskey_text').value;
-
+    const textArea = document.getElementById('writing-frame');
     
-    uploadBtn.addEventListener('click', () => {
-        async function updateRecord() {
-            try {
-                const json = {
-                    whiskey_name,
-                    whiskey_text
-                }
-                const response = await axios.put(`http://localhost:3000/information/update/${param}`, json);
-                console.log(response.data); // 업데이트된 데이터를 로그로 출력
-            } catch (error) {
-                console.error("업데이트 중 에러 발생:", error); // 에러 메시지를 로그로 출력
-            }
-        }
-    })
+    async function getUpdateData() {
+        const urlParams = new URL(location.href).searchParams.get('id')
+        const result = await axios.get(`http://localhost:3000/information/update/${urlParams}`);
+        console.log(result)
+        
+        textArea.value = result.data.w_info
+        const test = document.getElementById('img_test');
+        test.src = "http://localhost:3000/"+result.data.img
+
+    }
+
+    getUpdateData();
+
+
+    async function updateRecord(id, updatedData) {
+    try {
+        const response = await axios.put(`http://localhost:3000/information/update/${id}`, updatedData);
+
+        console.log(response); // 업데이트된 데이터를 로그로 출력
+        // if(response.status===200){
+        //     alert("변경완료");
+        //     location.href='상세';
+        // }
+
+    } catch (error) {
+        console.error("업데이트 중 에러 발생:", error); // 에러 메시지를 로그로 출력
+    }
+}
+
+// 사용 예시
+
 
 </script>
 </html>
