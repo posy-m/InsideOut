@@ -1,13 +1,15 @@
+
 import { Controller, Get, Post, UploadedFile, UseInterceptors, UseGuards } from '@nestjs/common';
-import { AppService } from './app.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { AppService } from './app.service';
 import { TokenGuard } from './login/guard/login.guard';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) { }
 
-  @UseGuards(TokenGuard)
+  // @UseGuards(TokenGuard)
+
   @Get()
   getHello() {
     return "hello"

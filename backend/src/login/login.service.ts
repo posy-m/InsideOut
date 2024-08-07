@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { UserSignUp } from './model/login.model';
-import { UserLoginDto, UserSignUpDto } from './dto/login.dto';
+import { userDTO, UserLoginDto, UserSignUpDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
@@ -28,17 +28,22 @@ export class LoginService {
         })
     }
 
-    async findId(id: number): Promise<UserSignUp> {
-        return await this.userLoginLogic.findOne({ where: { id } });
+    async findId(userInfo: userDTO): Promise<UserSignUp> {
+        const { uid, upw, nick_name, isAdmin } = userInfo
+        console.log(uid, upw)
+        const data = await this.userLoginLogic.findOne({ where: { uid } });
+        const dataupw = await bcrypt.compare(upw, data.upw);
+        return data
     }
 
     async findAll(): Promise<UserSignUp[]> {
         return await this.userLoginLogic.findAll();
     }
 
-    async mkToken(uid: string, upw: string) {
-        const payload = { uid, upw }
-        return this.jwtService.sign(payload);
+    async mkToken(login: userDTO) {
+        const { uid, upw, nick_name, isAdmin } = login
+        const payload = { uid, upw, nick_name, isAdmin }
+        return this.jwtService.sign(payload, { secret: 'secret' });
     }
 
     verifyToken(jwt: string) {
@@ -46,7 +51,6 @@ export class LoginService {
     }
 
     generateJWT(user: any) {
-        console.log(user);
         return {
             access_token: this.jwtService.sign(user)
         }

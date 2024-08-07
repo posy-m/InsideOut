@@ -1,34 +1,27 @@
-import { Controller, Get, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Req, Res } from '@nestjs/common';
 import { InsideOutInfoService } from './inside-out-info.service';
-import { Response, CookieOptions, Request } from 'express';
+import { Response, CookieOptions, request, Request } from 'express';
 import * as cookie from 'cookie-parser'
+import fastifyCookie, { FastifyCookie } from '@fastify/cookie';
 
-@Controller('inside-out-info')
+@Controller('insideOutInfo')
 export class InsideOutInfoController {
-  constructor(private readonly insideOutInfoService: InsideOutInfoService) {}
+  constructor(private readonly insideOutInfoService: InsideOutInfoService) { }
 
   @Get('testToken')
-    testToken(@Res() res : Response, @Req() req: Request){
+  testToken(@Res() res: Response, @Req() req: Request) {
     const test = this.insideOutInfoService.token()
     const date = new Date();
-    date.setMinutes(date.getMinutes()+60);
-    res.cookie('token', test,{httpOnly:true,expires:date})
+    date.setMinutes(date.getMinutes() + 60);
+    res.cookie('token', test, { httpOnly: false, expires: date })
     return res.redirect('http://localhost:3000/inside-out-info')
   }
 
   @Get()
-    testCookie(@Res() res : Response, @Req() req: Request){
-    
-    const userLogin = this.insideOutInfoService.create();
-    console.log(userLogin)
-
-    const { token } = req.cookies;
-
-    const verifiedToken = this.insideOutInfoService.verify(token)
-    if(userLogin.id === verifiedToken.id) {
-      console.log(userLogin.id === verifiedToken.id)
-      return res.send(verifiedToken)
-    }
+  testCookie(@Req() req: Request, @Res() res: Response) {
+    // const cookies = req.cookies;
+    const verifiedToken = this.insideOutInfoService.verify(req.headers.authorization);
+    return res.send(verifiedToken)
   }
 }
 

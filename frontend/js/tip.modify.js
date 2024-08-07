@@ -3,11 +3,9 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   const id = new URLSearchParams(location.search).get("id")
-  // console.log(id);
 
   const response = await axios.get(`http://localhost:3000/whisky/modify/${id}`)
   const tips = response.data;
-  // console.log(tips);
 
   const uploadBox = document.querySelector("#uploadBox")
   const modifyCheck = document.createElement("div")
@@ -47,6 +45,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const tipCorrecionContent = document.querySelector("#tipCorrecionContent").value
     const category = document.querySelector("#category").value
 
+    if (tips.nick_name) {
+
+    }
 
 
     const id = new URLSearchParams(location.search).get("id")

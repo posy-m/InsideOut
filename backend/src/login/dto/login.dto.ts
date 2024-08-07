@@ -12,8 +12,11 @@ export class UserLoginDto {
     upw: string;
 }
 
-export const userDTO = z.object({
-    uid: z.string().min(2).max(30),
-    upw: z.string().min(2).max(30)
-})
+export class userDTO {
+    uid: string;
+    upw: string;
+    nick_name: string;
+    isAdmin: boolean;
+}
+
 

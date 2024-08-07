@@ -12,6 +12,5 @@ import { UserSignUpRepository } from 'src/login/entities/login.repository';
   imports: [SequelizeModule.forFeature([User, QnA, Comment, Ccomment])],
   controllers: [UserController],
   providers: [UserService],
-  exports: [UserSignUpRepository]
 })
 export class UserModule { }

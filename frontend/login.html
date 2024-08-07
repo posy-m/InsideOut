@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./public/main.css">
     <link rel="stylesheet" href="./public/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
     <div class="list">
-        <form action="http://localhost:3000/login" method="post">
+        <form id="login-form">
             <fieldset class="login_form">
                 <h2 class="login_title">Inside Out</h2>
                 <legend>로그인 폼</legend>
@@ -22,7 +25,7 @@
                         <input type="text" name="upw" class="uid" required>
                         <div class="baseline">비밀번호를 입력하세요.</div>
                     </div>
-                    <button class="login_btn">로그인</button>
+                    <button class="login_btn" type="submit">로그인</button>
                     <div class="tag_list">
                         <a href="/frontend/signupMain.html">회원가입</a><a href="">ID 찾기</a><a href="">비밀번호 찾기</a>
                     </div>
@@ -36,14 +39,51 @@
     </div>
 </body>
 <script>
-    // function popup(){
-    //     var popupX = (document.body.offsetWidth / 2) - (700 / 2);
-    //     // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-        
-    //     var popupY= (window.screen.height / 2) - (500 / 2);
-    //     // 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-        
-    //     window.open('http://127.0.0.1:5500/frontend/login.html', '', 'status=no, height=500, width=700, left='+ popupX + ', top='+ popupY);
-    // }
+
+    const form = document.getElementById('login-form')
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const uid = document.querySelector('input[name="uid"]').value;
+        const upw = document.querySelector('input[name="upw"]').value;
+
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ uid, upw }),
+                credentials: 'include', // 쿠키를 포함하여 요청
+            })
+
+            const data = await response.json();
+
+            console.log(data)
+
+
+            if (response.ok) {
+                const date = new Date();
+                date.setTime(date.getTime() + (5 * 60 * 60 * 1000)); // 5분 후
+                // document.cookie = "token=" + data.token;
+                document.cookie = `token=${data.token}; expires=${date.toUTCString()}; path=/; secure=true; sameSite=lax; domain=127.0.0.1;`;
+                // axios.defaults.withCredentials = true
+                axios.defaults.authorazation = data.token
+                // 부모 창을 리다이렉트하고 팝업 창을 닫음
+                if (window.opener) {
+                    window.opener.location.reload();
+                    window.close();
+                } else {
+                    // 팝업이 아닌 경우
+                    window.location.href = data.redirectUrl;
+                }
+            } else {
+                console.error('로그인 실패:', data.message);
+            }
+        } catch (error) {
+            console.error('로그인 요청 중 오류 발생:', error);
+        }
+    });
 </script>
+
 </html>

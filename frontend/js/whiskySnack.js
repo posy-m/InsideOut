@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  if (document.cookie) {
+    const deleteClass = document.getElementById('tipBtn');
+    deleteClass.classList.remove('hide');
+  }
   const tipContentWrap = document.querySelector("#tipContentWrap");
   const searchButton = document.querySelector("#searchButton");
   const searchInput = document.querySelector("#searchInput");
@@ -146,6 +150,65 @@ document.getElementById('overlay').addEventListener('click', function () {
   overlay.style.opacity = '0';
   overlay.style.visibility = 'hidden';
 });
+
+
+const loginButton = document.querySelector('.login-button');
+
+loginButton.addEventListener('click', () => {
+  var popupX = (document.body.offsetWidth / 2) - (700 / 2);
+  var popupY = (window.screen.height / 2) - (500 / 2);
+  window.open('http://127.0.0.1:5501/frontend/login.html', '', 'status=no, height=500, width=700, left=' + popupX + ', top=' + popupY);
+});
+
+
+// 로그인 후 쿠키 확인 및 처리
+async function main() {
+  const accessToken = document.cookie.split('; ').find(row => row.startsWith('token='));
+  if (accessToken) {
+    console.log('Token found:', accessToken.split('=')[1]);
+    axios.defaults.headers.common['Authorization'] = accessToken.split('=')[1];
+    // 쿠키가 있으면 필요한 작업을 수행합니다.
+  } else {
+    console.log('Token not found');
+  }
+  try {
+    const response = await axios.get('http://localhost:3000/insideOutInfo');
+    if (response) {
+      loginButton.classList.add('hide');
+      const textBox = document.getElementById('textLine');
+      const textLine = document.createElement('div');
+      const logOut = document.createElement('button');
+      logOut.innerHTML = '로그아웃'
+      textBox.append(textLine);
+      textBox.append(logOut);
+      textLine.innerHTML = response.data.nick_name;
+
+      logOut.onclick = () => {
+        deleteCookie('token');
+      }
+
+      function deleteCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.reload();
+      }
+    }
+  } catch (error) {
+    if (!error.response) {
+      // network error
+      this.errorStatus = 'Error: Network Error';
+    } else {
+      this.errorStatus = error.response.data.message;
+    }
+  }
+}
+
+main()
+
+const tip = document.getElementById("tip")
+tip.addEventListener("click", () => {
+  location.href = "http://127.0.0.1:5501/frontend/html/main.html"
+})
+
 
 
 

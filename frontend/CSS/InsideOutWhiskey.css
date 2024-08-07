@@ -14,13 +14,14 @@
     font-style: normal;
     font-weight: normal;
     src: local('Cinzel-Regular'), url('Cinzel-Regular.woff') format('woff');
-    }
-      
-*{
+}
+
+* {
     margin: 0;
     padding: 0;
 }
-.in{
+
+.in {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,7 +40,7 @@ ul li {
 
 
 
-.entireTow{
+.entireTow {
     min-width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -50,19 +51,20 @@ ul li {
 
     /*배경사진 넣을 곳 고화질사진을찾아서 넣기*/
     background-image: url('/frontend/HTML/2enProject_Main_imges/모자있는\ 위스키들.jpg');
-}   
+}
 
-    .bg-black {
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* 배경을 어둡게 만드는 부분 */
-    }
+.bg-black {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 배경을 어둡게 만드는 부분 */
+}
 
 
-.topbar{
+.topbar {
     width: 100%;
     border: 1px aliceblue;
-    background-color:  #1a1a1a;
+    background-color: #1a1a1a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,7 +79,7 @@ ul li {
 
 nav a {
     text-decoration: none;
-    color:black;
+    color: black;
     margin: 1em;
     font-size: 2em;
 }
@@ -89,20 +91,22 @@ nav:first-child {
     align-items: center
 }
 
-#horizontal-underline>a>span{
-width: 100%;;
-height: 200px;
+#horizontal-underline>a>span {
+    width: 100%;
+    ;
+    height: 200px;
 }
 
-#horizontal-underline{
+#horizontal-underline {
     position: absolute;
-    left: 0;;
+    left: 0;
+    ;
     height: 4px;
     width: 0;
     border-radius: 3px;
     transition: 0.5s;
     background-color: rgb(248, 181, 11);
-    top:0;
+    top: 0;
 }
 
 
@@ -120,16 +124,18 @@ height: 200px;
 
 
 /*///////////////조커이미지커서 올리면 튀어나오는 느낌 시작///////////////*/
-.mainJokerFrame{
+.mainJokerFrame {
     width: 50%;
     height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-#mainJoker > img{
+
+#mainJoker>img {
     width: 10px;
 }
+
 :root {
     --card-width: calc(var(--card-height) / 1.5);
 }
@@ -181,7 +187,7 @@ height: 200px;
 /*////////////////////////////////////////*/
 /* 두번째 메인창으로 슬라이드 모션있는 div창 2번째임 */
 
-#firstMainFrame{
+#firstMainFrame {
     width: 100%;
     display: contents;
 }
@@ -212,7 +218,7 @@ height: 200px;
     display: none;
 }
 
-.font{
+.font {
     display: flex;
     font-size: 50px;
     font-weight: 200;
@@ -226,7 +232,7 @@ height: 200px;
 
 
 /* 위스키들 이미지있는 div창 */
-.whiskeyCollection{
+.whiskeyCollection {
     width: 100%;
     height: 600px;
     display: flex;
@@ -235,34 +241,36 @@ height: 200px;
     justify-content: center;
     flex-direction: column;
 }
-.whiskeyCollection_frame{
+
+.whiskeyCollection_frame {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.whiskeyCollection_div{
+
+.whiskeyCollection_div {
     width: 25%;
     display: flex;
     margin-top: 70px;
     justify-content: center;
 }
 
-#whiskeyCollection_div> img {
+#whiskeyCollection_div>img {
     width: 10%;
     border-radius: 8px;
 }
 
 
 /*맛팁구경 버튼*/
-.Tastetip{
+.Tastetip {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
 }
 
-.Tastetip>a{
+.Tastetip>a {
     width: 100%;
     height: 100%;
     display: flex;
@@ -271,7 +279,7 @@ height: 200px;
     text-decoration: none;
 }
 
-.Tastetip>a >button {
+.Tastetip>a>button {
     width: 21%;
     height: 35%;
     background-color: #f39c12;
@@ -286,8 +294,9 @@ height: 200px;
     font-family: "Cinzel", serif;
     font-weight: 700;
     font-style: normal;
-    
+
 }
+
 /* 
 .gobak{
     width: 100%;
@@ -298,7 +307,7 @@ height: 200px;
 
 
 /* 세번째 메인창 명언등을 적어놓은 div창 */
-#tata{
+#tata {
     width: 100%;
     /* height: 500px; */
     background-color: #fff1cb;
@@ -308,7 +317,7 @@ height: 200px;
 }
 
 
-#rast{
+#rast {
     width: 100%;
     height: 250px;
     font-size: 20px;
@@ -321,14 +330,14 @@ height: 200px;
     line-height: 35px;
 }
 
-.list_rast{
+.list_rast {
     display: flex;
     flex-direction: column;
     font-weight: 600;
 }
 
 /*하단 명언글 틀잡고있는 div*/
-.bigQuote{
+.bigQuote {
     width: 100%;
     height: 500px;
     display: flex;
@@ -351,10 +360,10 @@ height: 200px;
     z-index: -1;
     inset: 0;
     opacity: 0.7;
-  }
+}
 
 /* 명언 글 네모만들div*/
-.quoteBoxFrame{
+.quoteBoxFrame {
     /* background-color:#1A1413; */
     width: 100%;
     height: 220px;
@@ -363,21 +372,24 @@ height: 200px;
     align-content: space-evenly;
     text-align: center;
 }
-.quoteBoxFrame>span:nth-child(1){
+
+.quoteBoxFrame>span:nth-child(1) {
     font-size: 30px;
     font-weight: 600;
 }
-.quoteBoxFrame2>span:nth-child(1){
+
+.quoteBoxFrame2>span:nth-child(1) {
     font-size: 30px;
     font-weight: 600;
 }
-.quoteBoxFrame3>span:nth-child(1){
+
+.quoteBoxFrame3>span:nth-child(1) {
     font-size: 30px;
     font-weight: 600;
 }
 
 
-.quoteBoxFrame2{
+.quoteBoxFrame2 {
     /* background-color:#1A1413; */
     width: 100%;
     height: 220px;
@@ -387,7 +399,8 @@ height: 200px;
     text-align: center;
     display: none;
 }
-.quoteBoxFrame3{
+
+.quoteBoxFrame3 {
     /* background-color:#1A1413; */
     width: 100%;
     height: 220px;
@@ -397,22 +410,24 @@ height: 200px;
     text-align: center;
     display: none;
 }
-.postApost{
+
+.postApost {
     margin: 20px;
 }
 
 
 /*명언 글씨들어가는곳 span*/
-.famousQuote{
-    margin-top: 100px;
-    margin: 20px;
-}
-.famoustext{
+.famousQuote {
     margin-top: 100px;
     margin: 20px;
 }
 
-.but{
+.famoustext {
+    margin-top: 100px;
+    margin: 20px;
+}
+
+.but {
     display: flex;
     width: 25%;
     height: auto;
@@ -420,7 +435,7 @@ height: 200px;
     justify-content: space-around;
 }
 
-.prev{
+.prev {
     height: 65px;
     width: 50%;
     font-size: 50px;
@@ -428,7 +443,8 @@ height: 200px;
     background: transparent;
     color: #eee;
 }
-.next{
+
+.next {
     height: 65px;
     width: 50%;
     font-size: 50px;
@@ -436,12 +452,13 @@ height: 200px;
     background: transparent;
     color: #eee;
 }
-.next>img{
+
+.next>img {
     color: #000000;
 }
 
 
-.bottomImage{
+.bottomImage {
     width: 100%;
     height: 450px;
     background: #1a1a1a;
@@ -450,18 +467,23 @@ height: 200px;
     align-items: center;
     flex-direction: column;
 }
-.bottomImage>img{
+
+.bottomImage>img {
     width: 10%;
     height: 60%;
     filter: invert(0.5);
 
 }
 
-.in{
+.in {
     width: 100%;
     display: flex;
     justify-content: center;
     font-size: 30px;
     font-weight: 600;
     color: rgba(192, 192, 192, 0.5)
+}
+
+.hide {
+    display: none;
 }

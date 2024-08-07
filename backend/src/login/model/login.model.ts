@@ -1,5 +1,6 @@
 
 import { Column, DataType, Default, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
+import { whiskyTip } from 'src/whiskytip/model/whisky_Tip.model';
 
 @Table({
     tableName: "userDB",
@@ -13,7 +14,7 @@ export class UserSignUp extends Model {
         autoIncrement: true,
         primaryKey: true
     })
-    id:number
+    id: number
 
     @Column({
         type: DataType.STRING,
@@ -30,16 +31,16 @@ export class UserSignUp extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false,
+        unique: true
     })
-    nick_name:string
+    nick_name: string
 
     @Default(false)
     @Column({
         type: DataType.BOOLEAN,
         allowNull: false,
     })
-    isAdmin:boolean
+    isAdmin: boolean
 
-    // @HasMany(() => Q&A, () => wiskey_info, () => wiskey_tip, () => Q&A_comment, () => Q&A_com_comment, () => tip_comment, () => tip_com_comment)
-    // userDB : userDB[]
+
 }
