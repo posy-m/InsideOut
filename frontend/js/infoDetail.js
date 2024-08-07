@@ -18,7 +18,7 @@ async function get() {
       const limitedResp = resp.slice(0,3);
       console.log(limitedResp);
       
-
+      // 가져온 데이터를 렌더링
       limitedResp.forEach(e => {
         console.log(e.img);
         const divv = document.createElement("div");
@@ -34,7 +34,6 @@ async function get() {
           <button class="dibuttn" data-set="${e.id}">삭제버튼</button>
         </div>`
 
-
     //     <div class="buttons">
     //     <button id="ubutton" data-set="1">수정버튼</button>
     //     <button class="dibuttn">삭제버튼</button>
@@ -46,15 +45,56 @@ async function get() {
         // <img src="./2enProject_Main_imges/토치로불하는_위스키.webp" alt="sample70"/>
       });
       console.log(resp);  // 서버에서 반환된 데이터를 로그로 출력
+
+
+      // 수정 버튼 이벤트 리스너
+    const updateButtons = document.querySelectorAll('#ubutton');
+    updateButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        location.href = `./infoU.html?id=${e.target.dataset.set}`;
+      });
+    });
+
+// 삭제 버튼 이벤트 리스너
+const deleteButtons = document.querySelectorAll('.dibuttn');
+deleteButtons.forEach(button => {
+  button.addEventListener('click', async (e) => {
+    const id = e.target.dataset.set;
+
+    try {
+      // DELETE 요청 보내기
+      await axios.delete(`http://localhost:3000/information/${id}`);
       
+      // UI에서 해당 항목 제거
+      e.target.closest('.buttons').parentElement.remove(); // 삭제 버튼이 포함된 div를 제거
     } catch (error) {
-      console.error("get 에러났어:", error);  // 에러 메시지를 로그로 출력
+      console.error("삭제 중 오류 발생:", error);
     }
-    const test = document.querySelectorAll('#ubutton')
-    
-    for (let i = 0; i < test.length; i++) {
-      test[i].addEventListener('click', (e) => {
-        location.href = `./infoU.html?id=${e.target.dataset.set}`
-      })
-    }
-  }
+  });
+});
+
+
+
+
+
+
+
+
+
+} catch (error) {
+  console.error("get 에러났어:", error);  // 에러 메시지를 로그로 출력
+}
+const test = document.querySelectorAll('#ubutton')
+
+for (let i = 0; i < test.length; i++) {
+  test[i].addEventListener('click', (e) => {
+    location.href = `./infoU.html?id=${e.target.dataset.set}`
+  })
+}
+}
+const btnWr = document.querySelector(".btn-wr");
+
+btnWr.addEventListener("click",(e)=>{
+  e.preventDefault();
+  window.location.href = "infoRead.html"
+})

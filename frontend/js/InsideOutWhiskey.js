@@ -1,16 +1,3 @@
-//////// why so serious?? 글씨 한글자씩나오게하는 모션 /////////
-// const introText = document.querySelectorAll("span");
-
-// window.onload = () => {
-//   let timer = 100;
-//   introText.forEach((item) => {
-//     item.style.animation = `fade 500ms ${(timer += 50)}ms forwards`;
-//   });
-// };
-////////////// 여기까지 한글자씩나오게하는 글씨 모션 ///////////////////
-
-
-
 
 
 
@@ -28,10 +15,7 @@ smollimg.forEach(smollimg=>{
     mainimg.src = this.src;
   })
 })
-
 console.log(smollimg);
-
-
 
   let i = 0; // i 변수를 함수 외부에서 선언
 
@@ -41,9 +25,11 @@ console.log(smollimg);
       if (i >= 5) { // i가 5 이상일 때 0으로 초기화
           i = 0;
       }
-  }, 2000);
-  
+  }, 3000);
 
+
+
+  /*명언 오른쪽왼쪽누르면 넘어가는 모션 */
 const bigQuote = document.querySelector(".bigQuote");
 const quoteBoxFrame = document.querySelector(".quoteBoxFrame");
 const famousQuote = document.querySelector(".famousQuote");
@@ -77,29 +63,69 @@ console.log(quoteFrames);
 
 
 
-let verticalBar = document.getElementById("vertical-underline");
-let horizontalBar = document.getElementById("horizontal-underline");
-let horizontalMenus = document.querySelectorAll("nav:first-child a");
-let verticalMenus = document.querySelectorAll("nav:nth-child(2) a");
+// let verticalBar = document.getElementById("vertical-underline");
+// let horizontalBar = document.getElementById("horizontal-underline");
+// let horizontalMenus = document.querySelectorAll("nav:first-child a");
+// let verticalMenus = document.querySelectorAll("nav:nth-child(2) a");
 
-function verticalIndicator(e) {
-  verticalBar.style.left = e.offsetLeft + "px";
-  verticalBar.style.width = e.offsetWidth + "px";
-  verticalBar.style.top = e.offsetTop + e.offsetHeight + "px";
-}
-function horizontalIndicator(e) {
-  horizontalBar.style.left = e.offsetLeft + "px";
-  horizontalBar.style.width = e.offsetWidth + "px";
-  horizontalBar.style.top = e.offsetTop + e.offsetHeight + "px";
-}
+// function verticalIndicator(e) {
+//   verticalBar.style.left = e.offsetLeft + "px";
+//   verticalBar.style.width = e.offsetWidth + "px";
+//   verticalBar.style.top = e.offsetTop + e.offsetHeight + "px";
+// }
+// function horizontalIndicator(e) {
+//   horizontalBar.style.left = e.offsetLeft + "px";
+//   horizontalBar.style.width = e.offsetWidth + "px";
+//   horizontalBar.style.top = e.offsetTop + e.offsetHeight + "px";
+// }
 
-horizontalMenus.forEach((menu) =>
-  menu.addEventListener("click", (e) =>
-    horizontalIndicator(e.currentTarget)
-  )
-);
+// horizontalMenus.forEach((menu) =>
+//   menu.addEventListener("click", (e) =>
+//     horizontalIndicator(e.currentTarget)
+//   )
+// );
 
-verticalMenus.forEach((menu) =>
-  menu.addEventListener("click", (e) => verticalIndicator(e.currentTarget))
-);
+// verticalMenus.forEach((menu) =>
+//   menu.addEventListener("click", (e) => verticalIndicator(e.currentTarget))
+// );
 
+
+
+
+
+
+const butTip =document.querySelector("#butTip");
+const butInfo =document.querySelector("#butInfo");
+const butqa =document.querySelector("#butqa");
+const butLogin =document.querySelector("#butLogin");
+const meetTip =document.querySelector("#meetTip");
+
+
+/*헤더 맛팁에서 사이트로 이동  */
+butTip.addEventListener("click",(e)=>{
+  e.preventDefault();
+  window.location.href = ""
+})
+
+/*정보사이트로 이동 */
+butInfo.addEventListener("click",(e)=>{
+  e.preventDefault();
+  window.location.href = "infoDetail.html"
+})
+
+/*Q&A이동 */
+butqa.addEventListener("click",(e)=>{
+  e.preventDefault();
+  window.location.href = ""
+})
+
+/*로그인으로 이동 */
+butLogin.addEventListener("click",(e)=>{
+  e.preventDefault();
+  window.location.href = ""
+})
+/*중간 맛팁사이트로 이동 */
+meetTip.addEventListener("click",(e)=>{
+  e.preventDefault();
+  window.location.href = ""
+})

@@ -1,3 +1,13 @@
+
+
+
+@font-face {
+    font-family: 'Cinzel-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Cinzel-Regular'), url('Cinzel-Regular.woff') format('woff');
+    }
+
 .top{
     width: 100%;
     height: 100vh;
@@ -14,7 +24,8 @@
     border: 1px solid;
 }
 .head>h1{
-font-size: 50px;
+    font-family: 'Cinzel-Regular';
+    font-size: 60px;
 }
 
 
@@ -29,7 +40,6 @@ font-size: 50px;
 .towTop{
     width: 50%;
     height: 50%;
-    border: 1px solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,10 +67,8 @@ font-size: 50px;
     font-size: inherit;
     line-height: normal;
     vertical-align: middle;
-    background-color: #fdfdfd;
+    background-color: #e5e4e4;
     cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
     border-radius: .25em;
 }
 .file-upload input[type="file"] {  /* 파일 필드 숨기기 */
@@ -86,6 +94,19 @@ font-size: 50px;
 }
 
 
+.btn-1 {
+    background: rgb(255, 255, 255);
+    border: none;
+}
+
+.btn-1:hover {
+    background: rgb(202, 202, 202);
+    }
+
+.btn-1:focus {
+    background: rgb(168, 168, 168);
+}
+
 /*파일업로드와작성버튼 잡고있는div*/
 .fileText{
     width: 90%;
@@ -102,9 +123,8 @@ font-size: 50px;
     font-size: inherit;
     line-height: normal;
     vertical-align: middle;
-    background-color: #fdfdfd;
+    background-color: #e5e4e4; 
     cursor: pointer;
-    border: 1px solid #616161;
     border-radius: .25em;
 }
 
@@ -116,28 +136,28 @@ font-size: 50px;
     font-size: inherit;
     line-height: normal;
     vertical-align: middle;
-    background-color: #fdfdfd;
+    background-color: #e5e4e4;
     cursor: pointer;
-    border: 1px solid #616161;
+    /* border: 1px solid #616161; */
     /* border-bottom-color: #e2e2e2; */
     border-radius: .25em;
 }
 
 /* named upload */
 .file-upload .upload-name {
-    display: inline-block;
+    /* display: inline-block; */
     padding: .5em .75em;  /* label의 패딩값과 일치 */
     font-size: inherit;
     font-family: inherit;
     line-height: normal;
     vertical-align: middle;
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
     border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
+    /* border-bottom-color: #e2e2e2; */
     border-radius: .25em;
-    -webkit-appearance: none; /* 네이티브 외형 감추기 */
-    -moz-appearance: none;
-    appearance: none;
+    /* -webkit-appearance: none; 네이티브 외형 감추기 */
+    /* -moz-appearance: none;
+    appearance: none; */
 }
 /* imaged preview */
 .file-upload .upload-display {  /* 이미지가 표시될 지역 */

@@ -42,20 +42,32 @@ export class InformationController {
     }
   }
 
-  @Put('update/:id') // 업데이트 (수정 후 Put)
+  @Put('update/:id') // 업데이트 (수정 후 Put)  
   @UseInterceptors(FileInterceptor('file'))
   async update(
     @Param('id') id: number,
-    @Body() updateContent: UpdateContent, @UploadedFile() file: Express.Multer.File, @Res() res: Response
+    @Body() updateContent: UpdateContent, 
+    @UploadedFile() file: Express.Multer.File,
+    @Res() res: Response
     ) {
     if (!file) {
       return res.status(400).json({ message: '파일이 필요합니다.' });
     }
+
+    console.log('Update request received for ID:', id);
+    console.log('Update content:', updateContent);
+    console.log(updateContent);
+    
     const result = await this.informationService.update(id, updateContent, file.filename);
     if (!result) {
         throw new NotFoundException(`ID가 ${id}인 정보를 찾을 수 없습니다.`);
     }
-    return result;
+
+
+    console.log('Update successful:', result);
+    //res.redirect("http://127.0.0.1:5500/frontend/HTML/infoDetail.html")
+    return res.status(200).json({ message: '수정 완료', data: result });
+    
   }
 
 
@@ -75,13 +87,24 @@ export class InformationController {
   }
 
 
-  @Delete('delete/:id')
-  async delete(@Param('id') id : number, @Res() res:Response){
-    try {
-      await this.informationService.delete(id);
-      res.send('삭제완료')
-    } catch (error) {
-      throw new Error("유저가 다릅니다.");
-    }
+//   @Delete('delete/:id')
+//   async delete(@Param('id') id : number, @Res() res:Response){
+//     try {
+//       await this.informationService.delete(id);
+//       res.send('삭제완료')
+//     } catch (error) {
+//       throw new Error("유저가 다릅니다.");
+//     }
+//   }
+// }
+
+
+@Delete(':id')
+async remove(@Param('id') id: number): Promise<void> {
+  const record = await this.findOneById(id);
+  if (!record) {
+    throw new NotFoundException(`ID가 ${id}인 레코드를 찾을 수 없습니다.`);
   }
+  await record.destroy();
+}
 }

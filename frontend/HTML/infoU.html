@@ -16,7 +16,8 @@
             <div>
                 <img src="" alt="" id="img_test">
                 <div class="textImgUpload" >
-                    <button class="custom-bin btn-1" for="input-file">업로드</button> 
+                    <input type="file" id="input-file" class="upload-hidden" onchange="previewImage()"> 
+                    <button class="custom-bin btn-1" onclick="document.getElementById('input-file').click();">업로드</button>
                 </div>
             </div>
             <div class="towTop">
@@ -28,9 +29,8 @@
                     <input type="file" id="input-file" class="upload-hidden"> 
                 </div>
                 <div class="textUpload">
-                    <a href="./infoDetail.html"><input type="button" class="custom-bin btn-1" value="수정완료" onclick="updateRecord()"></a>
+                    <input type="button" id="Ujbutton" class="custom-bin btn-1" value="수정완료">
                 </div>
-                
             </div>
         </div>
             
@@ -53,29 +53,59 @@
     getUpdateData();
 
 
+    const Ujbutton = document.querySelector("#Ujbutton");
+
+    Ujbutton.addEventListener("click",()=>{
+        updateRecord()
+    })
+
     async function updateRecord() {
+
     try {
         const urlParams = new URL(location.href).searchParams.get('id');
-
         const formData = new FormData();
-            
-        formData.append("file",inputFile.files[0]);
-        formData.append("whiskey_text",uploadName.value);
+        
+        
+        // formData.append("file", document.getElementById('input-file').files[0]);
+        const fileInput = document.getElementById('input-file');
+        if (fileInput.files.length > 0) {
+            formData.append("file", fileInput.files[0]);
+        }
+        
+        formData.append("whiskey_text", textArea.value);
+        // formData.append("file",inputFile.files[0]);
+        // formData.append("whiskey_text",uploadName.value);
 
         const response = await axios.put(`http://localhost:3000/information/update/${urlParams}`, formData);
-
-        console.log(response); // 업데이트된 데이터를 로그로 출력
-        // if(response.status===200){
-        //     alert("변경완료");
-        //     location.href='상세';
-        // }
+        console.log(response)
+        console.log(fileInput); // 업데이트된 데이터를 로그로 출력
+        console.log(response.status)
+        if(response.status === 200) {
+            
+            window.location.href = "http://127.0.0.1:5500/frontend/HTML/infoDetail.html";
+        }
 
     } catch (error) {
         console.error("업데이트 중 에러 발생:", error); // 에러 메시지를 로그로 출력
     }
 }
 
-// 사용 예시
+
+
+
+function previewImage() {
+        const inputFile = document.getElementById('input-file');
+        const imgTest = document.getElementById('img_test');
+        
+        const file = inputFile.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imgTest.src = e.target.result; // 선택된 이미지의 미리보기
+            };
+            reader.readAsDataURL(file);
+        }
+    }
 
 
 </script>

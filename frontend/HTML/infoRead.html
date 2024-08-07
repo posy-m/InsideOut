@@ -10,7 +10,7 @@
 <body>
     <div class="top">
         <div class="head">
-            <h1>위스키정보 작성</h1>
+            <h1>Write information</h1>
         </div>
         <div class="titleTop">
 
@@ -21,12 +21,12 @@
                 
                 <div class="file-upload preview-image">
                     <input type="text" class="upload-name"disabled="disabled">
-                    <label for="input-file">업로드</label> 
+                    <label class="custom-bin btn-1" for="input-file">업로드</label> 
                     <input type="file" id="input-file" class="upload-hidden" accept="*.jpg,*.png"> 
                 </div>
                 <div class="textUpload">
                     <!-- <a href="./infoDetail.html"> -->
-                        <input id="submitBtn" type="button" class="upload-text" value="작성완료">
+                        <input id="submitBtn" type="button" class="custom-bin btn-1" value="작성완료">
                     <!-- </a> -->
                 </div>
                 
@@ -36,20 +36,40 @@
     </div>
 </body>
 <script>
+
+
+
+
+    // const _input = document.querySelector("#submitBtn");
+    // _input.addEventListener("click",(e)=>{
+        
+    //     e.preventDefault();
+    //     window.location.href = "infoDetail.html"
+    //     post()
+        
+    // })
+
+
+
     const _input = document.querySelector("#submitBtn");
-    _input.addEventListener("click",()=>{
+_input.addEventListener("click", async (event) => {
+    event.preventDefault();  // event 객체를 사용하여 기본 동작 방지
+    await post();  // post 함수가 완료될 때까지 기다림
+    window.location.href = "infoDetail.html";  // 페이지를 이동
+});
 
-        post()
-    })
+
+
     async function post() {
-
+        
         try {
             const inputFile = document.querySelector("#input-file");
-            const uploadName = document.querySelector("#writing-frame");
+            const writingFrame = document.querySelector("#writing-frame");
             const formData = new FormData();
             
+            
             formData.append("file",inputFile.files[0]);
-            formData.append("whiskey_text",uploadName.value);
+            formData.append("whiskey_text",writingFrame.value);
             // console.log(uploadName);
             
             const postex = await axios.post("http://127.0.0.1:3000/information/write", formData);
@@ -61,9 +81,18 @@
         }
     }
 const file = document.querySelector("#input-file");
-file.onchange=(el)=>{
-    // console.log(el.target.files)
-}
+
+const uploadNameDisplay = document.querySelector(".upload-name");
+
+file.onchange=(event)=>{
+    const file = event.target.files[0];
+        if (file) {
+            uploadNameDisplay.value = file.name; // 파일 이름을 표시
+        } else {
+            uploadNameDisplay.value = ""; // 파일이 선택되지 않았을 경우
+        }
+    };
+
 
 
 
