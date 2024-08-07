@@ -169,7 +169,7 @@ async function comment() {
                                 <button id="comCommentAddBtn">대댓글 작성</button>
                                 <input type="text" name="qna_comment_id" id="QnA_Comment_ID" value="${item.id}" hidden>
                                 </div>
-                            </form>`;;
+                            </form>`;
             });
         });
     } catch (error) {
