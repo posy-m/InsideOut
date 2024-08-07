@@ -64,14 +64,14 @@
 
             if (response.ok) {
                 const date = new Date();
-                date.setTime(date.getTime() + (5 * 60 * 60 * 1000)); // 5분 후
-                // document.cookie = "token=" + data.token;
-                document.cookie = `token=${data.token}; expires=${date.toUTCString()}; path=/; secure=true; sameSite=lax; domain=127.0.0.1;`;
-                // axios.defaults.withCredentials = true
+                date.setTime(date.getTime() + (5 * 60 * 60 * 1000)); //  10시간
                 axios.defaults.authorazation = data.token
+
                 // 부모 창을 리다이렉트하고 팝업 창을 닫음
                 if (window.opener) {
-                    window.opener.location.reload();
+
+                    window.opener.postMessage({ type: 'popupClosed', payload: { uid, upw } }, '*');
+                    window.location.reload();
                     window.close();
                 } else {
                     // 팝업이 아닌 경우

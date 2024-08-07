@@ -164,31 +164,30 @@ loginButton.addEventListener('click', () => {
 // 로그인 후 쿠키 확인 및 처리
 async function main() {
   const accessToken = document.cookie.split('; ').find(row => row.startsWith('token='));
-  if (accessToken) {
-    console.log('Token found:', accessToken.split('=')[1]);
-    axios.defaults.headers.common['Authorization'] = accessToken.split('=')[1];
-    // 쿠키가 있으면 필요한 작업을 수행합니다.
-  } else {
-    console.log('Token not found');
-  }
+  // if (accessToken) {
+  //   console.log('Token found:', accessToken.split('=')[1]);
+  //   axios.defaults.headers.common['Authorization'] = accessToken.split('=')[1];
+  //   // 쿠키가 있으면 필요한 작업을 수행합니다.
+  // } else {
+  //   console.log('Token not found');
+  // }
   try {
-    const response = await axios.get('http://localhost:3000/insideOutInfo');
+    const response = await axios.get('http://localhost:3000/insideOutInfo', { withCredentials: true });
     if (response) {
       loginButton.classList.add('hide');
       const textBox = document.getElementById('textLine');
       const textLine = document.createElement('div');
       const logOut = document.createElement('button');
-      logOut.innerHTML = '로그아웃'
-      textBox.append(textLine);
+      logOut.innerHTML = 'LogOut'
+      logOut.classList.add('logloutBtn')
       textBox.append(logOut);
+      textBox.append(textLine);
       textLine.innerHTML = response.data.nick_name;
+      textLine.classList.add('nickName')
 
-      logOut.onclick = () => {
-        deleteCookie('token');
-      }
-
-      function deleteCookie(name) {
-        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      logOut.onclick = async () => {
+        const deleteCookie = await axios.post('http://localhost:3000/insideOutInfo/logout', {}, { withCredentials: true });
+        console.log(deleteCookie.data.message)
         window.location.reload();
       }
     }
@@ -207,6 +206,14 @@ main()
 const tip = document.getElementById("tip")
 tip.addEventListener("click", () => {
   location.href = "http://127.0.0.1:5501/frontend/html/main.html"
+})
+
+// insideout 클릭시 메인
+
+const wrapper = document.querySelector(".wrapper")
+
+wrapper.addEventListener("click", () => {
+  location.href = "http://127.0.0.1:5501/frontend/HTML/InsideOutWhiskey.html"
 })
 
 

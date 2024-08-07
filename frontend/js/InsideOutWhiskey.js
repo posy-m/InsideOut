@@ -105,22 +105,42 @@ const loginButton = document.querySelector('.login-button');
 loginButton.addEventListener('click', () => {
   var popupX = (document.body.offsetWidth / 2) - (700 / 2);
   var popupY = (window.screen.height / 2) - (500 / 2);
-  window.open('http://127.0.0.1:5501/frontend/login.html', '', 'status=no, height=500, width=700, left=' + popupX + ', top=' + popupY);
+  var popupWindow = window.open('http://127.0.0.1:5501/frontend/login.html', '', 'status=no, height=500, width=700, left=' + popupX + ', top=' + popupY);
+
+  // message 이벤트 리스너가 중복되지 않도록 하는 함수
+  const handleMessage = async (event) => {
+    if (event.data.type === 'popupClosed') {
+      // const { uid, upw } = event.data.payload;
+      // const data2 = await axios.post('http://127.0.0.1:3000/login', {
+      //   uid, upw
+      // }, { withCredentials: true });
+      // console.log(data2)
+      // axios.defaults.authorazation = data2.data.token
+      // console.log(axios.defaults)
+      window.location.reload();
+      // 새창 종료 후 수행할 작업을 여기에 추가
+      window.removeEventListener('message', handleMessage);
+    }
+  };
+
+  // message 이벤트 리스너 추가
+  window.addEventListener('message', handleMessage);
 });
 
 
 // 로그인 후 쿠키 확인 및 처리
 async function main() {
   const accessToken = document.cookie.split('; ').find(row => row.startsWith('token='));
-  if (accessToken) {
-    console.log('Token found:', accessToken.split('=')[1]);
-    axios.defaults.headers.common['Authorization'] = accessToken.split('=')[1];
-    // 쿠키가 있으면 필요한 작업을 수행합니다.
-  } else {
-    console.log('Token not found');
-  }
+  // if (accessToken) {
+  //   console.log('Token found:', accessToken.split('=')[1]);
+  //   axios.defaults.headers.common['Authorization'] = accessToken.split('=')[1];
+  //   // 쿠키가 있으면 필요한 작업을 수행합니다.
+  // } else {
+  //   console.log('Token not found');
+  // }
   try {
-    const response = await axios.get('http://localhost:3000/insideOutInfo');
+    // axios.defaults.authorazation = accessToken.split('=')[1]
+    const response = await axios.get('http://localhost:3000/insideOutInfo', { withCredentials: true });
     if (response) {
       loginButton.classList.add('hide');
       const textBox = document.getElementById('textLine');
@@ -131,12 +151,9 @@ async function main() {
       textBox.append(logOut);
       textLine.innerHTML = response.data.nick_name;
 
-      logOut.onclick = () => {
-        deleteCookie('token');
-      }
-
-      function deleteCookie(name) {
-        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      logOut.onclick = async () => {
+        const deleteCookie = await axios.post('http://localhost:3000/insideOutInfo/logout', {}, { withCredentials: true });
+        console.log(deleteCookie.data.message)
         window.location.reload();
       }
     }
