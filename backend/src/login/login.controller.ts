@@ -25,6 +25,11 @@ export class LoginController {
     try {
       const data = await this.loginService.findId(login);
       const token = await this.loginService.mkToken(data);
+
+      const date = new Date();
+      date.setTime(date.getTime() + (5 * 60 * 60 * 1000));
+
+      res.cookie('token', token, { httpOnly: true, expires: date, sameSite: 'none', secure: true });
       res.json({ token })
 
     } catch (error) {

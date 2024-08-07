@@ -14,7 +14,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads'))
 
   app.enableCors({
-    origin: "*",
+    origin: "http://127.0.0.1:5501",
     methods: "GET,POST,DELETE,PUT",
     credentials: true
 
