@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Op } from 'sequelize';
 import { CreateQnADTO, DeleteQnADTO, UpdateQnADTO } from 'src/dto/qn-a.dto';
 import { QnA } from 'src/model/qn-a.model';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class QnAService {
@@ -76,7 +76,7 @@ export class QnAService {
 
             // 데이터베이스에서 조건에 맞는 항목들을 검색하고, 총 개수를 계산
             const { rows, count } = await this.QnAModel.findAndCountAll({
-                where: {
+                where: { // 검색 조건: 제목 또는 내용에 'searchLower' 문자열이 포함된 레코드를 찾음
                     [Op.or]: [
                         {
                             qna_title: { [Op.like]: `%${searchLower}%` }
@@ -85,26 +85,28 @@ export class QnAService {
                         }
                     ]
                 },
-                limit: parseInt(`${limit}`),
-                offset,
-                include: [{ all: true }]
+                limit: parseInt(`${limit}`), // 요청된 limit 만큼의 데이터만 가져옴
+                offset, // 페이지 오프셋 설정 (특정 페이지에서 데이터를 가져와서 보여주려고 할 때, 몇번째 데이터부터 보여줄 것인지)
+                include: [{ all: true }] // 관련된 모든 모델을 포함하여 조회
             })
             return {
-                results: rows,
-                total: count,
-                currentPage: page,
-                totalPages: Math.ceil(count / limit),
+                results: rows, // 검색된 결과 데이터
+                total: count, // 전체 검색된 데이터 수
+                currentPage: page, // 현재 페이지 번호
+                totalPages: Math.ceil(count / limit), // 전체 페이지 수 계산
             };
         } catch (error) {
-            console.error(error);
+            console.error(error); // 에러 발생 시 콘솔에 로그 출력
         }
 
     }
 
+    // 글 상세 조회
     async findOne(id: number) {
         return await this.QnAModel.findOne({ where: { id } })
     }
 
+    // 글 수정
     async update(updateQnA: UpdateQnADTO, id: number) {
         const { qna_title, qna_content } = updateQnA
         return this.QnAModel.update({
@@ -112,6 +114,7 @@ export class QnAService {
         }, { where: { id } })
     }
 
+    // 글 삭제
     async destory(deleteQnA: DeleteQnADTO) {
         const id = deleteQnA
         // console.log(deleteQnA)

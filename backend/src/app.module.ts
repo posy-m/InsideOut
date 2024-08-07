@@ -1,29 +1,30 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
-<<<<<<< HEAD
 import { QnAModule } from './qn-a/qn-a.module';
 import { CommentModule } from './comment/comment.module';
 import { CcommentModule } from './ccomment/ccomment.module';
 import { UserModule } from './user/user.module';
-=======
-import { Module } from '@nestjs/common';
-import { SequelizeModule } from '@nestjs/sequelize';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { WhiskytipModule } from './whiskytip/whiskytip.module';
+import { InformationModule } from './information/information.module';
+import { InsideOutInfoModule } from 'src/inside-out-info/inside-out-info.module';
+import { Insideoutinfo } from 'src/information/models/inside-out-info.model';
 import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { ConfigModule } from '@nestjs/config';
+import { LoginModule } from './login/login.module';
+import { LoggerMiddleware } from './login/middleware/login.middleware';
+import { LoginService } from './login/login.service';
+import { TokenGuard } from './login/guard/login.guard';
+import { LoginController } from './login/login.controller';
+import { JwtService } from '@nestjs/jwt';
+import * as cookie from 'cookie-parser';
 import * as path from 'path';
->>>>>>> love
 
 @Module({
   imports: [
     SequelizeModule.forRoot({
-<<<<<<< HEAD
       dialect: "mysql",
       username: "root",
       password: "dlalsgur12",
@@ -33,18 +34,7 @@ import * as path from 'path';
       synchronize: true, // 애플리케이션 실행 했을 때 데이터베이스랑 동기화를 할 것인지 ?
       sync: { force: false } // true 시 초기화
     }),
-    QnAModule, CommentModule, CcommentModule, UserModule],
-=======
-      dialect: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'alswl;0113#',
-      database: 'insideout',
-      autoLoadModels: true,
-      sync: { force: false },
-    }),
-    WhiskytipModule,
+    QnAModule, CommentModule, CcommentModule, WhiskytipModule,
     MulterModule.register({
       dest: './uploads',
     }),
@@ -55,89 +45,19 @@ import * as path from 'path';
     }),
     ServeStaticModule.forRoot({
       rootPath: path.join(__dirname, '..', '..', 'frontend', 'html')
-    })
-  ],
->>>>>>> love
+    }),
+    SequelizeModule.forFeature([Insideoutinfo]),
+    ConfigModule.forRoot({ isGlobal: true }),
+    InsideOutInfoModule,
+    InformationModule,  // 외부 모듈 주입
+    LoginModule, ConfigModule.forRoot({ isGlobal: true })],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
-<<<<<<< HEAD
-=======
-import { InsideOutInfoModule } from 'src/inside-out-info/inside-out-info.module';
-import { Insideoutinfo } from 'src/information/models/inside-out-info.model';
-import { ConfigModule } from '@nestjs/config';
-import { InformationModule } from './information/information.module';
-import * as cookie from 'cookie-parser';
 
-@Module({
-  imports: [SequelizeModule.forRoot({
-    dialect : "mysql",
-    host : "localhost",
-    port : 3306,
-    username : "root",
-    password : "kjkj28892889",
-    database : "insideoutinfo",
-    autoLoadModels : true, // 시퀄라이즈 모델 파일을 자동으로 로드
-    synchronize : true, //  실행할때 데이터베이스 스키마를 동기화 
-    sync : {force : false} // 테이블을 초기화 할지 말지
-  }),
-  SequelizeModule.forFeature([Insideoutinfo]),
-  ConfigModule.forRoot({ isGlobal: true }),
-  InsideOutInfoModule,
-  InformationModule], // 외부 모듈 주입
-  controllers: [AppController],
-  providers: [AppService],
-})
-export class AppModule implements NestModule{
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(cookie()).forRoutes("*");
-  }
-}
-
-
-
-
-
-
->>>>>>> respect
-=======
->>>>>>> love
-=======
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { LoginModule } from './login/login.module';
-import { SequelizeModule } from '@nestjs/sequelize';
-import * as cookie from 'cookie-parser'
-import { LoggerMiddleware } from './login/middleware/login.middleware';
-import { LoginService } from './login/login.service';
-
-import { TokenGuard } from './login/guard/login.guard';
-import { LoginController } from './login/login.controller';
-import { JwtService } from '@nestjs/jwt';
-import { UserModule } from './user/user.module';
-import { ConfigModule } from '@nestjs/config';
-
-@Module({
-  imports: [SequelizeModule.forRoot({
-    dialect: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "",
-    database: "test",
-    autoLoadModels : true,
-    synchronize: true,
-    sync : { force : false }
-  }),LoginModule, ConfigModule.forRoot({isGlobal:true})],
-  controllers: [AppController,],
-  providers: [AppService,JwtService],
-})
-export class AppModule implements NestModule{
+export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(cookie()).forRoutes("");
     consumer.apply(LoggerMiddleware).forRoutes("login")
   }
 }
->>>>>>> hope
