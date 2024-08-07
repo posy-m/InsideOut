@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QnA 상세</title>
+    <link rel="stylesheet" href="../CSS/detail.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 문의 글 상세 -->
+    <h1 class="Title">글 상세 페이지</h1>
+    <!-- 상세 페이지 -->
+    <div class="detailContent">
+        <div class="detailTop">
+            <!-- 글번호, 작성자, 작성일 -->
+            <span id="detailNumber"></span>
+            <span id="detailName"></span>
+            <span id="detailDate"></span>
+        </div>
+        <!-- 글제목, 글내용 -->
+        <div id="detailTitle"></div>
+        <div id="detailContent"></div>
+    </div>
+    <!-- 버튼 공간 -->
+    <div class="btnContainer">
+        <div class="btnWrap">
+            <button id="modify">수정</button>
+            <button id="back">뒤로가기</button>
+            <button id="delete">삭제</button>
+        </div>
+    </div>
+    <!-- 댓글 공간 -->
+    <div id="commentContainer">
+        <div class="commentWrap">
+            <form id="commentForm" action="http://127.0.0.1:3000/comment/create" method="post">
+                <!-- 임시 작성자 -->
+                <input type="text" name="nick_name" value="god_kkh" hidden>
+                <!-- 댓글 내용 -->
+                <textarea name="qna_comment" id="comment_Content" placeholder="댓글을 입력해주세요." cols="50"
+                    rows="5"></textarea>
+                <!-- 댓글 작성할 글 번호 -->
+                <input type="text" name="qna_id" id="QnA_ID" hidden>
+                <button id="commentAddBtn">댓글 작성</button>
+            </form>
+        </div>
+        <!-- 댓글 보여줄 공간 -->
+        <label for="">댓글 내용</label>
+        <div id="commentView"></div>
+    </div>
+</body>
+<script src="../js/detail.js"></script>
+<script src="../js/comment.js"></script>
+
+</html>

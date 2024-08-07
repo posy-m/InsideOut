@@ -1,0 +1,235 @@
+.top{
+    width: 100%;
+    height: 100vh;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.head{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+}
+.head>h1{
+font-size: 50px;
+}
+
+
+.titleTop{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.towTop{
+    width: 50%;
+    height: 50%;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.writingFrame{
+    width: 100%;
+    height: 100% !important;
+    resize: none;
+}
+
+
+/*파일 업로드 */
+.file-upload{
+    width: 50%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.file-upload label {
+    display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+.file-upload input[type="file"] {  /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+}
+
+
+/*파일업로드와작성버튼 잡고있는div*/
+.fileText{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textImgUpload{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.textImgUpload button{
+    margin-left: 5px;
+    display: inline-block;
+    padding: .5em 1.5em;
+    color: #000000;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #e5e4e4;
+    cursor: pointer;
+    /* border: 1px solid #616161; */
+    /* border-bottom-color: #e2e2e2; */
+    border-radius: .25em;
+}
+
+/*업로드 버튼 효과*/
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255,255,255,.5),
+      7px 7px 20px 0px rgba(0,0,0,.1),
+      4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+   }
+   
+   .btn-1 {
+    background: rgb(255, 255, 255);
+    border: none;
+   }
+   
+   .btn-1:hover {
+    background: rgb(202, 202, 202);
+    }
+
+   .btn-1:focus {
+    background: rgb(168, 168, 168);
+   }
+
+/*업로드 버튼효과 여기까지*/
+
+
+
+.textUpload input{
+    width: 100%;
+    display: inline-block;
+    padding: .5em .75em;
+    color: #000000;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #616161;
+    border-radius: .25em;
+}
+
+.file-upload label {
+    margin-left: 5px;
+    display: inline-block;
+    padding: .5em .75em;
+    color: #000000;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #616161;
+    /* border-bottom-color: #e2e2e2; */
+    border-radius: .25em;
+}
+
+/* named upload */
+.file-upload .upload-name {
+    display: inline-block;
+    padding: .5em .75em;  /* label의 패딩값과 일치 */
+    font-size: inherit;
+    font-family: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #f5f5f5;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+}
+/* imaged preview */
+.file-upload .upload-display {  /* 이미지가 표시될 지역 */
+    margin-bottom: 5px;
+}
+
+@media(min-width: 768px) { 
+    .file-upload .upload-display {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
+}
+
+.file-upload .upload-thumb-wrap {  /* 추가될 이미지를 감싸는 요소 */
+    display: inline-block;
+    width: 54px;
+    padding: 2px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.file-upload .upload-display img {  /* 추가될 이미지 */
+    display: block;
+    max-width: 100%;
+    width: 100% \9;
+    height: auto;
+}
+
+#img_test{
+    margin-top: 40px;
+    width:500px;
+    height:500px;
+}

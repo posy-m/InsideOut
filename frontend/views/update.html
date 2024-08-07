@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QnA 수정</title>
+    <link rel="stylesheet" href="../CSS/update.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"> </script>
+</head>
+
+<body>
+    <!-- 문의 글 수정 -->
+    <div class="updateContainer">
+        <h1 class="updateTitle">문의 글 수정</h1>
+        <div class="updateWrap">
+            <form id="updateForm" action="http://127.0.0.1:3000/qn-a/update">
+                <!-- 임시 작성자 -->
+                <input type="text" name="nick_name" value="god_kkh" hidden>
+                <!-- 제목 수정 -->
+                <label for="">제목 수정</label>
+                <textarea name="qna_title" id="titleInput" placeholder="" cols="50" rows="1"></textarea>
+                <!-- 내용 수정 -->
+                <label for="">내용 수정</label>
+                <textarea name="qna_content" id="contentInput" placeholder="수정할 내용을 입력해주세요" cols="130"
+                    rows="50"></textarea>
+                <button type="button" id="updateBtn">문의 글 수정</button>
+                <button type="button" id="backBtn">뒤로 가기</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="../js/update.js"></script>
+
+</html>

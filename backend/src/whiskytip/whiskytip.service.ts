@@ -14,6 +14,7 @@ import { MulterOptionsFactory } from '@nestjs/platform-express';
 import * as path from 'path';
 import * as fs from 'fs';
 import { Op } from 'sequelize';
+import { InsideOutInfoService } from 'src/inside-out-info/inside-out-info.service';
 
 @Injectable()
 export class WhiskytipService {
@@ -23,6 +24,7 @@ export class WhiskytipService {
     private readonly whiskyTipCommentModel: typeof whiskyTipComment,
     @InjectModel(whiskyTipCcomment)
     private readonly whiskyTipCcommmentModel: typeof whiskyTipCcomment,
+    private readonly insideOutInfo: InsideOutInfoService
   ) { }
 
   //CRUD 중에 C
@@ -47,13 +49,8 @@ export class WhiskytipService {
   // 확인 페이지
 
   async findId(id: number): Promise<whiskyTip> {
-    return await this.whiskyTipModel.findOne({
-      where: { id },
-      // include: {
-      //   model: whiskyTipComment,
-      //   // attributes: ['id'],
-      // },
-    });
+    const data = await this.whiskyTipModel.findOne({ where: { id } });
+    return data;
   }
 
   async findIdForUpload(title: string, content: string): Promise<whiskyTip> {
@@ -182,17 +179,18 @@ export class WhiskytipService {
   }
 
   // 댓글 수정에서 id값 가져오기
-  async findID(tip_ID: number, nick_name: string): Promise<whiskyTipComment> {
+  async findID(tip_ID: number, nick_name: string, tip_comment: any): Promise<whiskyTipComment> {
     return await this.whiskyTipCommentModel.findOne({
-      where: { tip_ID, nick_name },
+      where: { tip_ID, nick_name, tip_comment },
     });
   }
 
   // 댓글 삭제
-  async deleteComment(id: number, nick_name: string, tip_ID: number) {
-    await this.whiskyTipCommentModel.destroy({
-      where: { id, nick_name, tip_ID },
-    });
+  async deleteComment(id: number) {
+    const findData = await this.whiskyTipCommentModel.destroy({
+      where: { id }
+    })
+    return findData;
   }
 
   // 대댓글 C
@@ -248,8 +246,10 @@ export class WhiskytipService {
     });
   }
 
-
-  //페이지 네이션 
+  tokenVerify(token: string) {
+    const data = this.insideOutInfo.verify(token)
+    return data;
+  }
 
 }
 
@@ -295,8 +295,11 @@ export class UploadService implements MulterOptionsFactory {
     };
     return option;
   }
+
 }
 
 // async login() {
 //   this.whisky
 // }
+
+
