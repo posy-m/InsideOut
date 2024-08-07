@@ -343,6 +343,8 @@ body {
     height: 30px;
 }
 
-#comCommentAddBtn {
-    cursor: pointer;
+.help {
+    width: 500px;
+    height: 100%;
+    display: flex;
 }
