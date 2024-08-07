@@ -89,7 +89,7 @@ nav:first-child {
     align-items: center
 }
 
-#horizontal-underline>a>span{
+#horizontal-underline>button>span{
 width: 100%;;
 height: 200px;
 }
@@ -101,16 +101,29 @@ height: 200px;
     width: 0;
     border-radius: 3px;
     transition: 0.5s;
-    background-color: rgb(248, 181, 11);
     top:0;
 }
 
-
-.menuWindow {
-    height: 90px;
+.menuWindow>nav>button{
+    width: 100%;
+    font-size: 50px;
+    color: #eee;
+    border: none;
+    background: transparent;
 }
 
-.menuWindow nav a {
+
+.menuWindow>nav>button:hover {
+    color: #a7a7a7;
+    }
+
+
+.menuWindow {
+    width: 20%;
+    height: 80px;
+}
+
+.menuWindow nav button {
     font-family: 'SF_HambakSnow';
     color: #eee;
     font-size: 24px;
@@ -193,7 +206,7 @@ height: 200px;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin-top: 10%;
+    margin-top: 8%;
 }
 
 .carousel_input_img_box ul li img {
@@ -260,9 +273,10 @@ height: 200px;
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.Tastetip>a{
+.Tastetip>button{
     width: 100%;
     height: 100%;
     display: flex;
@@ -271,8 +285,8 @@ height: 200px;
     text-decoration: none;
 }
 
-.Tastetip>a >button {
-    width: 21%;
+.Tastetip>button {
+    width: 15%;
     height: 35%;
     background-color: #f39c12;
     border: none;
@@ -286,8 +300,13 @@ height: 200px;
     font-family: "Cinzel", serif;
     font-weight: 700;
     font-style: normal;
-    
 }
+
+.Tastetip>button:hover{
+    background-color: #df8f0f;
+} 
+
+
 /* 
 .gobak{
     width: 100%;

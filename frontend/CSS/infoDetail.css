@@ -13,6 +13,50 @@
     }
 
 
+    .homebutDiv{
+        width: 60%;
+    height: 40px;
+        display: flex;
+        justify-content: center;
+    }
+    .homebut{
+        height: 40px;
+    }
+
+
+
+    .homebutDiv >a>button{
+        display: inline-block;
+    padding: .5em .75em;
+    color: #000000;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: .25em;
+    background-color: #e5e4e4;
+    }
+    
+    
+    .homebut {
+        background: rgb(255, 255, 255);
+        border: none;
+    }
+    
+    .homebut:hover {
+        background: rgb(202, 202, 202);
+        }
+    
+    .homebut:focus {
+        background: rgb(168, 168, 168);
+    }
+    
+
+
+
+
+
+
 
 /*전체잡는 틀*/
 .top{
@@ -232,24 +276,38 @@ figure.snip1283.hover figcaption {
 
 .WriteButton{
 width: 60%;
-height: 30px;
+height: 40px;
 display: flex;
 justify-content: flex-end;
 margin-bottom: 50px;
 }
 
-.WriteButton>a >button{
+.WriteButton >button{
     display: inline-block;
 padding: .5em .75em;
 color: #000000;
 font-size: inherit;
 line-height: normal;
 vertical-align: middle;
-background-color: #fdfdfd;
 cursor: pointer;
-border: 1px solid #a3a3a3;
 border-radius: .25em;
+background-color: #e5e4e4;
 }
+
+
+.btn-wr {
+    background: rgb(255, 255, 255);
+    border: none;
+}
+
+.btn-wr:hover {
+    background: rgb(202, 202, 202);
+    }
+
+.btn-wr:focus {
+    background: rgb(168, 168, 168);
+}
+
 
 
 .buttons{
@@ -268,7 +326,6 @@ justify-content: space-around;
     vertical-align: middle;
     background-color: #fdfdfd;
     cursor: pointer;
-    border: 1px solid #a3a3a3;
     border-radius: .25em;
 }
 .buttons >button{
@@ -278,10 +335,22 @@ justify-content: space-around;
     font-size: inherit;
     line-height: normal;
     vertical-align: middle;
-    background-color: #fdfdfd;
+    background-color: #e5e4e4;
     cursor: pointer;
-    border: 1px solid #a3a3a3;
     border-radius: .25em;
+}
+
+.buttons >button {
+    background: rgb(255, 255, 255);
+    border: none;
+}
+
+.buttons >button:hover {
+    background: rgb(202, 202, 202);
+    }
+
+    .buttons >button:focus {
+    background: rgb(168, 168, 168);
 }
 
 .in{
