@@ -163,10 +163,13 @@ async function comment() {
                 const div = comcomBtn.parentElement;
                 div.innerHTML = `<form id="comComForm" action="http://127.0.0.1:3000/ccomment/create?id=${_listIndex}" method="post">
                                 <input type="text" name="nick_name" value="god_kkh" hidden>
-                                <button id="comCommentAddBtn">대댓글 작성</button>
+                                <div class="help">
+                                <label for="">대댓글 작성</label>
                                 <textarea name="qna_com_comment" id="comComment_Content" placeholder="대댓글을 입력해주세요." cols="30" rows="1"></textarea>
+                                <button id="comCommentAddBtn">대댓글 작성</button>
                                 <input type="text" name="qna_comment_id" id="QnA_Comment_ID" value="${item.id}" hidden>
-                            </form>`;
+                                </div>
+                            </form>`;;
             });
         });
     } catch (error) {
