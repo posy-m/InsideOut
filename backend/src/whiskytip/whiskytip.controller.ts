@@ -9,11 +9,13 @@ import { whiskyTipDTO } from './dto/tip.dto';
 import * as path from 'path';
 import { whiskyTipCommentDTO } from './dto/tipcomment.dto';
 import { whiskyTipComment } from './model/whisky_Tip_Comment.model';
+import { InsideOutInfoService } from 'src/inside-out-info/inside-out-info.service';
 
 @Controller('whisky')
 export class WhiskytipController {
   //whiskytipService : 주입을 받았기 때문에 사용할 수 있다.
-  constructor(private readonly whiskytipService: WhiskytipService) { }
+  constructor(private readonly whiskytipService: WhiskytipService,
+    private readonly InsideOutInfo: InsideOutInfoService) { }
 
   // 인터셉터 : 경로를 가로챈다. 먼저하고 간다.
   @Post('upload')
@@ -47,11 +49,11 @@ export class WhiskytipController {
 
   ) {
     try {
-      // console.log(req.headers);
-      // console.log(req.body.title);
+      const verifiedToken = this.InsideOutInfo.verify(req.cookies.token);
+
       const { title, content, category } = req.body;
       const data: any = {
-        nick_name: 'nick_name',
+        nick_name: verifiedToken.nick_name,
         category: parseInt(category),
         tip_title: title,
         tip_content: content,
@@ -118,10 +120,10 @@ export class WhiskytipController {
   //확인 페이지
   // js에서가 axios가 아닌 HTML/ form으로 받음
   @Get('check/:id')
-  async getcheck(@Res() res: Response, @Param('id', ParseIntPipe) id: number) {
-    res.send(await this.whiskytipService.findId(id));
-
-    console.log((await this.whiskytipService.findId(id)));
+  async getcheck(@Req() req: Request, @Res() res: Response, @Param('id', ParseIntPipe) id: number) {
+    const verifiedToken = this.InsideOutInfo.verify(req.headers.authorization);
+    const data = await this.whiskytipService.findId(id);
+    res.json({ verifiedToken, data })
 
 
     // res.json(tips);
@@ -135,7 +137,6 @@ export class WhiskytipController {
     @Body('content') content: string,
   ) {
     const data = await this.whiskytipService.findAll();
-    console.log(data.length);
     res.json(data);
   }
 
@@ -165,6 +166,7 @@ export class WhiskytipController {
   async putmodify(
     @UploadedFile() file: Express.Multer.File,
     @Res() res: Response,
+    @Req() req: Request,
     @Param('id', ParseIntPipe) id: number,
     @Body('title') tip_title: string,
     @Body('content') tip_content: string,
@@ -172,7 +174,7 @@ export class WhiskytipController {
     @Body('category') category: number,
   ) {
     //console.log("ㅁㅁㅁㅁㅁㅁㅁ", preImg);
-    // 수정을 눌렀을때, 이미지 비어도 수정 다음으로 넘어가도록
+    // 수정을 눌렀을때ㅌㅌㅌ, 이미지 비어도 수정 다음으로 넘어가도록
     let img = preImg ? preImg.replace('http://localhost:3000/', '') : '';
 
     if (file) {
@@ -222,7 +224,6 @@ export class WhiskytipController {
   async fitComment(@Res() res: Response, @Param('id', ParseIntPipe) id: number,) {
     const tips = await this.whiskytipService.findCommentsByTipId(id);
     res.json(tips);
-    console.log(tips);
   }
 
   // 댓글 수정
@@ -246,17 +247,21 @@ export class WhiskytipController {
   // 댓글 삭제
   @Delete('commentDelete/:id')
   async deletecomment(
+    @Req() req: Request,
     @Res() res: Response,
     @Param('id', ParseIntPipe) tip_ID: number, // 글 id
     @Body('nick_name') nick_name: string, // 닉네임
-    @Body('comment_id', ParseIntPipe) comment_id: number, // 글 id
+    @Body('tip_comment') tip_comment: any
   ) {
-    const tips = await this.whiskytipService.deleteComment(
-      comment_id,
-      nick_name,
+    const tips = await this.whiskytipService.findID(
       tip_ID,
+      nick_name,
+      tip_comment
     );
-    console.log(tips);
+
+    console.log(tips.id)
+
+    const deleteData = await this.whiskytipService.deleteComment(tips.id)
     res.json(tips);
   }
 

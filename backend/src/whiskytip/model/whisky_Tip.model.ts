@@ -1,18 +1,13 @@
-
-import { AllowNull, BelongsTo, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
+import { UserSignUp } from 'src/login/model/login.model';
 import { whiskyTipComment } from './whisky_Tip_Comment.model';
-// 유저 모델 들고와야함 foreignKey nick가져오기
 
-//테이블 속성
 @Table({
-  tableName: "whiskyTip", // 테이블의 이름
-  timestamps: true, // 생성 수정 시간 표기
-  paranoid: true // 삭제 시간 표기
+  tableName: "whiskyTip",
+  timestamps: true,
+  paranoid: true
 })
-
-// 중현이거 들고오면 belongs to 하기
 export class whiskyTip extends Model {
-
   @Column({
     type: DataType.STRING(30),
     allowNull: false
@@ -23,15 +18,13 @@ export class whiskyTip extends Model {
     type: DataType.INTEGER,
     allowNull: false
   })
-  category: string;
+  category: number;
 
   @Column({
     type: DataType.STRING(50),
     allowNull: false
   })
   tip_title: string;
-
-  // tip_ID: string 
 
   @Column({
     type: DataType.TEXT,
@@ -46,8 +39,13 @@ export class whiskyTip extends Model {
 
   @HasMany(() => whiskyTipComment, {
     sourceKey: 'id',
-    foreignKey: 'tip_ID',  // whiskyTipComment 모델에서 참조하는 외래 키
+    foreignKey: 'tip_ID'
   })
-  whisky: whiskyTipComment[];
+  whiskyTipComments: whiskyTipComment[];
 
+  @BelongsTo(() => UserSignUp, {
+    foreignKey: 'nick_name',
+    targetKey: 'nick_name'
+  })
+  user: UserSignUp;
 }

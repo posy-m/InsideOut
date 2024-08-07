@@ -10,8 +10,8 @@ const mainimg = document.querySelector(".mainimg");
 const smollimg = document.querySelectorAll(".smollimg");
 
 
-smollimg.forEach(smollimg=>{
-  smollimg.addEventListener("click",function(){
+smollimg.forEach(smollimg => {
+  smollimg.addEventListener("click", function () {
     mainimg.src = this.src;
   })
 })
@@ -29,6 +29,7 @@ console.log(smollimg);
 
 
 
+
   /*명언 오른쪽왼쪽누르면 넘어가는 모션 */
 const bigQuote = document.querySelector(".bigQuote");
 const quoteBoxFrame = document.querySelector(".quoteBoxFrame");
@@ -41,7 +42,7 @@ const next = document.querySelector(".next");
 
 const quoteFrames = bigQuote.children;
 let count = 0;
-next.addEventListener("click",()=>{
+next.addEventListener("click", () => {
   quoteFrames[count].style.display = "none";
   count++;
   if (count == 3) {
@@ -49,13 +50,13 @@ next.addEventListener("click",()=>{
   }
   quoteFrames[count].style.display = "block";
 })
-  prev.addEventListener("click",()=>{
-    quoteFrames[count].style.display = "none";
-    count--;
-    if (count == -1) {
-      count = 2;
-    }
-    quoteFrames[count].style.display = "block";
+prev.addEventListener("click", () => {
+  quoteFrames[count].style.display = "none";
+  count--;
+  if (count == -1) {
+    count = 2;
+  }
+  quoteFrames[count].style.display = "block";
 })
 console.log(quoteFrames);
 
@@ -129,3 +130,77 @@ meetTip.addEventListener("click",(e)=>{
   e.preventDefault();
   window.location.href = ""
 })
+const loginButton = document.querySelector('.login-button');
+
+loginButton.addEventListener('click', () => {
+  var popupX = (document.body.offsetWidth / 2) - (700 / 2);
+  var popupY = (window.screen.height / 2) - (500 / 2);
+  var popupWindow = window.open('http://127.0.0.1:5501/frontend/login.html', '', 'status=no, height=500, width=700, left=' + popupX + ', top=' + popupY);
+
+  // message 이벤트 리스너가 중복되지 않도록 하는 함수
+  const handleMessage = async (event) => {
+    if (event.data.type === 'popupClosed') {
+      // const { uid, upw } = event.data.payload;
+      // const data2 = await axios.post('http://127.0.0.1:3000/login', {
+      //   uid, upw
+      // }, { withCredentials: true });
+      // console.log(data2)
+      // axios.defaults.authorazation = data2.data.token
+      // console.log(axios.defaults)
+      window.location.reload();
+      // 새창 종료 후 수행할 작업을 여기에 추가
+      window.removeEventListener('message', handleMessage);
+    }
+  };
+
+  // message 이벤트 리스너 추가
+  window.addEventListener('message', handleMessage);
+});
+
+
+// 로그인 후 쿠키 확인 및 처리
+async function main() {
+  const accessToken = document.cookie.split('; ').find(row => row.startsWith('token='));
+  // if (accessToken) {
+  //   console.log('Token found:', accessToken.split('=')[1]);
+  //   axios.defaults.headers.common['Authorization'] = accessToken.split('=')[1];
+  //   // 쿠키가 있으면 필요한 작업을 수행합니다.
+  // } else {
+  //   console.log('Token not found');
+  // }
+  try {
+    // axios.defaults.authorazation = accessToken.split('=')[1]
+    const response = await axios.get('http://localhost:3000/insideOutInfo', { withCredentials: true });
+    if (response) {
+      loginButton.classList.add('hide');
+      const textBox = document.getElementById('textLine');
+      const textLine = document.createElement('div');
+      const logOut = document.createElement('button');
+      logOut.innerHTML = '로그아웃'
+      textBox.append(textLine);
+      textBox.append(logOut);
+      textLine.innerHTML = response.data.nick_name;
+
+      logOut.onclick = async () => {
+        const deleteCookie = await axios.post('http://localhost:3000/insideOutInfo/logout', {}, { withCredentials: true });
+        console.log(deleteCookie.data.message)
+        window.location.reload();
+      }
+    }
+  } catch (error) {
+    if (!error.response) {
+      // network error
+      this.errorStatus = 'Error: Network Error';
+    } else {
+      this.errorStatus = error.response.data.message;
+    }
+  }
+}
+
+main()
+
+const tipBtn = document.getElementById("tipBtn")
+tipBtn.addEventListener("click", () => {
+  location.href = "http://127.0.0.1:5501/frontend/html/main.html"
+})
+

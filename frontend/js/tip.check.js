@@ -2,7 +2,22 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   // 글 작성시 상세페이지에 뿌려줌
   const id = new URLSearchParams(location.search).get("id");
   // console.log(id)
-  let response = await axios.get(`http://localhost:3000/whisky/check/${id}`);
+
+  const cookies = document.cookie.split('; ');
+
+  let cookieData;
+
+  // 각 쿠키를 확인하여 이름과 값 분리하기
+  for (let cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split('=');
+    cookieData = cookieValue;
+  }
+
+  let response = await axios.get(`http://localhost:3000/whisky/check/${id}`, {
+    headers: {
+      "authorization": `${cookieData}`
+    }
+  });
   let tips = await response.data;
   // console.log(tips);
   // console.log(tips.img);
@@ -11,11 +26,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   const checkBox = document.createElement("div");
 
   checkBox.innerHTML = `
-      <div id = "tipCorrecionTitle">${tips.tip_title}</div>
+      <div id = "tipCorrecionTitle">${tips.data.tip_title}</div>
       <div id="tipCorrecionContent">
       <div id="tipContent">
-      <img id="checkImg" src='http://localhost:3000/${tips.img}'>
-      ${tips.tip_content}
+      <img id="checkImg" src='http://localhost:3000/${tips.data.img}'>
+      ${tips.data.tip_content}
       </div>
       </div>
       `;
@@ -29,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       alert("댓글을 입력해주세요!");
       return;
     }
-    const json = { commentText: commenText.value, nickname: "nick_name", id: id };
+    const json = { commentText: commenText.value, nickname: tips.verifiedToken.nick_name, id: id };
     // console.log(json);
     const result = await axios.post(`http://127.0.0.1:3000/whisky/comment`, json, {
       headers: {
@@ -65,9 +80,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         <div>${str}</div>
       </div>
       <div id="icon">
-        <img  id="cehckDot1" class="checkicon check_btn1" src="../img/comment.png" alt="">
-        <img id="cehckDot2" class="checkicon check_btn2" src="../img/pen.png" alt="">
-        <img  id="cehckDot3" class="checkicon check_btn3" src="../img/trashcan.jpeg" alt="">
+        <img id="cehckDot1" class="checkicon check_btn1" src="../img/comment.png" alt="">
+        <img id="cehckDot2" class="checkicon check_btn2" data-set="${e.nick_name}" src="../img/pen.png" alt="">
+        <img id="cehckDot3" class="checkicon check_btn3" data-set="${e.nick_name}" data-id="${e.nick_name}" src="../img/trashcan.jpeg" alt="">
       </div>
     </div>
       <div class="outside"></div>
@@ -92,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         replyElement.classList.add("reply");
         replyElement.dataset.id = reply.id;
         replyElement.innerHTML = `
-        <img  id="lineImg" class="checkicon check_btn3" src="../img/line.png" alt="">
+        <img  id="lineImg" class="checkicon" src="../img/line.png" alt="">
       <div id="replyBBox">
       <div class="replyWCM">
         <div class="writer">${reply.nick_name}</div>
@@ -101,8 +116,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       </div>
       <div class="replyBtnBox">
         <div>
-          <button class="reply_correction reply-btn" data-id=${reply.id}>수정</button>
-          <button class="reply_delete reply-btn">삭제</button>
+          <button class="reply_correction reply-btn" data-set="${reply.nick_name}" data-id=${reply.id}>수정</button>
+          <button class="reply_delete reply-btn" data-set="${reply.nick_name}" >삭제</button>
         </div>
       </div>
       </div>
@@ -124,7 +139,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   const cehckBtn2 = document.querySelectorAll(".check_btn2");
   cehckBtn2.forEach((button) => {
     button.addEventListener("click", (e) => {
-      if (tips.nick_name === "nick_name") {
+      if (e.target.dataset.set === tips.verifiedToken.nick_name) {
         const commentContainer = button.closest(".comment_list");
         const existingInput = commentContainer.querySelector(".updateInput");
         if (existingInput) {
@@ -159,7 +174,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
           commentUpBtn.addEventListener("click", async () => {
             try {
               const json = {
-                nick_name: "nick_name",
+                nick_name: tips.verifiedToken.nick_name,
                 comment: commentupload.value,
                 id,
                 commentId: commentUpBtn.dataset.id,
@@ -182,19 +197,19 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   const cehckDot3 = document.querySelectorAll(".check_btn3");
   // console.log(cehckDot3);
   const test = document.querySelectorAll(".comment_list");
+  const write_content = document.querySelectorAll('.write_content');
 
   cehckDot3.forEach((deletecomment) => {
     for (let i = 0; i < test.length; i++) {
       if (cehckDot3[i] === deletecomment) {
-        // console.log(cehckDot3[i]);
-        deletecomment.dataset.id = test[i].dataset.id;
         deletecomment.addEventListener("click", async (e) => {
-          if (tips.nick_name === "nick_name") {
+          if (e.target.dataset.id === tips.verifiedToken.nick_name) {
             if (cehckDot3[i] === deletecomment) {
               const json = {
-                nick_name: "nick_name",
-                comment_id: deletecomment.dataset.id,
+                tip_comment: write_content[i].innerHTML,
+                nick_name: tips.verifiedToken.nick_name,
                 tip_ID: id,
+
               };
               const result = await axios.delete(`http://127.0.0.1:3000/whisky/commentDelete/${id}`, { data: json });
               location.reload();
@@ -231,7 +246,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
           }
 
           const commentId = commentContainer.dataset.id; // 댓글의 ID 가져오기
-          const json = { tip_comment_Id: commentId, Ccomment: writeInput.value, nickname: "nick_name", category: id };
+          const json = { tip_comment_Id: commentId, Ccomment: writeInput.value, nickname: tips.verifiedToken.nick_name, category: id };
           // console.log(json);
           const result = await axios.post(`http://127.0.0.1:3000/whisky/Ccomment`, json, {
             headers: {
@@ -249,9 +264,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   const replyCorrectionBtn = document.querySelectorAll(".reply_correction");
   replyCorrectionBtn.forEach((replyBtn) => {
     replyBtn.addEventListener("click", (e) => {
-      // console.log(tips.nick_name);
-      console.log(replyBtn.dataset.id);
-      if (tips.nick_name === "nick_name") {
+      console.log(e.target)
+      if (replyBtn.dataset.set === tips.verifiedToken.nick_name) {
         const replyBtnBox = replyBtn.closest(".replyBtnBox");
 
         let existingInput = replyBtnBox.querySelector('input');
@@ -305,8 +319,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   console.log(replyDeleteBtn);
 
   replyDeleteBtn.forEach(async (replyDBtn) => {
-    replyDBtn.addEventListener("click", async (gd) => {
-      if (tips.nick_name === "nick_name") {
+    replyDBtn.addEventListener("click", async () => {
+      if (replyDBtn.dataset.set === tips.verifiedToken.nick_name) {
         const commentContainer = replyDBtn.closest(".reply");
         console.log(commentContainer);
         const replyId = commentContainer.dataset.id;
@@ -337,17 +351,24 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 
   // 상세페이지 수정
   const checkModify = document.querySelector(".tip_check_modify");
+  const checkDelete = document.querySelector('.tip_check_delete')
+  const checkDeleteList = document.querySelectorAll(".tip_check_delete");
 
-  checkModify.addEventListener("click", async () => {
+  if (tips.data.nick_name === tips.verifiedToken.nick_name) {
+    checkModify.classList.remove('hide');
+    checkDelete.classList.remove('hide');
+  }
+
+  checkModify.addEventListener("click", async (e) => {
     const id = new URLSearchParams(location.search).get("id");
-    // console.log(id);
-    location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.modify.html?id=${id}`;
+    if (tips.data.nick_name === tips.verifiedToken.nick_name) {
+      location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.modify.html?id=${id}`;
+    }
     // await axios.put(`http://localhost:3000/whisky/modify/${id}`)
     // location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.check.html?id=${id}`
   });
 
   // 상세페이지 삭제
-  const checkDeleteList = document.querySelectorAll(".tip_check_delete");
   checkDeleteList.forEach((checkDelete) => {
     checkDelete.addEventListener("click", async (el) => {
       console.log(tips.id);
@@ -362,12 +383,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         // data.append("content", tipCorrecionContent)
         data.append("category", category);
         data.append("file", checkImg);
-        const response = await axios.delete(`http://localhost:3000/whisky/delete/${tips.id}`, data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.snack.html`;
+        if (tips.data.nick_name === tips.verifiedToken.nick_name) {
+          const response = await axios.delete(`http://localhost:3000/whisky/delete/${tips.data.id}`, data, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.snack.html`;
+        }
       }
     });
   });
