@@ -36,12 +36,12 @@ backBtn.addEventListener('click', () => { // 뒤로 가기 버튼 클릭 시
     location.href = `QnA.html`; // 글 목록 페이지로 이동
 })
 
-const deleteBtn = document.getElementById('delete');
+const deleteBtn = document.getElementById('delete'); // 삭제 버튼
 
-deleteBtn.addEventListener('click', async () => {
+deleteBtn.addEventListener('click', async () => { // 삭제 버튼 클릭 시
     // console.log(listIndex)
-    const data = await axios.delete(`http://127.0.0.1:3000/qn-a/${listIndex}`);
+    const data = await axios.delete(`http://127.0.0.1:3000/qn-a/${listIndex}`); // id 값을 통해 삭제할 데이터를 서버에 Delete 요청으로 전송하여 삭제
     // console.log(data);
-    location.href = 'QnA.html'
+    location.href = 'QnA.html' // 삭제 후 글 목록 페이지로 이동
 
 })

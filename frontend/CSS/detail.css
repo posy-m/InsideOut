@@ -1,0 +1,348 @@
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Title {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.detailContent {
+    width: 50%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detailTop {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gold;
+
+}
+
+#detailTitle {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    border-bottom: 1px solid gold;
+}
+
+#detailContent {
+    width: 100%;
+    height: 270px;
+    padding-top: 20px;
+}
+
+.btnContainer {
+    width: 50%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.btnWrap {
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#modify {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #dfe225;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#modify:hover {
+    width: 80px;
+    height: 35px;
+    background-color: #d8db08ca;
+    color: #000000;
+}
+
+#back {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #dfe225;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#back:hover {
+    width: 80px;
+    height: 35px;
+    background-color: #d8db08ca;
+    color: #000000;
+}
+
+#delete {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #dfe225;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#delete:hover {
+    width: 80px;
+    height: 35px;
+    background-color: #d8db08ca;
+    color: #000000;
+}
+
+/* 댓글 시작 */
+
+#commentContainer {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 댓글 작성 공간 */
+
+.commentWrap {
+    width: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 댓글 작성 Textarea */
+
+#comment_Content {
+    width: 800px;
+}
+
+#commentForm {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#commentAddBtn {
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgb(248, 248, 4);
+}
+
+/* 댓글 가이드 */
+
+#commentView>:nth-child(1) {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    border-top: 1px solid greenyellow;
+    border-bottom: 1px solid greenyellow;
+    padding: 20px 0px 20px 0px;
+}
+
+#commentView>:first-child>:nth-child(1) {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+#commentView>:first-child>:nth-child(1)>:nth-child(1) {
+    width: 15%;
+    display: inline-block;
+}
+
+#commentView>:first-child>:nth-child(1)>:nth-child(2) {
+    width: 70%;
+    display: inline-block;
+    text-align: center;
+}
+
+#commentView>:first-child>:nth-child(1)>:nth-child(3) {
+    width: 15%;
+    display: inline-block;
+    text-align: center;
+}
+
+/* 댓글 뷰 */
+
+#commentView {
+    width: 900px;
+    height: auto;
+}
+
+#commentView>div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: none;
+}
+
+/* 작성자, 내용, 작성일 포함하고 있는 div */
+
+#commentView>div>:nth-child(1) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 작성자, 내용, 작성일 */
+
+#commentView>div>:nth-child(1)>:nth-child(1) {
+    width: 15%;
+    display: inline-block;
+    text-align: center;
+}
+
+#commentView>div>:nth-child(1)>:nth-child(2) {
+    width: 70%;
+    display: inline-block;
+}
+
+#commentView>div>:nth-child(1)>:nth-child(3) {
+    width: 15%;
+    display: inline-block;
+    text-align: center;
+}
+
+/* 버튼 3개 포함하고 있는 div */
+
+#commentView>div>:nth-child(2) {
+    width: 50%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 버튼 1, 2, 3 */
+
+#commentView>div>:nth-child(2)>:nth-child(1) {
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#commentView>div>:nth-child(2)>:nth-child(2) {
+    width: 60px;
+    height: 30px;
+}
+
+#commentView>div>:nth-child(2)>:nth-child(3) {
+    width: 60px;
+    height: 30px;
+}
+
+/* ------------------------------------------------------ */
+
+/* 대댓글 시작 */
+
+/* 대댓글 뷰 */
+
+#com_commentView {
+    width: 100%;
+}
+
+#com_commentView>div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 작성자, 대댓글, 작성일 포함하고 있는 div */
+
+#com_commentView>div>:nth-child(1) {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 작성자, 대댓글, 작성일 */
+
+#com_commentView>div>:nth-child(1)>:nth-child(1) {
+    width: 15%;
+    display: inline-block;
+    text-align: center;
+}
+
+#com_commentView>div>:nth-child(1)>:nth-child(2) {
+    width: 70%;
+    display: inline-block;
+    text-align: center;
+}
+
+#com_commentView>div>:nth-child(1)>:nth-child(3) {
+    width: 15%;
+    display: inline-block;
+    text-align: center;
+}
+
+/* 버튼 2개 포함하고 있는 div */
+
+#com_commentView>div>:nth-child(2) {
+    width: 40%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 버튼 1(수정), 2(삭제) */
+
+#com_commentView>div>:nth-child(2)>:nth-child(1) {
+    width: 60px;
+    height: 30px;
+}
+
+#com_commentView>div>:nth-child(2)>:nth-child(2) {
+    width: 60px;
+    height: 30px;
+}
+
+#comCommentAddBtn {
+    cursor: pointer;
+}

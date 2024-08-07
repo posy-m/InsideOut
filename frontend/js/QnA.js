@@ -30,16 +30,21 @@ function renderQnAList(items) {
 
     items.forEach(item => { // 매개변수로 받은 items 배열을 순회
         const div = document.createElement('div'); // 새로운 div 요소 생성
-        const detailBtn = document.createElement('button'); // 새로운 btn 요소 생성
-        detailBtn.innerHTML = '상세 보기'; // 생성한 버튼에 '상세 보기' 텍스트 삽입
-        detailBtn.addEventListener('click', () => { // 상세 보기 버튼 클릭 했을 때 이벤트 리스너 추가
-            location.href = `detail.html?id=${item.id}`; // 클릭한 버튼의 id를 쿼리 파라미터로 전달하여 상세 페이지로 이동
+        const spanID = document.createElement('span'); // 글번호를 담을 새로운 span 요소 생성
+        const spanName = document.createElement('span'); // 작성자를 담을 새로운 span 요소 생성
+        const spanTitle = document.createElement('span'); // 제목을 담을 새로운 span 요소 생성
+        const spanContent = document.createElement('span'); // 내용을 담을 새로운 span 요소 생성
+        const spanMove = document.createElement('span'); // 내용만 클릭하고 싶어서 span 요소 생성
+        spanMove.addEventListener('click', () => { // 내용을 클릭 했을 때 이벤트 리스너 추가
+            location.href = `detail.html?id=${item.id}`; // 클릭한 내용의 글번호, id를 쿼리 파라미터로 전달하여 상세 페이지로 이동
         });
-
-        // 생성한 div 요소에 ID, 작성자, 제목, 내용 값 추가
-        div.textContent = `ID: ${item.id}, Name: ${item.nick_name}, Title: ${item.qna_title}, Content: ${item.qna_content}`;
-        dataContainer.appendChild(div); // id, 작성자, 제목, 내용 값을 가지고 있는 div를 dataContainer 요소에 추가
-        dataContainer.appendChild(detailBtn); // 상세보기 버튼을 dataContainer 요소에 추가
+        spanID.textContent = item.id // 글번호
+        spanName.textContent = item.nick_name // 작성자
+        spanTitle.textContent = item.qna_title // 글제목
+        spanMove.textContent = item.qna_content // 글내용
+        spanContent.appendChild(spanMove); // 글내용을 Span 태그에 삽입
+        div.append(spanID, spanName, spanTitle, spanContent) // 글번호, 작성자, 제목, 내용을 생성한 div에 추가
+        dataContainer.appendChild(div); // i글번호, 작성자, 제목, 내용 값을 가지고 있는 div를 dataContainer 요소에 추가
     });
 }
 

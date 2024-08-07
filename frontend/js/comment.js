@@ -8,13 +8,24 @@ async function comment() {
         console.log(commentData);
 
         const comContainer = document.getElementById('commentView') // 댓글 렌더 할 요소
+        const comGuide = document.createElement('div'); // 가이드 요소들을 담을 div 요소
+        const spanGuide = document.createElement('span'); // 작성자, 내용, 작성일 가이드 담을 span 요소
+        const nameGuide = document.createElement('span'); // 작성자
+        nameGuide.innerText = '작성자';
+        const contentGuide = document.createElement('span'); // 내용
+        contentGuide.innerText = '댓글';
+        const dateGuide = document.createElement('span'); // 작성일
+        dateGuide.innerText = '작성일';
+        spanGuide.append(nameGuide, contentGuide, dateGuide) // 생성한 요소에 가이드 담기
+        comGuide.appendChild(spanGuide) // 생성한 요소에 가이드들 담기
+        comContainer.appendChild(comGuide) // 가이드들 댓글뷰에 담기
         commentData.data.forEach(async (item) => { // 댓글 데이터 순회
             const comWrap = document.createElement('div'); // 전체 감싸는 요소
-            const comSpan = document.createElement('span'); // 댓글 감싸는 요소
-            const btnSpan = document.createElement('span'); // 버튼 감싸는 요소
-            const comName = document.createElement('div'); // 작성자
-            const comComment = document.createElement('div'); // 내용
-            const comDate = document.createElement('div'); // 작성일
+            const comdiv = document.createElement('div'); // 댓글 감싸는 요소
+            const btndiv = document.createElement('div'); // 버튼 감싸는 요소
+            const comName = document.createElement('span'); // 작성자
+            const comComment = document.createElement('span'); // 내용
+            const comDate = document.createElement('span'); // 작성일
             const comcomBtn = document.createElement('button'); // 대댓글 버튼
             const modifyBtn = document.createElement('button'); // 댓글 수정 버튼
             const deleteBtn = document.createElement('button'); // 댓글 삭제 버튼
@@ -33,13 +44,13 @@ async function comment() {
             comDate.textContent = `${str}` // 작성일 입력
             QnA_id.value = _listIndex; // 댓글 작성한 글의 글번호
 
-            comSpan.append(comName, comComment, comDate);
-            // comSpan.appendChild(comName);
-            // comSpan.appendChild(comDate);
-            btnSpan.append(comcomBtn, modifyBtn, deleteBtn);
-            // btnSpan.appendChild(modifyBtn);
-            // btnSpan.appendChild(deleteBtn);
-            comWrap.append(comSpan, btnSpan);
+            comdiv.append(comName, comComment, comDate);
+            // comdiv.appendChild(comName);
+            // comdiv.appendChild(comDate);
+            btndiv.append(comcomBtn, modifyBtn, deleteBtn);
+            // btndiv.appendChild(modifyBtn);
+            // btndiv.appendChild(deleteBtn);
+            comWrap.append(comdiv, btndiv);
             comContainer.appendChild(comWrap);
 
             modifyBtn.addEventListener('click', () => { // 수정 버튼 클릭 시
@@ -89,11 +100,11 @@ async function comment() {
 
             ccomData.data.forEach(citem => { // 대댓글 데이터 순회
                 const ccomWrap = document.createElement('div');
-                const ccomSpan = document.createElement('span');
-                const cbtnSpan = document.createElement('span');
-                const ccomName = document.createElement('div');
-                const ccomComment = document.createElement('div');
-                const ccomDate = document.createElement('div');
+                const ccomdiv = document.createElement('div');
+                const cbtndiv = document.createElement('div');
+                const ccomName = document.createElement('span');
+                const ccomComment = document.createElement('span');
+                const ccomDate = document.createElement('span');
                 const cmodifyBtn = document.createElement('button');
                 const cdeleteBtn = document.createElement('button');
 
@@ -108,9 +119,9 @@ async function comment() {
                 ccomComment.textContent = `${citem.qna_com_comment}`;
                 ccomDate.textContent = cstr;
 
-                ccomSpan.append(ccomName, ccomComment, ccomDate);
-                cbtnSpan.append(cmodifyBtn, cdeleteBtn);
-                ccomWrap.append(ccomSpan, cbtnSpan);
+                ccomdiv.append(ccomName, ccomComment, ccomDate);
+                cbtndiv.append(cmodifyBtn, cdeleteBtn);
+                ccomWrap.append(ccomdiv, cbtndiv);
                 ccomContainer.appendChild(ccomWrap);
 
                 cmodifyBtn.addEventListener('click', () => { // 수정 버튼 클릭 시
@@ -152,10 +163,9 @@ async function comment() {
                 const div = comcomBtn.parentElement;
                 div.innerHTML = `<form id="comComForm" action="http://127.0.0.1:3000/ccomment/create?id=${_listIndex}" method="post">
                                 <input type="text" name="nick_name" value="god_kkh" hidden>
-                                <label for="">대댓글 내용</label>
+                                <button id="comCommentAddBtn">대댓글 작성</button>
                                 <textarea name="qna_com_comment" id="comComment_Content" placeholder="대댓글을 입력해주세요." cols="30" rows="1"></textarea>
                                 <input type="text" name="qna_comment_id" id="QnA_Comment_ID" value="${item.id}" hidden>
-                                <button id="comCommentAddBtn">대댓글 작성</button>
                             </form>`;
             });
         });

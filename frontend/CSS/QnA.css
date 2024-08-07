@@ -1,0 +1,154 @@
+body {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.QnA_title {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.btnWrap {
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: right;
+}
+
+#createBtn {
+    width: 80px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #fad978;
+    color: black;
+    cursor: pointer;
+}
+
+.btnWrap>#createBtn:hover {
+    width: 90px;
+    height: 55px;
+    background-color: #f9c427;
+    color: black;
+}
+
+
+#guide {
+    width: 70%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    background-color: rgb(255, 221, 30);
+    border-radius: 10px;
+}
+
+.guideNumber {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.guideName {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.guideTitle {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.guideContent {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+}
+
+#list {
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#list>div {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#list>div>span:nth-child(1) {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+#list>div>span:nth-child(2) {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+#list>div>span:nth-child(3) {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#list>div>span:nth-child(4) {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#list>div>span:nth-child(4)>span {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+
+}
+
+#list>div>span:nth-child(4)>span:hover {
+    filter: invert(23%) sepia(97%) saturate(6811%) hue-rotate(400deg) brightness(89%) contrast(127%);
+}
+
+.searchWrap {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchWrap>#searchInput {
+    width: 20%;
+    font-size: 20px;
+}
+
+.paginationWrap {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
