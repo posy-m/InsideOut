@@ -47,3 +47,21 @@
     display: flex;
     justify-content: end;
 }
+
+#createBtn {
+    width: 80px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: burlywood;
+    color: antiquewhite;
+}
+
+#createBtn:hover {
+    width: 85px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgb(212, 159, 89);
+    color: black;
+}
