@@ -57,7 +57,7 @@ import { InsideOutInfoController } from './inside-out-info/inside-out-info.contr
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(cookie()).forRoutes("");
+    consumer.apply(cookie()).forRoutes("*");
     consumer.apply(LoggerMiddleware).forRoutes("login")
   }
 }

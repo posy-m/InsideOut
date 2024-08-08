@@ -140,13 +140,6 @@ loginButton.addEventListener('click', () => {
   // message 이벤트 리스너가 중복되지 않도록 하는 함수
   const handleMessage = async (event) => {
     if (event.data.type === 'popupClosed') {
-      // const { uid, upw } = event.data.payload;
-      // const data2 = await axios.post('http://127.0.0.1:3000/login', {
-      //   uid, upw
-      // }, { withCredentials: true });
-      // console.log(data2)
-      // axios.defaults.authorazation = data2.data.token
-      // console.log(axios.defaults)
       window.location.reload();
       // 새창 종료 후 수행할 작업을 여기에 추가
       window.removeEventListener('message', handleMessage);

@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  if (document.cookie) {
+  const tokenResponse = await axios.get('http://localhost:3000/whisky/tokenExist', { withCredentials: true });
+  if (tokenResponse) {
     const deleteClass = document.getElementById('tipBtn');
     deleteClass.classList.remove('hide');
   }
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           const id = el.dataset.set;
           el.onclick = (e) => {
             console.log(e.target.dataset["set"]);
-            location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.check.html?id=${id}`;
+            location.href = `http://localhost:5501/frontend/html/whiskytip.check.html?id=${id}`;
           };
         })
       });
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       //   // console.log(param);
       //   tipContentWrap.onclick = (e) => {
       //     console.log(e.target.dataset["set"]);
-      //     location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.check.html?id=${e.target.dataset["set"]}`;
+      //     location.href = `http://localhost:5501/frontend/html/whiskytip.check.html?id=${e.target.dataset["set"]}`;
       //   };
       // }
 
@@ -107,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 const tipBtn = document.querySelector("#tipBtn");
 tipBtn.addEventListener("click", () => {
-  location.href = "http://127.0.0.1:5501/frontend/html/whiskytip.upload.html";
+  location.href = "http://localhost:5501/frontend/html/whiskytip.upload.html";
 });
 
 // 이벤트 발생
@@ -157,7 +158,7 @@ const loginButton = document.querySelector('.login-button');
 loginButton.addEventListener('click', () => {
   var popupX = (document.body.offsetWidth / 2) - (700 / 2);
   var popupY = (window.screen.height / 2) - (500 / 2);
-  window.open('http://127.0.0.1:5501/frontend/login.html', '', 'status=no, height=500, width=700, left=' + popupX + ', top=' + popupY);
+  window.open('http://localhost:5501/frontend/login.html', '', 'status=no, height=500, width=700, left=' + popupX + ', top=' + popupY);
 });
 
 
@@ -205,7 +206,7 @@ main()
 
 const tip = document.getElementById("tip")
 tip.addEventListener("click", () => {
-  location.href = "http://127.0.0.1:5501/frontend/html/main.html"
+  location.href = "http://localhost:5501/frontend/html/main.html"
 })
 
 // insideout 클릭시 메인
@@ -213,7 +214,7 @@ tip.addEventListener("click", () => {
 const wrapper = document.querySelector(".wrapper")
 
 wrapper.addEventListener("click", () => {
-  location.href = "http://127.0.0.1:5501/frontend/HTML/InsideOutWhiskey.html"
+  location.href = "http://localhost:5501/frontend/HTML/InsideOutWhiskey.html"
 })
 
 
