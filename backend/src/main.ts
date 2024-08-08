@@ -9,12 +9,12 @@ dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.use(cookieParser());
+  //app.use(cookieParser());
 
   app.useStaticAssets(join(__dirname, '..', 'uploads'))
 
   app.enableCors({
-    origin: "http://127.0.0.1:5501",
+    origin: "http://localhost:5501",
     methods: "GET,POST,DELETE,PUT",
     credentials: true
 
