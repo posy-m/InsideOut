@@ -5,7 +5,10 @@ async function comment() {
         // console.log(listParam);
 
         const commentData = await axios.get(`http://127.0.0.1:3000/comment/comments?index=${_listIndex}`); // QnA 게시글 목록 중에서 id 값을 통해 원하는 상세 페이지에 데이터를 받아옴, data에 할당
-        console.log(commentData);
+        console.log(_listIndex);
+        const QnA_id = document.getElementById('QnA_ID'); // 글번호
+        QnA_id.value = _listIndex; // 댓글 작성한 글의 글번호
+        console.log(QnA_id.value)
 
         const comContainer = document.getElementById('commentView') // 댓글 렌더 할 요소
         const comGuide = document.createElement('div'); // 가이드 요소들을 담을 div 요소
@@ -27,9 +30,11 @@ async function comment() {
             const comComment = document.createElement('span'); // 내용
             const comDate = document.createElement('span'); // 작성일
             const comcomBtn = document.createElement('button'); // 대댓글 버튼
+            comcomBtn.classList.add('comcomBtn');
             const modifyBtn = document.createElement('button'); // 댓글 수정 버튼
             const deleteBtn = document.createElement('button'); // 댓글 삭제 버튼
-            const QnA_id = document.getElementById('QnA_ID'); // 글번호
+
+            console.log(QnA_id);
 
             const date = new Date(item.createdAt);
             const month = date.getMonth() + 1 > 9 ? `${date.getMonth() + 1}` : `0${date.getMonth() + 1}`;
@@ -42,14 +47,14 @@ async function comment() {
             comName.textContent = `${item.nick_name}` // 작성자 입력
             comComment.textContent = `${item.qna_comment}` // 댓글 입력
             comDate.textContent = `${str}` // 작성일 입력
-            QnA_id.value = _listIndex; // 댓글 작성한 글의 글번호
+            console.log(QnA_id.value)
 
             comdiv.append(comName, comComment, comDate);
             // comdiv.appendChild(comName);
             // comdiv.appendChild(comDate);
             btndiv.append(comcomBtn, modifyBtn, deleteBtn);
             // btndiv.appendChild(modifyBtn);
-            // btndiv.appendChild(deleteBtn);
+            // btndiv.appendChild(deleteBtn);+
             comWrap.append(comdiv, btndiv);
             comContainer.appendChild(comWrap);
 
@@ -66,7 +71,7 @@ async function comment() {
                         const value = { qna_comment: _input.value } // 댓글에 입력창의 값을 할당
 
                         const data = await axios.put(`http://127.0.0.1:3000/comment/${item.id}`, value); // id 값을 통해 수정할 데이터를 서버에 PUT 요청으로 전송하여 수정
-                        console.log("data", data)
+                        // console.log("data", data)
 
                         if (data.status === 200) { // 성공하면
                             location.reload(); // 페이지 새로고침
@@ -83,7 +88,7 @@ async function comment() {
             deleteBtn.addEventListener('click', async () => { // 삭제 버튼 클릭 시
                 try {
                     const data = await axios.delete(`http://127.0.0.1:3000/comment/${item.id}`) // id 값을 통해 삭제할 데이터를 서버에 Delete 요청으로 전송하여 삭제
-                    console.log(data);
+                    // console.log(data);
                     location.reload(); // 삭제 후 페이지 새로고침
                 } catch (error) {
                     console.error(error)
@@ -92,7 +97,7 @@ async function comment() {
 
             // 대댓글을 로드하고 DOM에 추가
             const ccomData = await axios.get(`http://127.0.0.1:3000/ccomment/ccomments?index=${item.id}`); // id 값을 통해 원하는 댓글의 대댓글 데이터를 가져옴
-            console.log("대댓글 데이터:", ccomData.data);
+            // console.log("대댓글 데이터:", ccomData.data);
 
             const ccomContainer = document.createElement('div'); // 요소 생성
             ccomContainer.id = 'com_commentView'; // 생성한 요소에 id 값에 'com_commentView' 입력
@@ -160,6 +165,9 @@ async function comment() {
 
             // 대댓글 작성 폼은 버튼 클릭 시 나타남
             comcomBtn.addEventListener('click', () => {
+                comcomBtn.style.removeProperty('background-color');
+
+
                 const div = comcomBtn.parentElement;
                 div.innerHTML = `<form id="comComForm" action="http://127.0.0.1:3000/ccomment/create?id=${_listIndex}" method="post">
                                 <input type="text" name="nick_name" value="god_kkh" hidden>
@@ -169,7 +177,7 @@ async function comment() {
                                 <button id="comCommentAddBtn">대댓글 작성</button>
                                 <input type="text" name="qna_comment_id" id="QnA_Comment_ID" value="${item.id}" hidden>
                                 </div>
-                            </form>`;
+                                </form>`;
             });
         });
     } catch (error) {
@@ -178,75 +186,3 @@ async function comment() {
 }
 
 comment();
-
-// const _input = document.createElement('input');
-// _input.classList.add('input'); => classList.add 알아보기
-// div.append(_input)
-
-// div.lastChild.remove() => remove() 알아보기
-
-// const _div = div.childNodes.forEach(() => {}) => div에 자식노드들 순회
-
-// modifyBtn.dataset.index = item.id; => dataset 알아보기
-
-// 기버지 구현
-// window.onload = async () => {
-//     const _listIndex = new URLSearchParams(location.search).get("id");
-//     console.log("test")
-//     const { data: commentData } = await axios.get(`http://127.0.0.1:3000/comment/comments?index=${_listIndex}`);
-//     console.log("eee", commentData)
-//     let wrap = null;
-//     commentData.forEach(async (el) => {
-//         const _div = document.createElement("div");
-//         const _div2 = document.createElement("div");
-//         const _span1 = document.createElement("span");// 닉네임
-//         const _span2 = document.createElement("span");// 내용
-//         const _span3 = document.createElement("span");// 날짜
-//         const _button1 = document.createElement("button");//대댓글
-//         const _butotn2 = document.createElement("button");//수정
-//         _butotn2.onclick = (el) => {
-//             modifyView( _span2, el.target, `http://127.0.0.1:3000/comment/${el2.id}`);
-//         }
-
-//         const _butotn3 = document.createElement("button");//삭제
-//         const { data: ccommentData } = await axios.get(`http://127.0.0.1:3000/ccomment/ccomments?index=${el.id}`);
-//         console.log(ccommentData);
-//         ccommentData.forEach((el2) => {
-//             const __div = document.createElement("div");
-//             const __span1 = document.createElement("span");// 닉네임
-//             const __span2 = document.createElement("span");// 내용
-//             const __span3 = document.createElement("span");// 날짜
-//             const __button1 = document.createElement("button");//수정
-//             __button1.onclick = (el) => {
-//                 modifyView(__span2, el.target, `http://127.0.0.1:3000/ccomment/${el2.id}`);
-//             }
-//             const __button2 = document.createElement("button");//삭제
-//             __div.append(__span1, __span2, __span3, __button1, __button2)
-//             _div2.append(__div);
-//         })
-//         _div.append(_span1, _span2, _span3, _button1, _butotn2, _butotn3, _div2);
-//         wrap = _div;
-//     });
-//     console.log("test", wrap)
-// }
-
-// function modifyView( el, buttonEl, url) {
-//     const _input = document.createElement("input");
-//     _input.value = el.innerHTML;
-//     el.replaceWith(_input);
-//     buttonEl.innerText = "수정완료"
-//     buttonEl.onclick = () => {
-//         modify(_input.value, url);
-//     }
-// }
-
-
-// async function modify(content, url) {
-//     const value = {
-//         qna_com_comment: content
-//     }
-//     const response = await axios.put(url, value);
-//     if (response.status === 200) {
-//         location.reload();
-//     }
-// }

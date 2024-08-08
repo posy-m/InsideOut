@@ -26,6 +26,7 @@ import { whiskyTipComment } from './whiskytip/model/whisky_Tip_Comment.model';
 import { whiskyTipCcomment } from './whiskytip/model/whisky_Tip_Ccomment.model';
 import { InsideOutInfoModule } from './inside-out-info/inside-out-info.module';
 import { InsideOutInfoController } from './inside-out-info/inside-out-info.controller';
+import { QnAModule } from './qn-a/qn-a.module';
 
 @Module({
   imports: [SequelizeModule.forRoot({
@@ -33,14 +34,14 @@ import { InsideOutInfoController } from './inside-out-info/inside-out-info.contr
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "alswl;0113#",
+    password: "dlalsgur12",
     database: "insideout",
     autoLoadModels: true,
-    synchronize: true,
-    sync: { force: false },
+    synchronize: true, // 애플리케이션 실행 했을 때 데이터베이스랑 동기화를 할 것인지 ?
+    sync: { force: false }, // true 시 초기화
     models: [UserSignUp, whiskyTip, whiskyTipComment, whiskyTipCcomment],
   }), LoginModule, ConfigModule.forRoot({ isGlobal: true }),
-    WhiskytipModule,
+    WhiskytipModule, QnAModule, CommentModule, CcommentModule, WhiskytipModule,
   MulterModule.register({
     dest: './uploads',
   }),
@@ -51,10 +52,16 @@ import { InsideOutInfoController } from './inside-out-info/inside-out-info.contr
   }),
   ServeStaticModule.forRoot({
     rootPath: path.join(__dirname, '..', '..', 'frontend', 'html')
-  }), InsideOutInfoModule],
+  }), InsideOutInfoModule,
+  SequelizeModule.forFeature([Insideoutinfo]),
+  ConfigModule.forRoot({ isGlobal: true }),
+    InsideOutInfoModule,
+    InformationModule,  // 외부 모듈 주입
+    LoginModule, ConfigModule.forRoot({ isGlobal: true })],
   controllers: [AppController],
   providers: [AppService, JwtService],
 })
+
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(cookie()).forRoutes("*");
