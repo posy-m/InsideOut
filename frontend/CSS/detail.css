@@ -164,8 +164,31 @@ body {
     height: 70px;
     border: none;
     border-radius: 50%;
-    background-color: rgb(248, 248, 4);
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #dfe225;
+    color: #dd7171;
+    cursor: pointer;
 }
+
+#commentAddBtn:hover {
+    width: 75px;
+    height: 75px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #d6d908;
+    color: black;
+    cursor: pointer;
+}
+
 
 /* 댓글 가이드 */
 
@@ -257,20 +280,94 @@ body {
 
 /* 버튼 1, 2, 3 */
 
-#commentView>div>:nth-child(2)>:nth-child(1) {
+.comcomBtn {
     width: 60px;
-    height: 30px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #70e21f;
+    color: #2fa1b5;
+    cursor: pointer;
+}
+
+.comcomBtn:hover {
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #6aff00;
+    color: #2fa1b5;
     cursor: pointer;
 }
 
 #commentView>div>:nth-child(2)>:nth-child(2) {
     width: 60px;
-    height: 30px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #70e21f;
+    color: #2fa1b5;
+    cursor: pointer;
+}
+
+#commentView>div>:nth-child(2)>:nth-child(2):hover {
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #6aff00;
+    color: #2fa1b5;
+    cursor: pointer;
 }
 
 #commentView>div>:nth-child(2)>:nth-child(3) {
     width: 60px;
-    height: 30px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #70e21f;
+    color: #2fa1b5;
+    cursor: pointer;
+}
+
+#commentView>div>:nth-child(2)>:nth-child(3):hover {
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #6aff00;
+    color: #2fa1b5;
+    cursor: pointer;
 }
 
 /* ------------------------------------------------------ */
@@ -335,16 +432,106 @@ body {
 
 #com_commentView>div>:nth-child(2)>:nth-child(1) {
     width: 60px;
-    height: 30px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #1fc5e2;
+    color: white;
+    cursor: pointer;
+}
+
+#com_commentView>div>:nth-child(2)>:nth-child(1):hover {
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #00adcc;
+    color: white;
+    cursor: pointer;
 }
 
 #com_commentView>div>:nth-child(2)>:nth-child(2) {
     width: 60px;
-    height: 30px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #1fc5e2;
+    color: white;
+    cursor: pointer;
 }
 
+#com_commentView>div>:nth-child(2)>:nth-child(2):hover {
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #00adcc;
+    color: white;
+    cursor: pointer;
+}
+
+/* 대댓글 innerHtml 부분 */
+
 .help {
-    width: 500px;
+    width: 450px;
     height: 100%;
     display: flex;
+    justify-content: space-between;
+}
+
+.help>label {
+    display: flex;
+    align-items: center;
+}
+
+/* 대댓글 버튼 */
+
+#comCommentAddBtn {
+    width: 80px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #de421f;
+    color: white;
+    cursor: pointer;
+}
+
+#comCommentAddBtn:hover {
+    width: 90px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #b22100;
+    color: white;
+    cursor: pointer;
 }
