@@ -21,6 +21,7 @@ import { LoginController } from './login/login.controller';
 import { JwtService } from '@nestjs/jwt';
 import * as cookie from 'cookie-parser';
 import * as path from 'path';
+import { UserSignUp } from './login/model/login.model';
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import * as path from 'path';
       database: "insideout",
       autoLoadModels: true,
       synchronize: true, // 애플리케이션 실행 했을 때 데이터베이스랑 동기화를 할 것인지 ?
-      sync: { force: false } // true 시 초기화
+      sync: { force: false }, // true 시 초기화
+      models: [UserSignUp]
     }),
     QnAModule, CommentModule, CcommentModule, WhiskytipModule,
     MulterModule.register({
@@ -50,7 +52,8 @@ import * as path from 'path';
     ConfigModule.forRoot({ isGlobal: true }),
     InsideOutInfoModule,
     InformationModule,  // 외부 모듈 주입
-    LoginModule, ConfigModule.forRoot({ isGlobal: true })],
+    LoginModule, ConfigModule.forRoot({ isGlobal: true })
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
