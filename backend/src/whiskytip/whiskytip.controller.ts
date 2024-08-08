@@ -17,6 +17,16 @@ export class WhiskytipController {
   constructor(private readonly whiskytipService: WhiskytipService,
     private readonly InsideOutInfo: InsideOutInfoService) { }
 
+  @Get('upload')
+  getToken(@Req() req: Request, @Res() res: Response) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5501');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+    res.send('ㅎㅎ')
+  }
+
   // 인터셉터 : 경로를 가로챈다. 먼저하고 간다.
   @Post('upload')
   @UseInterceptors(
@@ -49,7 +59,7 @@ export class WhiskytipController {
 
   ) {
     try {
-      const verifiedToken = this.InsideOutInfo.verify(req.cookies.token);
+      const verifiedToken = this.InsideOutInfo.verify(req.cookies['token']);
 
       const { title, content, category } = req.body;
       const data: any = {
@@ -121,8 +131,9 @@ export class WhiskytipController {
   // js에서가 axios가 아닌 HTML/ form으로 받음
   @Get('check/:id')
   async getcheck(@Req() req: Request, @Res() res: Response, @Param('id', ParseIntPipe) id: number) {
-    const verifiedToken = this.InsideOutInfo.verify(req.headers.authorization);
+    const verifiedToken = this.InsideOutInfo.verify(req.cookies['token']);
     const data = await this.whiskytipService.findId(id);
+    console.log(verifiedToken, 'dataa', data)
     res.json({ verifiedToken, data })
 
 
@@ -323,5 +334,12 @@ export class WhiskytipController {
       console.error('Error searching tips', error);
       res.status(500).send('Error searching tips');
     }
+  }
+
+  @Get("tokenExist")
+  getExist(@Req() req: Request) {
+    const { token } = req.cookies;
+
+    return token ? true : false
   }
 }

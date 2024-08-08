@@ -29,7 +29,8 @@ export class LoginController {
       const date = new Date();
       date.setTime(date.getTime() + (5 * 60 * 60 * 1000));
 
-      res.cookie('token', token, { httpOnly: true, expires: date, sameSite: 'none', secure: true });
+      res.cookie('token', token, { httpOnly: true, expires: date, sameSite: 'none', secure: true, path: '/', domain: 'localhost' });
+      // res.cookie('token', token, { expires: date, secure: true, sameSite: 'none', path: "/" });
       res.json({ token })
 
     } catch (error) {

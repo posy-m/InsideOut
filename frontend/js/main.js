@@ -6,15 +6,15 @@ const info = document.querySelector("#info")
 
 
 snack.addEventListener("click", () => {
-  location.href = "http://127.0.0.1:5501/frontend/html/whiskytip.snack.html"
+  location.href = "http://localhost:5501/frontend/html/whiskytip.snack.html"
 })
 
 
 recipe.addEventListener("click", () => {
-  location.href = "http://127.0.0.1:5501/frontend/html/whiskytip.recipe.html"
+  location.href = "http://localhost:5501/frontend/html/whiskytip.recipe.html"
 })
 
 info.addEventListener("click", () => [
-  location.href = "http://127.0.0.1:5501/frontend/html/whiskytip.info.html"
+  location.href = "http://localhost:5501/frontend/html/whiskytip.info.html"
 ])
 

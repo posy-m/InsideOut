@@ -14,12 +14,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   }
 
   let response = await axios.get(`http://localhost:3000/whisky/check/${id}`, {
-    headers: {
-      "authorization": `${cookieData}`
-    }
+    withCredentials: true
   });
   let tips = await response.data;
-  // console.log(tips);
+  console.log(response)
+  console.log(tips);
   // console.log(tips.img);
   // console.log(element);
   const checkDataWrap = document.querySelector("#checkDataWrap");
@@ -81,13 +80,12 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       </div>
       <div id="icon">
         <img id="cehckDot1" class="checkicon check_btn1" src="../img/comment.png" alt="">
-        <img id="cehckDot2" class="checkicon check_btn2" data-set="${e.nick_name}" src="../img/pen.png" alt="">
+        <img id="cehckDot2" class="checkicon check_btn2" data-set="${e.nick_name}" data-id="${index}" src="../img/pen.png" alt="">
         <img id="cehckDot3" class="checkicon check_btn3" data-set="${e.nick_name}" data-id="${e.nick_name}" src="../img/trashcan.jpeg" alt="">
       </div>
     </div>
       <div class="outside"></div>
       <div class="Ccomment"></div>
-   
       `;
     commentwrap.append(a)
     commentBtnWrap.append(commentwrap);
@@ -137,8 +135,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   // 2.댓글 수정
   // 오른쪽 닉네임___________________________머지 후 로그인 되어있는사람으로 변경
   const cehckBtn2 = document.querySelectorAll(".check_btn2");
-  cehckBtn2.forEach((button) => {
+  cehckBtn2.forEach((button, index) => {
     button.addEventListener("click", (e) => {
+      const targetId = e.target.dataset.id;
+      const outsideElement = document.querySelectorAll('.outside');
+
       if (e.target.dataset.set === tips.verifiedToken.nick_name) {
         const commentContainer = button.closest(".comment_list");
         const existingInput = commentContainer.querySelector(".updateInput");
@@ -167,8 +168,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
             commentUpBtn.remove();
             commentCBtn.remove();
           });
-          const outside = document.querySelector(".outside")
-          outside.append(commentupload, commentUpBtn, commentCBtn)
+          outsideElement[targetId].append(commentupload, commentUpBtn, commentCBtn)
+
           // commentContainer.children[1].append(commentupload, commentUpBtn, commentCBtn);
 
           commentUpBtn.addEventListener("click", async () => {
@@ -297,7 +298,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
               comment: replyInputValue
             };
             console.log(replyData);
-            const response = await axios.put(`http://127.0.0.1:3000/whisky/Ccommentupdate/${replyId}`, replyData);
+            const response = await axios.put(`http://localhost:3000/whisky/Ccommentupdate/${replyId}`, replyData);
             location.reload()
 
           });
@@ -327,7 +328,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         console.log(replyId);
 
         if (!confirm("삭제하시겠습니까?")) { return }
-        const response = await axios.delete(`http://127.0.0.1:3000/whisky/CcommentDelete/${replyId}`)
+        const response = await axios.delete(`http://localhost:3000/whisky/CcommentDelete/${replyId}`)
         if (response.status === 200) {
           location.reload()
         }
@@ -353,7 +354,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   const checkModify = document.querySelector(".tip_check_modify");
   const checkDelete = document.querySelector('.tip_check_delete')
   const checkDeleteList = document.querySelectorAll(".tip_check_delete");
-
   if (tips.data.nick_name === tips.verifiedToken.nick_name) {
     checkModify.classList.remove('hide');
     checkDelete.classList.remove('hide');
@@ -362,10 +362,10 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   checkModify.addEventListener("click", async (e) => {
     const id = new URLSearchParams(location.search).get("id");
     if (tips.data.nick_name === tips.verifiedToken.nick_name) {
-      location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.modify.html?id=${id}`;
+      location.href = `http:/localhost:5501/frontend/html/whiskytip.modify.html?id=${id}`;
     }
     // await axios.put(`http://localhost:3000/whisky/modify/${id}`)
-    // location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.check.html?id=${id}`
+    // location.href = `http:/localhost:5501/frontend/html/whiskytip.check.html?id=${id}`
   });
 
   // 상세페이지 삭제
@@ -389,7 +389,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
               "Content-Type": "multipart/form-data",
             },
           });
-          location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.snack.html`;
+          location.href = `http:/localhost:5501/frontend/html/whiskytip.snack.html`;
         }
       }
     });

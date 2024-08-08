@@ -14,24 +14,24 @@
 
 <body>
 
-  <form id="uploadBox" class="form" action="http://127.0.0.1:3000/whisky/upload" method="post"
-    enctype="multipart/form-data">
-    <select name="category" id="category">
-      <option value="" selected>category</option>
-      <option value="1">snack</option>
-      <option value="2">recipe</option>
-      <option value="3">Information</option>
-    </select>
-    <input type="text" placeholder="제목을 입력해주세요" id="tipCorrecionTitle" name="title">
-    <textarea name="content" id="tipCorrecionContent"></textarea>
-    <div id="uploadBoxBtn">
-      <input type="file" id="tipFile" name="file">
-      <div>
-        <button id="cancellationBtn" type="button">취소</button>
-        <button id="tipCorrecionBtn">확인</button>
-      </div>
+  <!-- <form id="uploadBox" class="form" action="http://127.0.0.1:3000/whisky/upload" method="post"
+    enctype="multipart/form-data"> -->
+  <select name="category" id="category">
+    <option value="" selected>category</option>
+    <option value="1">snack</option>
+    <option value="2">recipe</option>
+    <option value="3">Information</option>
+  </select>
+  <input type="text" placeholder="제목을 입력해주세요" id="tipCorrecionTitle" name="title">
+  <textarea name="content" id="tipCorrecionContent"></textarea>
+  <div id="uploadBoxBtn">
+    <input type="file" id="tipFile" name="file">
+    <div>
+      <button id="cancellationBtn" type="button">취소</button>
+      <button id="tipCorrecionBtn">확인</button>
     </div>
-  </form>
+  </div>
+  <!-- </form> -->
 </body>
 <script src="../js/tip.upload.js"></script>
 
