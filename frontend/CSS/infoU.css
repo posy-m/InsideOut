@@ -29,7 +29,6 @@ font-size: 50px;
 .towTop{
     width: 50%;
     height: 50%;
-    border: 1px solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -116,6 +115,11 @@ font-size: 50px;
     border-radius: .25em;
 }
 
+.upload-hidden{
+    display: none;
+}
+
+
 /*업로드 버튼 효과*/
 .custom-btn {
     width: 130px;
@@ -131,23 +135,23 @@ font-size: 50px;
     position: relative;
     display: inline-block;
     box-shadow: inset 2px 2px 2px 0px rgba(255,255,255,.5),
-      7px 7px 20px 0px rgba(0,0,0,.1),
-      4px 4px 5px 0px rgba(0,0,0,.1);
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
     outline: none;
-   }
-   
-   .btn-1 {
+}
+
+.btn-1 {
     background: rgb(255, 255, 255);
     border: none;
-   }
-   
-   .btn-1:hover {
+}
+
+.btn-1:hover {
     background: rgb(202, 202, 202);
     }
 
-   .btn-1:focus {
+.btn-1:focus {
     background: rgb(168, 168, 168);
-   }
+}
 
 /*업로드 버튼효과 여기까지*/
 
@@ -161,9 +165,9 @@ font-size: 50px;
     font-size: inherit;
     line-height: normal;
     vertical-align: middle;
-    background-color: #fdfdfd;
+    background-color: #e5e4e4;
     cursor: pointer;
-    border: 1px solid #616161;
+    /* border: 1px solid #616161; */
     border-radius: .25em;
 }
 
