@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const tokenResponse = await axios.get('http://localhost:3000/whisky/tokenExist', { withCredentials: true });
+  if (tokenResponse) {
+    const deleteClass = document.getElementById('tipBtn');
+    deleteClass.classList.remove('hide');
+  }
   const tipContentWrap = document.querySelector("#tipContentWrap");
   const searchButton = document.querySelector("#searchButton");
   const searchInput = document.querySelector("#searchInput");
@@ -53,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           const id = el.dataset.set;
           el.onclick = (e) => {
             console.log(e.target.dataset["set"]);
-            location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.check.html?id=${id}`;
+            location.href = `http://localhost:5501/frontend/html/whiskytip.check.html?id=${id}`;
           };
         })
       });
@@ -66,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       //   // console.log(param);
       //   tipContentWrap.onclick = (e) => {
       //     console.log(e.target.dataset["set"]);
-      //     location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.check.html?id=${e.target.dataset["set"]}`;
+      //     location.href = `http://localhost:5501/frontend/html/whiskytip.check.html?id=${e.target.dataset["set"]}`;
       //   };
       // }
 
@@ -103,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 const tipBtn = document.querySelector("#tipBtn");
 tipBtn.addEventListener("click", () => {
-  location.href = "http://127.0.0.1:5501/frontend/html/whiskytip.upload.html";
+  location.href = "http://localhost:5501/frontend/html/whiskytip.upload.html";
 });
 
 // 이벤트 발생
@@ -146,6 +151,72 @@ document.getElementById('overlay').addEventListener('click', function () {
   overlay.style.opacity = '0';
   overlay.style.visibility = 'hidden';
 });
+
+
+const loginButton = document.querySelector('.login-button');
+
+loginButton.addEventListener('click', () => {
+  var popupX = (document.body.offsetWidth / 2) - (700 / 2);
+  var popupY = (window.screen.height / 2) - (500 / 2);
+  window.open('http://localhost:5501/frontend/login.html', '', 'status=no, height=500, width=700, left=' + popupX + ', top=' + popupY);
+});
+
+
+// 로그인 후 쿠키 확인 및 처리
+async function main() {
+  const accessToken = document.cookie.split('; ').find(row => row.startsWith('token='));
+  // if (accessToken) {
+  //   console.log('Token found:', accessToken.split('=')[1]);
+  //   axios.defaults.headers.common['Authorization'] = accessToken.split('=')[1];
+  //   // 쿠키가 있으면 필요한 작업을 수행합니다.
+  // } else {
+  //   console.log('Token not found');
+  // }
+  try {
+    const response = await axios.get('http://localhost:3000/insideOutInfo', { withCredentials: true });
+    if (response) {
+      loginButton.classList.add('hide');
+      const textBox = document.getElementById('textLine');
+      const textLine = document.createElement('div');
+      const logOut = document.createElement('button');
+      logOut.innerHTML = 'LogOut'
+      logOut.classList.add('logloutBtn')
+      textBox.append(logOut);
+      textBox.append(textLine);
+      textLine.innerHTML = response.data.nick_name;
+      textLine.classList.add('nickName')
+
+      logOut.onclick = async () => {
+        const deleteCookie = await axios.post('http://localhost:3000/insideOutInfo/logout', {}, { withCredentials: true });
+        console.log(deleteCookie.data.message)
+        window.location.reload();
+      }
+    }
+  } catch (error) {
+    if (!error.response) {
+      // network error
+      this.errorStatus = 'Error: Network Error';
+    } else {
+      this.errorStatus = error.response.data.message;
+    }
+  }
+}
+
+main()
+
+const tip = document.getElementById("tip")
+tip.addEventListener("click", () => {
+  location.href = "http://localhost:5501/frontend/html/main.html"
+})
+
+// insideout 클릭시 메인
+
+const wrapper = document.querySelector(".wrapper")
+
+wrapper.addEventListener("click", () => {
+  location.href = "http://localhost:5501/frontend/HTML/InsideOutWhiskey.html"
+})
+
 
 
 

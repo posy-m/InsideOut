@@ -8,30 +8,28 @@ import { retry } from 'rxjs';
 
 @Injectable()
 export class InsideOutInfoService {
-constructor(private readonly jwt:JwtService){}
+    constructor(private readonly jwt: JwtService) { }
 
-        token() {
-            try{
-                const token = this.jwt.sign({id:1, nick_name:'nick_name'});
-                return token
-            }catch(error){
-console.log(error);
-            }
+    token() {
+        try {
+            const token = this.jwt.sign({ id: 1, nick_name: 'nick_name' });
+            return token
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    verify(Testtoken : string){
-        console.log(Testtoken)
-        const tokenVerify = this.jwt.verify(Testtoken);
-        console.log(tokenVerify)
+    verify(token: string,) {
+        const tokenVerify = this.jwt.verify(token, { secret: 'secret' });
         return tokenVerify
     }
 
-    create(){
-        const uid : CreateUser = {
+    create() {
+        const uid: CreateUser = {
             id: 1,
             uid: 'test',
             upw: 'test',
-            nick_name : 'nick_name'
+            nick_name: 'nick_name'
         }
         return uid
     }

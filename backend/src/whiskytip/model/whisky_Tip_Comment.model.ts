@@ -1,4 +1,5 @@
 import { HasMany, BelongsTo, Column, DataType, ForeignKey, Model, Table, AllowNull, HasOne } from 'sequelize-typescript';
+import { UserSignUp } from 'src/login/model/login.model';
 import { whiskyTip } from './whisky_Tip.model'
 import { whiskyTipCcomment } from './whisky_Tip_Ccomment.model';
 // 유저 모델 들고와야함 foreignKey nick가져오기
@@ -13,7 +14,9 @@ import { whiskyTipCcomment } from './whisky_Tip_Ccomment.model';
 
 export class whiskyTipComment extends Model {
 
-  @Column
+  @Column({
+    type: DataType.INTEGER
+  })
   category: number;
 
   @ForeignKey(() => whiskyTip)
@@ -44,4 +47,9 @@ export class whiskyTipComment extends Model {
   })
   whiskyTipCcomment: whiskyTipCcomment[];
 
+  @BelongsTo(() => UserSignUp, {
+    foreignKey: 'nick_name',
+    targetKey: 'nick_name'
+  })
+  user: UserSignUp;
 }
