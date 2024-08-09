@@ -20,7 +20,6 @@ tokenReload();
 
 
 tipCorrecionBtn.addEventListener("click", async (e) => {
-  e.preventDefault();
   const tipCorrecionTitle = document.querySelector("#tipCorrecionTitle").value;
   const tipCorrecionContent = document.querySelector("#tipCorrecionContent").value;
   const tipFile = document.querySelector("#tipFile").files[0];
@@ -37,22 +36,26 @@ tipCorrecionBtn.addEventListener("click", async (e) => {
     // debugger
     return;
   }
-
-  const formData = new FormData();
-  formData.append("title", tipCorrecionTitle);
-  formData.append("content", tipCorrecionContent);
-  formData.append("file", tipFile);
-  formData.append("category", category)
   try {
+
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", tipCorrecionTitle);
+    formData.append("content", tipCorrecionContent);
+    formData.append("file", tipFile);
+    formData.append("category", category)
+    const c = {
+      title: tipCorrecionTitle,
+      content: tipCorrecionContent,
+      category: category
+    }
     const response = await axios.post(`http://localhost:3000/whisky/upload`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
-      withCredentials: true
+      withCredentials: true,
     });
-    if (response.status) {
+
+    if (response.status === 200) {
       const newID = response.data.id; // 서버에서 새로운 ID를 반환한다고 가정
-      // location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.check.html?id=${newID}`;
+      location.href = `http://localhost:5501/frontend/html/whiskytip.check.html?id=${newID}`;
       // location.href = "http://127.0.0.1:5501/frontend/html/whiskytip.snack.html"
       return;
     } else {
@@ -78,3 +81,11 @@ cancellationBtn.addEventListener("click", () => {
 
 
 
+// const testfn = async (e) => {
+//   const tipFile = document.querySelector("#tipFile").files[0];
+//   const formd = new FormData();
+//   formd.append("file", tipFile);
+//   const response = await axios.post(`http://localhost:3000/whisky/upload`, formd, {
+//     withCredentials: true
+//   });
+// }

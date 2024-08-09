@@ -259,6 +259,7 @@
   height: 30px;
   margin-right: 10px;
   border-width: 0 0 1px;
+  /* display: none; */
 }
 
 .updateBtn {

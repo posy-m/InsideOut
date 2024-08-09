@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Req, Res, UploadedFile, UseInterceptors, } from '@nestjs/common';
+import { BadGatewayException, Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Req, Res, UploadedFile, UseInterceptors, } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -29,38 +29,17 @@ export class WhiskytipController {
 
   // 인터셉터 : 경로를 가로챈다. 먼저하고 간다.
   @Post('upload')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        // destination: 'uploads',
-        // destination: '/Users/mac/Desktop/uploadFolder', // 파일이 저장될 디렉토리
-        destination: 'uploads', // 파일이 저장될 디렉토리
-        // filename : 저장할 파일 네임
-        // 파일이름이 같으면 덮어씌여지기 때문에 파일네임을 리턴시킨거임
-        filename: (_, file, callback) => {
-          const randomName = Array(32)
-            .fill(null)
-            .map(() => Math.round(Math.random() * 16).toString(16))
-            .join('');
-          //수정함
-          return callback(null, `${randomName}${extname(file.originalname)}`);
-          // 이걸로 하면 파일네임이 없어서 문자열이 안들어가서 안됨
-          // return callback(null, `${randomName}${extname(file.filename)}`);
-        },
-      }),
-    }),
-  )
-  // 라우터임
-  //uploadFile : 경로를 타고 라우터
-  async uploadFile(
+  @UseInterceptors(FileInterceptor("file"))
+  async uploads(
     @UploadedFile() file: Express.Multer.File,
     @Req() req: Request,
     @Res() res: Response
 
   ) {
+    console.log(file)
+    console.log(req.body)
     try {
       const verifiedToken = this.InsideOutInfo.verify(req.cookies['token']);
-
       const { title, content, category } = req.body;
       const data: any = {
         nick_name: verifiedToken.nick_name,
@@ -79,8 +58,7 @@ export class WhiskytipController {
       // const img = path.join(filename)
       //await this.whiskytipService.creatTip({ nick_name: "nick_name", category: parseInt(category), tip_title: title, tip_content: content, img: filename })
       const result = await this.whiskytipService.creatTip(data);
-
-      console.log(result.dataValues.id);
+      //console.log("응답", res)
 
       //파일 없으면 File upload failed
       // return {
@@ -94,7 +72,9 @@ export class WhiskytipController {
       // );
       //res.setHeader("content-type", "text/html");
       //return res.send(`<script>location.href='http://127.0.0.1:5501/frontend/html/whiskytip.snack.html?id=${result.dataValues.id}'</script>`)
-      return res.redirect(`http://127.0.0.1:5501/frontend/html/whiskytip.check.html?id=${result.dataValues.id}`);
+      //return res.redirect(`http://localhost:5501/frontend/html/whiskytip.check.html?id=${result.dataValues.id}`);
+
+      res.status(200).send(result);
     } catch (error) {
       console.log(error);
     }

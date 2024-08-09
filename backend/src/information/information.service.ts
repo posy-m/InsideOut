@@ -37,13 +37,11 @@ export class InformationService {
     async update(id: number, updateContent:UpdateContent, img : string): Promise<Insideoutinfo> {
         const record = await this.findOneById(id);
         if(!record){
-            throw new NotFoundException(`ID가 ${id}인 레코드를 찾을 수 없습니다.`);
+            throw new Error(`ID가 ${id}인 레코드를 찾을 수 없습니다.`);
         }
         const { whiskey_text, whiskey_name }= updateContent
-        console.log("gh",  whiskey_text);
-        
         const updatedRecord = await record.update({
-            whiskey_name, w_info:whiskey_text, img
+            whiskey_name, whiskey_text, whiskey_image : img
         });
         return updatedRecord;
     }

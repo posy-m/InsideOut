@@ -74,7 +74,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.snack.html`
+    // location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.snack.html`
+    location.href = `http://localhost:5501/frontend/html/whiskytip.snack.html`
   }
 })
 
