@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+body {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #uploadBox {
   display: flex;
   flex-direction: column;
