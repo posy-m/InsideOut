@@ -203,7 +203,8 @@ const checkModify = document.querySelector(".tip_check_modify")
 checkModify.addEventListener("click", async () => {
   const id = new URLSearchParams(location.search).get("id")
   console.log(id);
-  location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.modify.html?id=${id}`
+  // location.href = `http://127.0.0.1:5501/frontend/html/whiskytip.modify.html?id=${id}`
+  location.href = `http://localhost:3000/frontend/html/whiskytip.modify.html?id=${id}`
   // await axios.put(`http://localhost:3000/whisky/modify/${id}`)
 })
 
@@ -237,5 +238,6 @@ checkDeleteList.forEach((checkDelete) => {
   })
 
 })
+
 
 

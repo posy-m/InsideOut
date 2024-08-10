@@ -14,7 +14,10 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 @Module({
   imports: [SequelizeModule.forFeature([whiskyTip, whiskyTipComment, whiskyTipCcomment]),
   MulterModule.registerAsync({ useClass: UploadService }),
-    InsideOutInfoModule],
+    InsideOutInfoModule,
+  MulterModule.registerAsync({
+    useClass: UploadService
+  })],
   controllers: [WhiskytipController],
   //providers : 주입할 애들을 둘고온다.
   providers: [WhiskytipService, InsideOutInfoService, JwtModule],

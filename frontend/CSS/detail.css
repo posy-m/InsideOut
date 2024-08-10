@@ -475,12 +475,7 @@ body {
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-.help {
-    width: 500px;
-    height: 100%;
-    display: flex;
-=======
+
 #com_commentView>div>:nth-child(2)>:nth-child(2):hover {
     width: 70px;
     height: 40px;
@@ -540,5 +535,4 @@ body {
     background-color: #b22100;
     color: white;
     cursor: pointer;
->>>>>>> peace
 }

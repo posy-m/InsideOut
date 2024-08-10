@@ -172,9 +172,8 @@ async function comment() {
                 div.innerHTML = `<form id="comComForm" action="http://127.0.0.1:3000/ccomment/create?id=${_listIndex}" method="post">
                                 <input type="text" name="nick_name" value="god_kkh" hidden>
                                 <div class="help">
-                                <label for="">대댓글 작성</label>
-                                <textarea name="qna_com_comment" id="comComment_Content" placeholder="대댓글을 입력해주세요." cols="30" rows="1"></textarea>
                                 <button id="comCommentAddBtn">대댓글 작성</button>
+                                <textarea name="qna_com_comment" id="comComment_Content" placeholder="대댓글을 입력해주세요." cols="30" rows="1"></textarea>
                                 <input type="text" name="qna_comment_id" id="QnA_Comment_ID" value="${item.id}" hidden>
                                 </div>
                                 </form>`;

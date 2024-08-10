@@ -105,7 +105,7 @@ const loginButton = document.querySelector('.login-button');
 loginButton.addEventListener('click', () => {
   var popupX = (document.body.offsetWidth / 2) - (700 / 2);
   var popupY = (window.screen.height / 2) - (500 / 2);
-  var popupWindow = window.open('http://127.0.0.1:5501/frontend/login.html', '', 'status=no, height=500, width=700, left=' + popupX + ', top=' + popupY);
+  var popupWindow = window.open('http://localhost:5501/frontend/login.html', '', 'status=no, height=500, width=700, left=' + popupX + ', top=' + popupY);
 
   // message 이벤트 리스너가 중복되지 않도록 하는 함수
   const handleMessage = async (event) => {
@@ -164,6 +164,6 @@ main()
 
 const tipBtn = document.getElementById("tipBtn")
 tipBtn.addEventListener("click", () => {
-  location.href = "http://127.0.0.1:5501/frontend/html/main.html"
+  location.href = "http://localhost:5501/frontend/html/main.html"
 })
 
