@@ -41,7 +41,8 @@
 
 **검색기능**
 - 
-<img width="1437" alt="스크린샷 2024-09-03 13 23 47" src="https://github.com/user-attachments/assets/69ed3d9a-ea52-4a2d-9a4e-47490d15a7b9"/>
+<img width="1437" alt="스크린샷 2024-09-03 13 23 47" src="https://github.com/user-attachments/assets/efe9a72a-7ed7-49c9-aae6-f1fe832d93bc"/>
+
 
 **페이지 네이션 **
 - 
