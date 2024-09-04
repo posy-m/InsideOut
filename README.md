@@ -25,26 +25,26 @@
 
 # 👏 Inside Out
 ### 프로젝트 소개
-"술을 좋아하는 사람들을 위한 커뮤니티 플랫폼으로  "
+"술을 좋아하는 사람들을 위한 커뮤니티 플랫폼으로 술, 안주, 가격 등 술에 관련된 정보들을 제공합니다."
 
-**메인페이지**
-- 고객이 홈페이지에 방문하면 도넛 사진과 직관적인 UI 제공
-<img src="https://github.com/user-attachments/assets/9ec5fc86-69cd-4e92-82b0-8b03ec14bff4" width="1000" height="600"/>
+**커뮤니티페이지** 
+-
+<img src="https://github.com/user-attachments/assets/f053166d-df6f-4267-a5be-594b2d4faaef" width="1432" height="600"/>
 
-**회원가입**
-- 회원가입하는 고객들의 회원정보를 세션스토리지에 정보 저장
-<img width="1437" alt="스크린샷 2024-09-03 13 22 00" src="https://github.com/user-attachments/assets/94a005e4-1eb9-4d26-b72f-edb03d26a254"/>
+**댓글**
+- 
+<img width="1432" alt="스크린샷 2024-09-04 16 50 28" src="https://github.com/user-attachments/assets/4d5d699e-5abc-4bd7-bbd9-81bdf8fffc2f"/>
 
-**로그인**
-- input창에 입력한 값과 세션스토리지의 값을 확인하여 로그인
-<img width="1437" alt="스크린샷 2024-09-03 13 21 44" src="https://github.com/user-attachments/assets/19162509-1c3e-423c-ae0c-39d0eea0b2bd"/>
+**대댓글**
+- 
+<img width="1432" alt="스크린샷 2024-09-04 16 53 30" src="https://github.com/user-attachments/assets/e28ead6c-5a39-40bb-b857-725ae89e5111"/>
 
-**게시판 페이지**
-- 검색창에 입력한 값을 쿼리파라미터로 받아 고객이 원하는 게시글 제공
+**검색기능**
+- 
 <img width="1437" alt="스크린샷 2024-09-03 13 23 47" src="https://github.com/user-attachments/assets/69ed3d9a-ea52-4a2d-9a4e-47490d15a7b9"/>
 
-**Admin Page**
-- 운영자가 가입자의 회원가입 여부 확인
+**페이지 네이션 **
+- 
 <img width="1437" src="https://github.com/user-attachments/assets/dbc63caa-2720-4943-a726-80c049ab04d1"/>
 
 
