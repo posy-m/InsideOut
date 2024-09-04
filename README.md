@@ -29,7 +29,7 @@
 
 **커뮤니티페이지** 
 -
-<img src="https://github.com/user-attachments/assets/f053166d-df6f-4267-a5be-594b2d4faaef" width="1432" height="400"/>
+<img src="https://github.com/user-attachments/assets/f053166d-df6f-4267-a5be-594b2d4faaef" width="1432" height="550"/>
 
 **댓글**
 - 
