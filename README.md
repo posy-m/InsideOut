@@ -41,7 +41,7 @@
 
 **검색기능**
 - input창에 제목, 게시글 제목 입력시 검색기능
-<img width="1437" alt="스크린샷 2024-09-03 13 23 47" src="https://github.com/user-attachments/assets/efe9a72a-7ed7-49c9-aae6-f1fe832d93bc"/>
+<img width="1437" alt="스크린샷 2024-09-03 13 23 47" src="https://github.com/user-attachments/assets/8b20e34b-9aad-4c09-86fe-cb319992a48f"/>
 
 
 
