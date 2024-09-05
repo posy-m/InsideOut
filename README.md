@@ -28,19 +28,19 @@
 "술을 좋아하는 사람들을 위한 커뮤니티 플랫폼으로 술, 안주, 가격 등 술에 관련된 정보들을 제공합니다."
 
 **커뮤니티페이지** 
--
+- 
 <img src="https://github.com/user-attachments/assets/f053166d-df6f-4267-a5be-594b2d4faaef" width="1432" height="550"/>
 
 **댓글**
-- 
+- 사용자 댓글 수정 및 삭제 설정
 <img width="1432" alt="스크린샷 2024-09-04 16 50 28" src="https://github.com/user-attachments/assets/4d5d699e-5abc-4bd7-bbd9-81bdf8fffc2f"/>
 
 **대댓글**
-- 
+- 사용자 대댓글 수정 및 삭제 설정
 <img width="1432" alt="스크린샷 2024-09-04 16 53 30" src="https://github.com/user-attachments/assets/e28ead6c-5a39-40bb-b857-725ae89e5111"/>
 
 **검색기능**
-- 
+- input창에 제목, 게시글 제목 입력시 검색기능
 <img width="1437" alt="스크린샷 2024-09-03 13 23 47" src="https://github.com/user-attachments/assets/efe9a72a-7ed7-49c9-aae6-f1fe832d93bc"/>
 
 
